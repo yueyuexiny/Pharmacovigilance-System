@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     height: 20px;
 }
 
-/****** navigation bar *******/
+/****** navigation bar.tsv *******/
 
 .navbar{
     margin-top: 10px;
@@ -466,7 +466,7 @@ table.search-repo th {
 }
 
 
-/****side bar*****/
+/****side bar.tsv*****/
 #sidebar > li > a{
     color: black;
 }

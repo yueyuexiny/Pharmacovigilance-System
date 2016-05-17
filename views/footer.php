@@ -15,20 +15,8 @@
     </div>
 </div>
 
-<script type="text/javascript" src="./js/js.cookie.js"></script>
-<?php
-/* ==== Page Specific Scripts ==== */
-if (isset($scripts)) {
-    foreach ($scripts as $script) {
-        echo '<script type="text/javascript" src="' . $script . '"></script>';
-        echo "\r\n";
-    }
-}
-?>
-<?php
-/* Page Custom Scripts. */
-$scripts = ["./js/page.scripts/advanced.js"];
-?>
+<script src="./js/heatmap.js"></script>
+<script src="./js/barchart.js"></script>
 </body>
 
 </html>

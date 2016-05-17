@@ -1,55 +1,5 @@
 var rowCount = 0;
 
-function advancedSearch(query) {
-    var data = query;
-
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: "search/AdvancedSearchService.php",
-        data: {"data": data},
-        success: function (data, status) {
-            rowCount++;
-            //var totalNum = data.num;
-            var newRow = jQuery('<tr><td>#' + rowCount + '</td><td>Search <strong>' + query + '</strong></td><td>'+ data.num +'</td><td>'+data.time+'</td></tr>');
-            $('table.history').append(newRow);    // Add query to history table
-        },
-        error: function (xhr, desc, err) {
-            console.log(xhr);
-            console.log("Details: " + desc + "\nError:" + err);
-        }
-    });
-}
-function contructQuery(){
-
-    var query = "";
-
-    var count = $("div[id*='group']").length;
-
-    var value = "";
-    var field = "";
-    var operator = "";
-
-
-
-    $("div[id*='group']").each(function (index) {
-        index = index + 1;
-        value = $.trim($("#field" + index).val());
-        field = $.trim($("#drop" + index).text());
-
-        if (index > 1) {
-            // Construct query for displaying
-            operator = $("#op" + index).text();
-            query = query + " " + operator + " " + "\"" + value + "\"[" + field + "]";
-        } else {
-            // Construct query for displaying
-            query = query + "\"" + value + "\"[" + field + "]";
-        }
-    });
-
-    return query;
-}
-
 $(document).ready(function () {
 
     /*** Add/remove criteria ***/
@@ -107,49 +57,11 @@ $(document).ready(function () {
     });
 
 
-    /*** autocomplete function for input fields ***/
-    $('[id^="field"]').autocomplete({
-        source: function (req, res) {
-            // $('#loading').show();
-            $.ajax({
-                url: 'whatsthis.php',
-                data: {q: req.term},
-                dataType: "json",
-                success: function (data) {
-                    res($.map(data, function (item) {
-                        return {
-                            label: item.completion,
-                            value: item.completion
-                        }
-                    }));
-                },
-                complete: function () {
-                    $('#loading').hide();
-                }
-            });
-        }
-    });
-
-
-    /*** Save Search button onclick***/
-    $('#btn-save').click(function () {
-        var searchType = document.querySelector('input[name="searchtype"]:checked').value;
-        var query = "(" + searchType + ")"+contructQuery();
-         advancedSearch(query);
-
-    });
-
-
-
     $('#btn-search').click(function(){
-        var query = contructQuery();
-        $('#query').val(query);
+
     });
 
-    $('#btn-show').click(function(){
-        var query = contructQuery();
-        $('#query').val(query);
-    });
+
 });
 
 

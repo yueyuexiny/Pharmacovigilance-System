@@ -10,27 +10,27 @@
     <meta name="author" content="">
 
 
-    <link rel="icon" href="./img/favicon.png">
-
     <!--jquery-->
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"/>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 
     <!--bootstrap-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"/>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <!--css-->
     <link href="./css/theme.css" rel="stylesheet">
-    <link href="./css/expand.css" rel="stylesheet">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link href="./css/heatmap.css" rel="stylesheet">
+    <link href="./css/barchart.css" rel="stylesheet">
+
+    <!--js-->
     <script src="//d3js.org/d3.v3.min.js"></script>
-
-
     <script src="./js/page.scripts/advanced.js"></script>
+
 
     <!--[if lt IE 9]>
     <script src="./js/ie8-responsive-file-warning.js"></script>
@@ -41,32 +41,6 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
-    <!---For sign in using google account-->
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="829717013649-0j7el8re8ka2d5tgqm87c5msek06kgmu.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script type="text/javascript" src="./js/loadingoverlay.min.js"></script>
-    <script type="text/javascript" src="./js/global.scripts.js"></script>
-
-    <!---For contact us generating captcha-->
-    <script language="JavaScript" src="./js/gen_validatorv31.js" type="text/javascript"></script>
-
-    <!--Google Analytics-->
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-74660564-1', 'auto');
-        ga('send', 'pageview');
-
-    </script>
-
-    <style>
-
-    </style>
 </head>
 
 
