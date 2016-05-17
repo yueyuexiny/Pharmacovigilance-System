@@ -17,6 +17,13 @@
 
 <script src="./js/heatmap.js"></script>
 <script src="./js/barchart.js"></script>
+
+<!--line chart-->
+<script type="text/javascript" src="./js/crossfilter.js"></script>
+<script type="text/javascript" src="./js/dc.js"></script>
+<script type="text/javascript" src="./js/colorbrewer.js"></script>
+<script type="text/javascript" src="./js/stock.js"></script>
+
 </body>
 
 </html>

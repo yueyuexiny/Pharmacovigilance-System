@@ -26,6 +26,7 @@
     <link href="./css/theme.css" rel="stylesheet">
     <link href="./css/heatmap.css" rel="stylesheet">
     <link href="./css/barchart.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/dc.css"/>
 
     <!--js-->
     <script src="//d3js.org/d3.v3.min.js"></script>
