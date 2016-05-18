@@ -88,7 +88,7 @@ $(document).ready(function () {
 
         var div = '<div id="group_adr' + next + '" class="col-xs-6 col-md-offset-4"></div>';
         $(".inner_adr" + next).wrapAll(div);
-
+        $('.selectpicker').selectpicker('refresh');
 
         $('.remove-me-adr').unbind().click(function (e) {
             e.preventDefault();
@@ -123,7 +123,7 @@ $(document).ready(function () {
 
         var div = '<div id="group_drug' + next + '" class="col-xs-6 col-md-offset-4"></div>';
         $(".inner" + next).wrapAll(div);
-
+        $('.selectpicker').selectpicker('refresh');
 
         $('.remove-me').unbind().click(function (e) {
             e.preventDefault();
