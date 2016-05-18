@@ -69,8 +69,8 @@ $(document).ready(function () {
         var addRemove = "#group_adr" + groupNum_adr[groupNum_adr.length - 1];
         var next = groupNum_adr[groupNum_adr.length - 1] + 1;
         groupNum_adr.push(next);
-        alert(next);
-        var newSelect = '<select class="selectpicker inner_adr' + next +'"  data-live-search="true" data-width="200px">\
+
+        var newSelect = '<select class="selectpicker inner_adr' + next +'"data-live-search="true" data-width="200px">\
             <option >ADR1</option>\
             <option >ADR2</option>\
             <option >ADR3</option>\
@@ -79,7 +79,7 @@ $(document).ready(function () {
         var newSelected=$(newSelect);
 
 
-        var removeBtn = '<button id="remove' + next + '" class="btn btn-danger remove-me-adr inner' + next + '" >-</button>';
+        var removeBtn = '<button id="remove' + next + '" class="btn btn-danger remove-me-adr inner_adr' + next + '" >-</button>';
         var removeButton = $(removeBtn);
         $(addRemove).after(removeButton);
 
@@ -106,7 +106,7 @@ $(document).ready(function () {
         var addRemove = "#group_drug" + groupNum_drug[groupNum_drug.length - 1];
         var next = groupNum_drug[groupNum_drug.length - 1] + 1;
         groupNum_drug.push(next);
-        alert(next);
+
         var newSelect = '<select class="selectpicker inner' + next + ' fieldul' + next + '" id="drop_drug' + next + '"  data-live-search="true" data-width="200px">\
             <option >Abacavir</option>\
             <option >Abagovomab</option>\
