@@ -4,6 +4,8 @@ $(document).ready(function () {
 
     /*** Add/remove criteria ***/
     var groupNum = [1]; // track id of existing input group
+    var groupNum_drug = [1]; // track id of existing input group
+    var groupNum_adr = [1]; // track id of existing input group
 
     $(".add-more").click(function (e) {
         e.preventDefault();
@@ -23,7 +25,6 @@ $(document).ready(function () {
         var newInput = $(newIn);
         var removeBtn = '<button id="remove' + next + '" class="btn btn-danger remove-me inner' + next + '" >-</button>';
         var removeButton = $(removeBtn);
-
         $(addRemove).after(removeButton);
         $(addto).after(newInput);
         $(addto).after(newDropDown);
@@ -61,6 +62,78 @@ $(document).ready(function () {
 
     });
 
+    $(".add-more-ADR").click(function (e) {
+        e.preventDefault();
+
+        var addto = "#group_adr" + groupNum_adr[groupNum_adr.length - 1];
+        var addRemove = "#group_adr" + groupNum_adr[groupNum_adr.length - 1];
+        var next = groupNum_adr[groupNum_adr.length - 1] + 1;
+        groupNum_adr.push(next);
+        alert(next);
+        var newSelect = '<select class="selectpicker inner_adr' + next +'"  data-live-search="true" data-width="200px">\
+            <option >ADR1</option>\
+            <option >ADR2</option>\
+            <option >ADR3</option>\
+            <option >ADR4</option>\
+            </select>';
+        var newSelected=$(newSelect);
+
+
+        var removeBtn = '<button id="remove' + next + '" class="btn btn-danger remove-me-adr inner' + next + '" >-</button>';
+        var removeButton = $(removeBtn);
+        $(addRemove).after(removeButton);
+
+        $(addto).after(newSelected);
+
+
+        var div = '<div id="group_adr' + next + '" class="col-xs-6 col-md-offset-4"></div>';
+        $(".inner_adr" + next).wrapAll(div);
+
+
+        $('.remove-me-adr').unbind().click(function (e) {
+            e.preventDefault();
+            var fieldNum = parseInt(this.id.match(/\d+/));
+            var groupID = "#group_adr" + fieldNum;
+            groupNum_adr.splice(groupNum_adr.indexOf(fieldNum), 1);
+            $(groupID).remove();
+
+        });
+    });
+    $(".add-more-drug").click(function (e) {
+        e.preventDefault();
+
+        var addto = "#group_drug" + groupNum_drug[groupNum_drug.length - 1];
+        var addRemove = "#group_drug" + groupNum_drug[groupNum_drug.length - 1];
+        var next = groupNum_drug[groupNum_drug.length - 1] + 1;
+        groupNum_drug.push(next);
+        alert(next);
+        var newSelect = '<select class="selectpicker inner' + next + ' fieldul' + next + '" id="drop_drug' + next + '"  data-live-search="true" data-width="200px">\
+            <option >Abacavir</option>\
+            <option >Abagovomab</option>\
+            <option >Abarelix</option>\
+            <option >Acadesine</option>\
+            </select>';
+        var newSelected=$(newSelect);
+
+        var removeBtn = '<button id="remove_drug' + next + '" class="btn btn-danger remove-me inner' + next + '" >-</button>';
+        var removeButton = $(removeBtn);
+        $(addRemove).after(removeButton);
+        $(addto).after(newSelected);
+
+
+        var div = '<div id="group_drug' + next + '" class="col-xs-6 col-md-offset-4"></div>';
+        $(".inner" + next).wrapAll(div);
+
+
+        $('.remove-me').unbind().click(function (e) {
+            e.preventDefault();
+            var fieldNum = parseInt(this.id.match(/\d+/));
+            var groupID = "#group_drug" + fieldNum;
+            groupNum_drug.splice(groupNum_drug.indexOf(fieldNum), 1);
+            $(groupID).remove();
+
+        });
+    });
 
 });
 
