@@ -35,6 +35,7 @@
     <!--js-->
     <script src="//d3js.org/d3.v3.min.js"></script>
     <script src="./js/page.scripts/advanced.js"></script>
+    <script src="./js/d3.tip.v0.6.3.js"></script>
 
 
     <!--[if lt IE 9]>

@@ -32,5 +32,22 @@ class Heatmap
         }
     }
 
+
+    function getOutcomeID(){
+        try{
+            $sql = "SELECT outcome_concept_id, sum(case_count)
+                    FROM faers.standard_drug_outcome_statistics
+                    group by outcome_concept_id
+                    order by sum(case_count) desc
+                    limit 100";
+
+            $result = $this->dbconn->query($sql);
+
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
 }
 
