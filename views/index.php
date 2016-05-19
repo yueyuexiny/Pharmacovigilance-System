@@ -1,3 +1,21 @@
+<?php
+
+$drugname = new DrugName();
+$result=$drugname->getDrugNameList("");
+
+$ADRname = new ADRName();
+$result_ADR=$ADRname->getADRNameList("");
+$default_drug_list=[];
+foreach ($result as $row) {
+    array_push($default_drug_list,$row['drug_name']);
+}
+$default_ADR_list=[];
+foreach ($result_ADR as $row) {
+    array_push($default_ADR_list,$row['outcome_name']);
+}
+
+?>
+
 <div class="container">
     <div class="row">
         <h3>Adverse Drug Events in FAERS </h3>
@@ -46,16 +64,20 @@
                         <h4>Drug: <span id="select-result"></span>
                             <select class="selectpicker"  data-width="138px"
                                     name="dataset_datatype" onchange="showinputbox(this)">
-                                <option value="All">All</option>
                                 <option value="Brand">Brand</option>
+                                <option value="All">All</option>
                                 <option value="Generic">Generic</option>
                             </select>
 
                             <select class="selectpicker" data-live-search="true" data-width="200px">
-                                <option >Abacavir</option>
-                                <option >Abagovomab</option>
+                                <option >All</option>
+                                <?php //include include dirname(__FILE__) ."/../database/druglist.php";?>
+                                <?php foreach($default_drug_list as $drug ):?>
+                                    <option ><?php echo $drug;?></option>
+                                <?php endforeach;?>
+                                <!--<option >Abagovomab</option>
                                 <option >Abarelix</option>
-                                <option >Acadesine</option>
+                                <option >Acadesine</option>-->
                             </select>
 
 
@@ -76,16 +98,19 @@
                         <h4>ADR: <span id="select-result1"></span>
                             <select class="selectpicker" data-width="138px"
                                     name="drugtype" onchange="showinputbox(this)">
+                                <option value="Generic">medDRA</option>
                                 <option value="All">All</option>
                                 <option value="Brand">HOI</option>
-                                <option value="Generic">medDRA</option>
+
                             </select>
 
                             <select class="selectpicker"  data-live-search="true" data-width="200px">
-                                <option >ADR1</option>
-                                <option >ADR2</option>
-                                <option >ADR3</option>
-                                <option >ADR4</option>
+                                <option >All</option>
+                                <?php //include dirname(__FILE__) ."/../database/ADRlist.php";?>
+                                <?php foreach($default_ADR_list as $ADR ):?>
+                                    <option ><?php echo $ADR;?></option>
+                                <?php endforeach;?>
+
                             </select>
                             <button type="button" id="btnAddADR" class="btn btn-default add-more-ADR"><span
                                     class="glyphicon glyphicon-plus"></span>Add ADR

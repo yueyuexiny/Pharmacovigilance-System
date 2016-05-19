@@ -71,10 +71,17 @@ $(document).ready(function () {
         groupNum_adr.push(next);
 
         var newSelect = '<select class="selectpicker inner_adr' + next +'"data-live-search="true" data-width="200px">\
-            <option >ADR1</option>\
-            <option >ADR2</option>\
-            <option >ADR3</option>\
-            <option >ADR4</option>\
+            <option >All</option>\
+            <option value="35104065">Anaemia folate deficiency</option>\
+            <option value="35104066">Anaemia of pregnancy</option>\
+            <option value="35104067">Anaemia vitamin B12 deficiency</option>\
+            <option value="35104069">Deficiency anaemia</option>\
+            <option value="35104070">Iron deficiency anaemia</option>\
+            <option value="35104071">Pernicious anaemia</option>\
+            <option value="35104072">Protein deficiency anaemia</option>\
+            <option value="35104073">Subacute combined cord degeneration</option>\
+            <option value="35104074">Anaemia</option>\
+            <option value="35104075">Anaemia macrocytic</option>\
             </select>';
         var newSelected=$(newSelect);
 
@@ -108,10 +115,18 @@ $(document).ready(function () {
         groupNum_drug.push(next);
 
         var newSelect = '<select class="selectpicker inner' + next + ' fieldul' + next + '" id="drop_drug' + next + '"  data-live-search="true" data-width="200px">\
-            <option >Abacavir</option>\
-            <option >Abagovomab</option>\
-            <option >Abarelix</option>\
-            <option >Acadesine</option>\
+            <option >All</option>\
+            <option value="501343">hepatitis B immune globulin</option>\
+            <option value="514834">Honey bee venom</option>\
+           <option value="523202">Typhoid Vaccine Live Ty21a</option>\
+           <option value="523212">Rubella Virus Vaccine Live (Wistar RA 27-3 Strain)</option>\
+           <option value="523367">poliovirus vaccine inactivated, type 3 (Saukett)</option>\
+           <option value="523620">Mumps Vaccine</option>\
+           <option value="528301">Neisseria meningitidis serogroup Y capsular polysaccharide diphtheria toxoid protein conjugate vaccine</option>\
+           <option value="528323">Hepatitis B Surface Antigen Vaccine</option>\
+           <option value="529072">Streptococcus pneumoniae serotype 9V capsular antigen diphtheria CRM197 protein conjugate vaccine</option>\
+           <option value="529114">L1 protein, Human papillomavirus type 18 Vaccine</option>\
+           <option value="529116">L1 protein, Human papillomavirus type 6 Vaccine</option>\
             </select>';
         var newSelected=$(newSelect);
 

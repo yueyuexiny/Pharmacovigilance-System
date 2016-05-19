@@ -1,3 +1,5 @@
+<?php include dirname(__FILE__) . '/database/DrugName.php'; ?>
+<?php include dirname(__FILE__) . '/database/ADRName.php'; ?>
 <?php include dirname(__FILE__) . '/views/header.php'; ?>
 <?php include dirname(__FILE__) . '/views/index.php'; ?>
 
@@ -11,7 +13,6 @@
 require_once dirname(__FILE__) .'/database/heatmap.php';
 $hm = new Heatmap();
 $result = $hm->getDrugConceptId();
-
 $rowNum = 1;
 $colNum = 1;
 $current = "";
@@ -35,7 +36,7 @@ foreach ($result as $row) {
         $rowNum++;
     }
 }
-$result = file_put_contents($file, $current);
+//$result = file_put_contents($file, $current);
 ?>
 
 <?php include dirname(__FILE__) . '/views/heatmap.php'; ?>
@@ -43,6 +44,7 @@ $result = file_put_contents($file, $current);
 <?php include dirname(__FILE__) . '/views/bar.php'; ?>
 <?php include dirname(__FILE__) . '/views/table.php'; ?>
 <?php include dirname(__FILE__) . '/views/footer.php'; ?>
+
 </body>
 
 </html>
