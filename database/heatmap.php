@@ -64,5 +64,20 @@ class Heatmap
         }
     }
 
+    function getOutcomeNameByID($outcomeConceptID){
+        try{
+            $sql = "SELECT outcome_name FROM faers.concept_outcome where outcome_concept_id=".$outcomeConceptID;
+            $result = $this->dbconn->query($sql);
+
+            foreach ($result as $row) {
+                $outcomeName = $row['outcome_name'];
+
+            }
+            return $outcomeName;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
 }
 

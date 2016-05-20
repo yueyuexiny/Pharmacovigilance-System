@@ -1,101 +1,101 @@
-day	hour	value
-1	1	767510
-1	2	627239
-1	3	625699
-1	4	588874
-1	5	549600
-1	6	544150
-1	7	509636
-1	8	503899
-1	9	490235
-1	10	428127
-1	11	427835
-1	12	387608
-1	13	380068
-1	14	362125
-1	15	349772
-1	16	346205
-1	17	335460
-1	18	332968
-1	19	318393
-1	20	311000
-2	1	308720
-2	2	295400
-2	3	291341
-2	4	284506
-2	5	278711
-2	6	275189
-2	7	274607
-2	8	274323
-2	9	273040
-2	10	270515
-2	11	260703
-2	12	257938
-2	13	247103
-2	14	240848
-2	15	229488
-2	16	226544
-2	17	222538
-2	18	222176
-2	19	217264
-2	20	215234
-3	1	212248
-3	2	210587
-3	3	207623
-3	4	198157
-3	5	193188
-3	6	192574
-3	7	191315
-3	8	187807
-3	9	186395
-3	10	182223
-3	11	181945
-3	12	176662
-3	13	176527
-3	14	174493
-3	15	174325
-3	16	174318
-3	17	169604
-3	18	168449
-3	19	168348
-3	20	167630
-4	1	166423
-4	2	165818
-4	3	164031
-4	4	162996
-4	5	161789
-4	6	161142
-4	7	152121
-4	8	151464
-4	9	143081
-4	10	141000
-4	11	140488
-4	12	139590
-4	13	136722
-4	14	134670
-4	15	132656
-4	16	132416
-4	17	132099
-4	18	131238
-4	19	131066
-4	20	127930
-5	1	126352
-5	2	124992
-5	3	124179
-5	4	122595
-5	5	121562
-5	6	119010
-5	7	118876
-5	8	117794
-5	9	117362
-5	10	116677
-5	11	116257
-5	12	114666
-5	13	112303
-5	14	110474
-5	15	109452
-5	16	108385
-5	17	108320
-5	18	108098
-5	19	107082
-5	20	106014
+day	hour	value	name
+1	1	767510	Nausea
+1	2	627239	Drug ineffective
+1	3	625699	Dyspnoea
+1	4	588874	Fatigue
+1	5	549600	Pain
+1	6	544150	Diarrhoea
+1	7	509636	Vomiting
+1	8	503899	Headache
+1	9	490235	Dizziness
+1	10	428127	Asthenia
+1	11	427835	Pyrexia
+1	12	387608	Death
+1	13	380068	Fall
+1	14	362125	Pneumonia
+1	15	349772	Anxiety
+1	16	346205	Malaise
+1	17	335460	Anaemia
+1	18	332968	Arthralgia
+1	19	318393	Depression
+1	20	311000	Rash
+2	1	308720	Pain in extremity
+2	2	295400	Weight decreased
+2	3	291341	Chest pain
+2	4	284506	Myocardial infarction
+2	5	278711	Abdominal pain
+2	6	275189	Oedema peripheral
+2	7	274607	Insomnia
+2	8	274323	Hypertension
+2	9	273040	Hypotension
+2	10	270515	Pruritus
+2	11	260703	Back pain
+2	12	257938	Renal failure acute
+2	13	247103	Drug interaction
+2	14	240848	Cough
+2	15	229488	Dehydration
+2	16	226544	Renal failure
+2	17	222538	Blood glucose increased
+2	18	222176	Confusional state
+2	19	217264	Cerebrovascular accident
+2	20	215234	Decreased appetite
+3	1	212248	Weight increased
+3	2	210587	Constipation
+3	3	207623	Somnolence
+3	4	198157	Feeling abnormal
+3	5	193188	Tremor
+3	6	192574	Convulsion
+3	7	191315	Urinary tract infection
+3	8	187807	Condition aggravated
+3	9	186395	Gait disturbance
+3	10	182223	Abdominal pain upper
+3	11	181945	Myalgia
+3	12	176662	Cardiac failure congestive
+3	13	176527	Injection site pain
+3	14	174493	Paraesthesia
+3	15	174325	Muscle spasms
+3	16	174318	Haemoglobin decreased
+3	17	169604	Pulmonary embolism
+3	18	168449	Sepsis
+3	19	168348	Loss of consciousness
+3	20	167630	Hypoaesthesia
+4	1	166423	Thrombocytopenia
+4	2	165818	Flushing
+4	3	164031	Atrial fibrillation
+4	4	162996	Erythema
+4	5	161789	Off label use
+4	6	161142	Injury
+4	7	152121	Hyperhidrosis
+4	8	151464	Blood pressure increased
+4	9	143081	Diabetes mellitus
+4	10	141000	Deep vein thrombosis
+4	11	140488	Syncope
+4	12	139590	Vision blurred
+4	13	136722	Neutropenia
+4	14	134670	Muscular weakness
+4	15	132656	Chills
+4	16	132416	Cardiac arrest
+4	17	132099	Respiratory failure
+4	18	131238	Platelet count decreased
+4	19	131066	General physical health deterioration
+4	20	127930	Overdose
+5	1	126352	Hypersensitivity
+5	2	124992	Palpitations
+5	3	124179	Blood creatinine increased
+5	4	122595	Pleural effusion
+5	5	121562	Gastrointestinal haemorrhage
+5	6	119010	Gastrooesophageal reflux disease
+5	7	118876	Tachycardia
+5	8	117794	Alanine aminotransferase increased
+5	9	117362	Infection
+5	10	116677	Drug dose omission
+5	11	116257	White blood cell count decreased
+5	12	114666	Urticaria
+5	13	112303	Dysphagia
+5	14	110474	Aspartate aminotransferase increased
+5	15	109452	Chest discomfort
+5	16	108385	Emotional distress
+5	17	108320	Dyspepsia
+5	18	108098	Nasopharyngitis
+5	19	107082	Bronchitis
+5	20	106014	Abdominal distension

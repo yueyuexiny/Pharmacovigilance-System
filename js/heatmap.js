@@ -45,7 +45,7 @@ var heatmapChart = function(tsvFile) {
                 day: +d.day,
                 hour: +d.hour,
                 value: +d.value,
-                drug: d.drug
+                name: d.name
             };
         },
         function(error, data) {
@@ -59,7 +59,7 @@ var heatmapChart = function(tsvFile) {
                 .offset([-20, 0])
                 .html(function(d) {
                     //console.log(d);
-                    return "Drug: "+ d.drug+ "<br> Case Count:  <span style='color:red'>" + Math.round(d.value) ;
+                    return "Concept Name: "+ d.name+ "<br> Case Count:  <span style='color:red'>" + Math.round(d.value) ;
                     //return "Value:  <span style='color:red'>" + Math.round(d.value) ;
                 });
 
@@ -114,17 +114,6 @@ var heatmapChart = function(tsvFile) {
         });
 };
 
-var tip = d3.tip()
-    .attr('class', 'd3-tip')
-    .offset([10, 0])
-    .html(function (d) {
-        var k = d3.mouse(this);
-        var m = Math.floor(scale[X].invert(k[0]));//will give the scale x
-        var n = Math.floor(scale[Y].invert(k[1]));//will give the scale y
-        return "Intensity Count: " + heatmap[n][m];
-    })
-
-svg.call(tip);
 
 heatmapChart(datasets[0]);
 
@@ -138,6 +127,7 @@ datasetpicker.enter()
     .attr("class", "dataset-button")
     .on("click", function(d) {
         heatmapChart(d);
+        document.getElementById("grouplabel").innerHTML = "Group by " + (d.split("/")[2]).split(".")[0];
     });
 
 
