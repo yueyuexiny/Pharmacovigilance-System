@@ -49,5 +49,20 @@ class Heatmap
         }
     }
 
+    function getDrugNameByID($drugID){
+        try{
+            $sql = "SELECT drug_name FROM faers.concept_drug where drug_concept_id=".$drugID;
+            $result = $this->dbconn->query($sql);
+
+            foreach ($result as $row) {
+                $drugName = $row['drug_name'];
+
+            }
+            return $drugName;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
 }
 

@@ -4,27 +4,29 @@
 require_once dirname(__FILE__) .'/database/heatmap.php';
 $hm = new Heatmap();
 //$result = $hm->getDrugConceptId();
-$result = $hm->getOutcomeID();
+$result = $hm->getDrugConceptId();
 
 $rowNum = 1;
 $colNum = 1;
 $current = "";
 
-$file = "/data/outcome.tsv";
-$current .= "day\thour\tvalue\n";
+$file = "./data/drug.tsv";
+$current .= "day\thour\tvalue\tdrug name\n";
 
 foreach ($result as $row) {
 
-    $current .=$rowNum."\t".$colNum."\t".$row["sum(case_count)"]."\n";
+    $drugId = $row['drug_concept_id'];
+    $drugName = $hm->getDrugNameByID($drugId);
+    var_dump($drugName);
+    $current .=$rowNum."\t".$colNum."\t".$row["sum(case_count)"]."\t".$drugName . "\n";
 
-
-     * if($colNum<20){
+     if($colNum<20){
         $colNum ++;
     }else{
         $colNum = 1;
         $rowNum++;
     }
-    
+
 }
 $result = file_put_contents($file, $current);
 ?>

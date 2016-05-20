@@ -39,10 +39,13 @@ var timeLabels = svg.selectAll(".timeLabel")
 var heatmapChart = function(tsvFile) {
     d3.tsv(tsvFile,
         function(d) {
+
+
             return {
                 day: +d.day,
                 hour: +d.hour,
-                value: +d.value
+                value: +d.value,
+                drug: d.drug
             };
         },
         function(error, data) {
@@ -50,13 +53,14 @@ var heatmapChart = function(tsvFile) {
                 .domain([d3.min(data, function (d) { return d.value; })*2.5, buckets - 1, d3.max(data, function (d) { return d.value; })])
                 .range(colors);
 
-
             var tip = d3.tip()
                 .attr('class', 'd3-tip')
                 .style("visibility","visible")
                 .offset([-20, 0])
                 .html(function(d) {
-                    return "Value:  <span style='color:red'>" + Math.round(d.value);
+                    //console.log(d);
+                    return "Drug: "+ d.drug+ "<br> Case Count:  <span style='color:red'>" + Math.round(d.value) ;
+                    //return "Value:  <span style='color:red'>" + Math.round(d.value) ;
                 });
 
             tip(svg.append("g"));
