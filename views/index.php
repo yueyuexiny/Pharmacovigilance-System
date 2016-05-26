@@ -65,7 +65,6 @@ foreach ($result_ADR as $row) {
                             <select class="selectpicker"  data-width="138px"
                                     name="dataset_datatype" onchange="showinputbox(this)">
                                 <option value="Brand">Brand</option>
-                                <option value="All">All</option>
                                 <option value="Generic">Generic</option>
                             </select>
 
@@ -75,9 +74,6 @@ foreach ($result_ADR as $row) {
                                 <?php foreach($default_drug_list as $drug ):?>
                                     <option ><?php echo $drug;?></option>
                                 <?php endforeach;?>
-                                <!--<option >Abagovomab</option>
-                                <option >Abarelix</option>
-                                <option >Acadesine</option>-->
                             </select>
 
 
@@ -99,7 +95,6 @@ foreach ($result_ADR as $row) {
                             <select class="selectpicker" data-width="138px"
                                     name="drugtype" onchange="showinputbox(this)">
                                 <option value="Generic">medDRA</option>
-                                <option value="All">All</option>
                                 <option value="Brand">HOI</option>
 
                             </select>

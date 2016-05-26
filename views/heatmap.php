@@ -5,7 +5,6 @@
         </div>
         <div class="panel-body">
             <div id="chart"></div>
-            <label id="grouplabel"> Group by drug </label>
             <div id="dataset-picker"></div>
         </div>
     </div>

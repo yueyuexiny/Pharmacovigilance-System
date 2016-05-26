@@ -4,11 +4,11 @@ var margin = { top: 50, right: 0, bottom: 50, left: 30 },
     height = 430 - margin.top - margin.bottom,
     gridSize = Math.floor(width / 22),
     legendElementWidth = gridSize*2,
-    buckets = 10,
+    buckets = 9,
     colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
     days = [];//["1", "2", "3", "4", "5"],
     times = [];//["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a","11a", "12a", "13a", "14a", "15a", "16a", "17a", "18a", "19a", "20a"];
-datasets = ["./data/drug.tsv", "./data/outcome.tsv"];
+datasets = ["./data/drug.tsv"]//, "./data/outcome.tsv"];
 
 var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -40,17 +40,17 @@ var heatmapChart = function(tsvFile) {
     d3.tsv(tsvFile,
         function(d) {
 
-
             return {
                 day: +d.day,
                 hour: +d.hour,
                 value: +d.value,
-                name: d.name
+                drug: d.drug,
+                outcome: d.outcome
             };
         },
         function(error, data) {
             var colorScale = d3.scale.quantile()
-                .domain([d3.min(data, function (d) { return d.value; })*2.5, buckets - 1, d3.max(data, function (d) { return d.value; })])
+                .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
                 .range(colors);
 
             var tip = d3.tip()
@@ -59,7 +59,7 @@ var heatmapChart = function(tsvFile) {
                 .offset([-20, 0])
                 .html(function(d) {
                     //console.log(d);
-                    return "Concept Name: "+ d.name+ "<br> Case Count:  <span style='color:red'>" + Math.round(d.value) ;
+                    return "Drug Name: "+ d.drug+ "<br> Outcome Name: " + d.outcome + "<br> Case Count:  <span style='color:red'>" + Math.round(d.value) ;
                     //return "Value:  <span style='color:red'>" + Math.round(d.value) ;
                 });
 
@@ -84,7 +84,7 @@ var heatmapChart = function(tsvFile) {
                 .on('mouseout', tip.hide);
 
             cards.transition().duration(1000)
-                .style("fill", function(d) { return colorScale(d.value); });
+                .style("fill", function(d) {return colorScale(d.value); });
 
             cards.select("title").text(function(d) { return d.value; });
 
@@ -110,14 +110,13 @@ var heatmapChart = function(tsvFile) {
                 .attr("y", height + gridSize);
 
             legend.exit().remove();
-
         });
 };
 
 
 heatmapChart(datasets[0]);
 
-var datasetpicker = d3.select("#dataset-picker").selectAll(".dataset-button")
+/*var datasetpicker = d3.select("#dataset-picker").selectAll(".dataset-button")
     .data(datasets);
 
 datasetpicker.enter()
@@ -130,5 +129,5 @@ datasetpicker.enter()
         document.getElementById("grouplabel").innerHTML = "Group by " + (d.split("/")[2]).split(".")[0];
     });
 
-
+*/
 
