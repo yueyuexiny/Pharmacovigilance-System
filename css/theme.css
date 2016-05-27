@@ -1053,3 +1053,33 @@ button[class*='field'] { width: 150px;}
     right: 0;
     min-height: 70px;
 }
+
+
+.mainDIV{
+    position:relative;
+    /*background:yellow;*/
+    width:100%;
+    min-width:315px;
+}
+.leftDIV{
+    position:absolute;
+    top:0px;
+    left:0px;
+    height:50px;
+    width:100px;
+    /*background:red;*/
+}
+.middleDIV{
+    height:50px;
+    width:100px;
+    /*background:blue;*/
+    margin:0px auto;
+}
+.rightDIV{
+    position:absolute;
+    top:0px;
+    right:0px;
+    height:50px;
+    width:100px;
+    /*background:green;*/
+}

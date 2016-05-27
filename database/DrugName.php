@@ -20,7 +20,8 @@ class DrugName
     function getDrugNameList($query)
     {
         try {
-            $sql = 'SELECT * FROM faers.concept_drug limit 50';//'  Where drug_name like"'.$query.'%" limit 100';
+            //$sql = 'SELECT * FROM faers.concept_drug limit 50';//'  Where drug_name like"'.$query.'%" limit 100';
+            $sql = 'SELECT * FROM faers.concept_drug  Where drug_name like"'.$query.'%" limit 10';
 
             $result = $this->dbconn->query($sql);
 

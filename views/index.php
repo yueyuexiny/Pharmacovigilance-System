@@ -16,6 +16,8 @@ foreach ($result_ADR as $row) {
 
 ?>
 
+
+
 <div class="container">
     <div class="row">
         <h3>Adverse Drug Events in FAERS </h3>
@@ -60,15 +62,18 @@ foreach ($result_ADR as $row) {
 
                 <div class="row" id="drug">
                     <div class="col-xs-6 col-md-offset-2">
-                        <div id="group_drug1">
-                        <h4>Drug: <span id="select-result"></span>
-                            <select class="selectpicker"  data-width="138px"
-                                    name="dataset_datatype" onchange="showinputbox(this)">
-                                <option value="Brand">Brand</option>
-                                <option value="All">All</option>
-                                <option value="Generic">Generic</option>
-                            </select>
 
+                        <div id="group_drug1">
+                      <h4> Drug:
+                             <span>
+                                <label class="radio" ><input type="radio" name="Name">By Name</label>
+                                <label class="radio" ><input type="radio" name="Ingredient">By Ingredient</label>
+                            </span>
+
+                            <input type="text" size="25"  class="input-group form-control" style = "width:40%" id="searchbox" autocomplete="off" placeholder="All" onkeyup="showResult(this.value)">
+                            <div id="livesearch" style="width:40%"></div>
+
+                            <!--
                             <select class="selectpicker" data-live-search="true" data-width="200px">
                                 <option >All</option>
                                 <?php //include include dirname(__FILE__) ."/../database/druglist.php";?>
@@ -78,18 +83,16 @@ foreach ($result_ADR as $row) {
                                 <!--<option >Abagovomab</option>
                                 <option >Abarelix</option>
                                 <option >Acadesine</option>-->
-                            </select>
+                           <!-- </select>-->
 
 
                             <button type="button" id="btnAdddrug" class="btn btn-default add-more-drug "><span
                                     class="glyphicon glyphicon-plus"></span>Add Drug
                             </button>
-
+                        </div>
                         </h4>
+
                     </div>
-                </div>
-
-
                 </div>
 
                 <div class="row" id="ADR">
@@ -132,3 +135,4 @@ foreach ($result_ADR as $row) {
     </div>
 
 </div>
+
