@@ -1055,31 +1055,42 @@ button[class*='field'] { width: 150px;}
 }
 
 
-.mainDIV{
-    position:relative;
-    /*background:yellow;*/
+#search_criteria{
+    margin-top:30px;
+}
+.selectpicker{
+    overflow: hidden;
+    padding-right: .5em;
+}
+
+.rowstyle{
+    padding-left:15px;
+    width:103%;
+}
+
+.input-group-addon:first-child{
     width:100%;
-    min-width:315px;
 }
-.leftDIV{
-    position:absolute;
-    top:0px;
-    left:0px;
-    height:50px;
-    width:100px;
-    /*background:red;*/
+.btn-danger{
+    height: 45px;
 }
-.middleDIV{
-    height:50px;
-    width:100px;
-    /*background:blue;*/
-    margin:0px auto;
+.searchtext{
+    padding-left:0px;
 }
-.rightDIV{
-    position:absolute;
-    top:0px;
-    right:0px;
-    height:50px;
-    width:100px;
-    /*background:green;*/
+#searchresult,#searchresult_adr{
+    padding-top:10px;
+}
+
+
+#searchbox,#searchbox_adr{
+    height:45px;
+    width:100%;
+}
+
+.panel-footer{
+    height: 60px;
+}
+
+.rowforsearch{
+    padding-top:30px;
 }

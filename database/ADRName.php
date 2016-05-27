@@ -20,8 +20,8 @@ class ADRName
     function getADRNameList($query)
     {
         try {
-            $sql = 'SELECT * FROM faers.concept_outcome limit 50';//'  Where outcome_name like"'.$query.'%" limit 10';
-            //$sql = 'SELECT * FROM faers.concept_outcome  Where outcome_name like"'.$query.'%" limit 10';
+            //$sql = 'SELECT * FROM faers.concept_outcome limit 50';//'  Where outcome_name like"'.$query.'%" limit 10';
+            $sql = 'SELECT * FROM faers.concept_outcome  Where outcome_name like"'.$query.'%" limit 10';
 
             $result = $this->dbconn->query($sql);
 
