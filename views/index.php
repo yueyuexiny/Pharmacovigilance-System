@@ -64,7 +64,8 @@ foreach ($result_ADR as $row) {
                     <div class="col-xs-6 col-md-offset-2">
 
                         <div id="group_drug1">
-                      <h4> Drug:
+
+                      <h4> Drug:</h4>
                              <span>
                                 <label class="radio" ><input type="radio" name="Name">By Name</label>
                                 <label class="radio" ><input type="radio" name="Ingredient">By Ingredient</label>
@@ -72,18 +73,7 @@ foreach ($result_ADR as $row) {
 
                             <input type="text" size="25"  class="input-group form-control" style = "width:40%" id="searchbox" autocomplete="off" placeholder="All" onkeyup="showResult(this.value)">
                             <div id="livesearch" style="width:40%"></div>
-
-                            <!--
-                            <select class="selectpicker" data-live-search="true" data-width="200px">
-                                <option >All</option>
-                                <?php //include include dirname(__FILE__) ."/../database/druglist.php";?>
-                                <?php foreach($default_drug_list as $drug ):?>
-                                    <option ><?php echo $drug;?></option>
-                                <?php endforeach;?>
-                                <!--<option >Abagovomab</option>
-                                <option >Abarelix</option>
-                                <option >Acadesine</option>-->
-                           <!-- </select>-->
+                            
 
 
                             <button type="button" id="btnAdddrug" class="btn btn-default add-more-drug "><span
@@ -102,7 +92,6 @@ foreach ($result_ADR as $row) {
                             <select class="selectpicker" data-width="138px"
                                     name="drugtype" onchange="showinputbox(this)">
                                 <option value="Generic">medDRA</option>
-                                <option value="All">All</option>
                                 <option value="Brand">HOI</option>
 
                             </select>
