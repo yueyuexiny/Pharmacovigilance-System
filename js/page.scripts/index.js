@@ -46,7 +46,6 @@ function showResult(str,type) {
 }
 
 function select_drug(str,id) {
-
     var next = groupNum_drug[groupNum_drug.length - 1] + 1;
     groupNum_drug.push(next);
 
@@ -54,19 +53,15 @@ function select_drug(str,id) {
     var x = document.getElementById("livesearch").style.display = "none";
     var div = document.getElementById('searchresult');
 
-    /*var text = ' <div class="row rowstyle" id="moredrug' + next + '">\
-                   <div class="input-group input-group-lg ">\
-                     <span class="input-group-addon drug">' + str + '</span>\
-                     <button type="button" class="btn btn-danger" onclick="remove_me(\'moredrug' + next + '\')">-</button>\
-                   </div>\
-                </div>';*/
+    if(str.length>52){
+        str = str.slice(0,52)+"...";
+    }
     var text = ' <div class="row rowstyle" id="moredrug' + next + '">\
                    <div class="input-group input-group-lg ">\
                      <span class="input-group-addon drug">' + str + '<span class="drugid" style="display:none">'+id+'</span></span>\
                      <button type="button" class="btn btn-danger" onclick="remove_me(\'moredrug' + next + '\')">-</button>\
                    </div>\
                 </div>';
-    //alert(text);
     div.innerHTML = div.innerHTML + text;
 
 };
@@ -80,7 +75,9 @@ function select_adr(str,id) {
     document.getElementById("searchbox_adr").value="";
     var x = document.getElementById("livesearch_adr").style.display = "none";
     var div = document.getElementById('searchresult_adr');
-
+    if(str.length>52){
+        str = str.slice(0,52)+"...";
+    }
     var text = ' <div class="row rowstyle" id="moredadr' + next + '">\
                     <div class="input-group input-group-lg ">\
                         <span class="input-group-addon adr">' + str + '<span class="adrid" style="display:none">'+id+'</span></span>\
@@ -100,21 +97,41 @@ function remove_me(id) {
 function pass_value(){
     var x = get_source_analysis();
 
-    //document.getElementById("result_source").innerHTML=x[0]+' '+x[1];
     var drugID=document.querySelectorAll(".drugid");
-    var drug=document.querySelectorAll(".drug");
-    var text="drug:"
-    for (i = 0; i < drug.length; i++) {
-        text += drug[i].innerHTML + "<br>";
-    }
-    //document.getElementById("result").innerHTML=text;
 
-    var text="ADR:"
+    var drug="";
+    for (i = 0; i < drugID.length; i++) {
+        drug += drugID[i].innerHTML + ",";
+    }
+
+    drug=drug.slice(0,-1);
     var adrID=document.querySelectorAll(".adrid");
-    var adr=document.querySelectorAll(".adr");
-    for (i = 0; i < adr.length; i++) {
-        text += adr[i].innerHTML + "<br>";
+    var adr="";
+    for (i = 0; i < adrID.length; i++) {
+        adr += adrID[i].innerHTML + ",";
     }
-    //document.getElementById("result_adr").innerHTML=text;
+    adr=adr.slice(0,-1);
 
+    get_table_data(drug,adr,"ingredient");
+
+
+
+}
+function get_table_data(drug,adr,type) {
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {  // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("table_data").innerHTML = xmlhttp.responseText;
+            document.getElementById("table_data").style.border = "1px solid #A5ACB2";
+            document.getElementById("table_data").style.width = "auto";
+
+        }
+    }
+    xmlhttp.open("GET", "get_table.php?drug=" + drug+'&adr='+adr+'&type='+type, true);
+    xmlhttp.send();
 }
