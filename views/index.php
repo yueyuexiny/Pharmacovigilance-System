@@ -21,9 +21,8 @@
                         <h4>Analysis: </h4>
                         <select class="selectpicker" name="analysis" id="analysis"
                                 onchange="showinputbox(this)" value="number">
-                            <option value="number">Number</option>
-                            <option value="GPNN">GPNN</option>
-                            <option value="X2">X2</option>
+                            <option value="PPR"> Reporting Odds Ratio</option>
+                            <option value="ROR"> Proportional Reporting Ratio</option>
                         </select>
                     </div>
                 </div>
@@ -75,6 +74,7 @@
                         </div>
                     </div>
                 </div>
+
 
             </div><!--panel-body-->
             <div class="panel-footer">

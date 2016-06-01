@@ -1070,12 +1070,14 @@ button[class*='field'] { width: 150px;}
 
 .input-group-addon:first-child{
     width:100%;
+
 }
 .btn-danger{
     height: 45px;
 }
 .searchtext{
-    padding-left:0px;
+    padding-left:5px;
+    cursor:pointer;
 }
 #searchresult,#searchresult_adr{
     padding-top:10px;
