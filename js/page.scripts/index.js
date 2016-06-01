@@ -101,8 +101,8 @@ function pass_value(){
     var x = get_source_analysis();
 
     //document.getElementById("result_source").innerHTML=x[0]+' '+x[1];
-    var drug=document.querySelectorAll(".drugid");
-
+    var drugID=document.querySelectorAll(".drugid");
+    var drug=document.querySelectorAll(".drug");
     var text="drug:"
     for (i = 0; i < drug.length; i++) {
         text += drug[i].innerHTML + "<br>";
@@ -110,7 +110,8 @@ function pass_value(){
     //document.getElementById("result").innerHTML=text;
 
     var text="ADR:"
-    var adr=document.querySelectorAll(".adrid");
+    var adrID=document.querySelectorAll(".adrid");
+    var adr=document.querySelectorAll(".adr");
     for (i = 0; i < adr.length; i++) {
         text += adr[i].innerHTML + "<br>";
     }
