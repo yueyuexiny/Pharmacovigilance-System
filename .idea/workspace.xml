@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9604dc20-5ac7-4f2e-bab7-a8b498c5a4a1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/spinner.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/theme.css" afterPath="$PROJECT_DIR$/css/theme.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/drug.tsv" afterPath="$PROJECT_DIR$/data/drug.tsv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generateData.php" afterPath="$PROJECT_DIR$/generateData.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/heatmap.js" afterPath="$PROJECT_DIR$/js/heatmap.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/DataController.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/ADRName.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/DrugName.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/TableStatitics.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/dbcontroller.php" afterPath="$PROJECT_DIR$/database/dbcontroller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/get_table.php" afterPath="$PROJECT_DIR$/get_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/page.scripts/index.js" afterPath="$PROJECT_DIR$/js/page.scripts/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/header.php" afterPath="$PROJECT_DIR$/views/header.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/heatmap.php" afterPath="$PROJECT_DIR$/views/heatmap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/livesearch.php" afterPath="$PROJECT_DIR$/livesearch.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.php" afterPath="$PROJECT_DIR$/views/index.php" />
     </list>
     <ignored path="advanced.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,52 +33,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/page.scripts/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="143" column="5" selection-start-line="143" selection-start-column="5" selection-end-line="143" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.71">
+              <caret line="145" column="36" selection-start-line="145" selection-start-column="36" selection-end-line="145" selection-end-column="36" />
               <folding>
-                <marker date="1464898295000" expanded="true" signature="1970:2340" placeholder="..." />
-                <marker date="1464898295000" expanded="true" signature="2032:2316" placeholder="..." />
-                <marker date="1464898295000" expanded="false" signature="2132:2144" placeholder="..." />
-                <marker date="1464898295000" expanded="true" signature="2837:3214" placeholder="..." />
-                <marker date="1464898295000" expanded="true" signature="2900:3189" placeholder="..." />
-                <marker date="1464898295000" expanded="false" signature="3001:3013" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="generateData.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/generateData.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.333334">
-              <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="heatmap.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/heatmap.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.0">
-              <caret line="68" column="34" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="34" />
-              <folding>
-                <marker date="1464894628000" expanded="true" signature="2532:2541" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="heatmap.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/heatmap.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29109588">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <marker date="1464898968000" expanded="true" signature="2137:2507" placeholder="..." />
+                <marker date="1464898968000" expanded="true" signature="2199:2483" placeholder="..." />
+                <marker date="1464898968000" expanded="false" signature="2299:2311" placeholder="..." />
+                <marker date="1464898968000" expanded="true" signature="3004:3381" placeholder="..." />
+                <marker date="1464898968000" expanded="true" signature="3067:3356" placeholder="..." />
+                <marker date="1464898968000" expanded="false" signature="3168:3180" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -129,8 +96,8 @@
         <option value="$PROJECT_DIR$/js/heatmap.js" />
         <option value="$PROJECT_DIR$/data/drug.tsv" />
         <option value="$PROJECT_DIR$/css/theme.css" />
-        <option value="$PROJECT_DIR$/js/page.scripts/index.js" />
         <option value="$PROJECT_DIR$/views/heatmap.php" />
+        <option value="$PROJECT_DIR$/js/page.scripts/index.js" />
       </list>
     </option>
   </component>
@@ -217,6 +184,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="advanced" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pharmacovigilance-system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="page.scripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -543,20 +528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/DrugName.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59726965">
-          <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/ADRName.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/barchart.tsv">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16611296">
@@ -622,13 +593,13 @@
         <state vertical-scroll-proportion="0.66780823">
           <caret line="39" column="44" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
           <folding>
-            <marker date="1464816252000" expanded="true" signature="300:795" placeholder="..." />
-            <marker date="1464816252000" expanded="true" signature="339:795" placeholder="..." />
-            <marker date="1464816252000" expanded="true" signature="450:795" placeholder="..." />
-            <marker date="1464816252000" expanded="true" signature="496:795" placeholder="..." />
-            <marker date="1464816252000" expanded="true" signature="520:771" placeholder="..." />
-            <marker date="1464816252000" expanded="true" signature="541:746" placeholder="..." />
-            <marker date="1464816252000" expanded="true" signature="843:1177" placeholder="..." />
+            <marker date="1464898908000" expanded="true" signature="300:795" placeholder="..." />
+            <marker date="1464898908000" expanded="true" signature="339:795" placeholder="..." />
+            <marker date="1464898908000" expanded="true" signature="450:795" placeholder="..." />
+            <marker date="1464898908000" expanded="true" signature="496:795" placeholder="..." />
+            <marker date="1464898908000" expanded="true" signature="520:771" placeholder="..." />
+            <marker date="1464898908000" expanded="true" signature="541:746" placeholder="..." />
+            <marker date="1464898908000" expanded="true" signature="1115:1286" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -649,18 +620,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/TableStatitics.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1464816252000" expanded="true" signature="415:600" placeholder="SELECT drug_... standard_drug_outcome_statistics" />
-            <marker date="1464816252000" expanded="true" signature="841:904" placeholder="SELECT drug_... concept_drug" />
-            <marker date="1464816252000" expanded="true" signature="1268:1340" placeholder="SELECT outco... concept_outcome" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/heatmap.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.1472603">
@@ -675,42 +634,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generateData.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.333334">
-          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/img/spinner.gif">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/page.scripts/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="143" column="5" selection-start-line="143" selection-start-column="5" selection-end-line="143" selection-end-column="5" />
-          <folding>
-            <marker date="1464898295000" expanded="true" signature="1970:2340" placeholder="..." />
-            <marker date="1464898295000" expanded="true" signature="2032:2316" placeholder="..." />
-            <marker date="1464898295000" expanded="false" signature="2132:2144" placeholder="..." />
-            <marker date="1464898295000" expanded="true" signature="2837:3214" placeholder="..." />
-            <marker date="1464898295000" expanded="true" signature="2900:3189" placeholder="..." />
-            <marker date="1464898295000" expanded="false" signature="3001:3013" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/heatmap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.0">
-          <caret line="68" column="34" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="34" />
-          <folding>
-            <marker date="1464894628000" expanded="true" signature="2532:2541" placeholder="..." />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/drug.tsv">
@@ -735,6 +661,39 @@
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/heatmap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40206185">
+          <caret line="68" column="34" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="34" />
+          <folding>
+            <marker date="1464894628000" expanded="true" signature="2532:2541" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generateData.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6597938">
+          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/page.scripts/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.71">
+          <caret line="145" column="36" selection-start-line="145" selection-start-column="36" selection-end-line="145" selection-end-column="36" />
+          <folding>
+            <marker date="1464898968000" expanded="true" signature="2137:2507" placeholder="..." />
+            <marker date="1464898968000" expanded="true" signature="2199:2483" placeholder="..." />
+            <marker date="1464898968000" expanded="false" signature="2299:2311" placeholder="..." />
+            <marker date="1464898968000" expanded="true" signature="3004:3381" placeholder="..." />
+            <marker date="1464898968000" expanded="true" signature="3067:3356" placeholder="..." />
+            <marker date="1464898968000" expanded="false" signature="3168:3180" placeholder="..." />
           </folding>
         </state>
       </provider>

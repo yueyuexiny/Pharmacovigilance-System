@@ -5,15 +5,16 @@
  * Date: 6/1/16
  * Time: 2:45 PM
  */
-require_once "./database/TableStatitics.php";
+require_once "./database/DataController.php";
 
 #$type=$_GET['type'];
 $drug = $_GET['drug'];
 $adr=$_GET['adr'];
+$group_adr=$_GET['group_adr'];
+$group_drug=$_GET['group_drug'];
 
-
-$table = new TableStatitics();
-$result = $table->get_data($drug,$adr);
+$table = new DataController();
+$result = $table->get_data($drug,$adr,$group_drug,$group_adr);
 $text = '<div class="details">
 
     <div class="panel panel-default">
@@ -33,8 +34,8 @@ $text = '<div class="details">
 
 foreach($result as $row) {
     $row = " <tr>
-                    <th>".$table->getDrugNameByID($row['drug_concept_id'])."</th>
-                    <td>".$table->getOutcomeNameByID($row['outcome_concept_id'])."</td>
+                    <th>".$table->getDrugNameByID($row['drug_concept_id'],$group_drug)."</th>
+                    <td>".$table->getOutcomeNameByID($row['outcome_concept_id'],$group_adr)."</td>
                     <td>".$row['case_count']."</td>
                     <td>".$row['prr']."</td>
                     <td>".$row['ror']."</td>

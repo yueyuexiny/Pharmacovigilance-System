@@ -11,7 +11,7 @@ class DBController
     private $host = "139.52.147.134";
     private $user = "faersusr";
     private $password = "FAERSTEST@CR2015";
-    private $database = "faers";
+    private $database = "faersv04.15";
 
     private $conn = null;
 

@@ -1,5 +1,4 @@
-<?php include dirname(__FILE__) . '/database/DrugName.php'; ?>
-<?php include dirname(__FILE__) . '/database/ADRName.php'; ?>
+<?php include dirname(__FILE__) . '/database/DataController.php'; ?>
 <?php include dirname(__FILE__) . '/views/header.php'; ?>
 <?php include dirname(__FILE__) . '/views/index.php'; ?>
 

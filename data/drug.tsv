@@ -1,13 +1,3 @@
 day	hour	drug	outcome	value
-1	1	Sertraline	Rosai-Dorfman syndrome	0
-1	2	Sertraline	Tropical sprue	0
-1	3	Sertraline	Y-linked chromosomal disorder	0
-2	1	Selegiline	Rosai-Dorfman syndrome	2
-2	2	Selegiline	Tropical sprue	0
-2	3	Selegiline	Y-linked chromosomal disorder	0
-3	1	Rubella Virus Vaccine Live (Wistar RA 27-3 Strain)	Rosai-Dorfman syndrome	0
-3	2	Rubella Virus Vaccine Live (Wistar RA 27-3 Strain)	Tropical sprue	0
-3	3	Rubella Virus Vaccine Live (Wistar RA 27-3 Strain)	Y-linked chromosomal disorder	0
-4	1	Escitalopram	Rosai-Dorfman syndrome	0
-4	2	Escitalopram	Tropical sprue	0
-4	3	Escitalopram	Y-linked chromosomal disorder	0
+1	1	Candida albicans	Congenital anaemia	0
+2	1	Sertraline	Congenital anaemia	5

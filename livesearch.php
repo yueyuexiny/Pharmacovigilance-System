@@ -1,28 +1,28 @@
 
 <?php
-require_once "./database/DrugName.php";
-require_once "./database/ADRName.php";
+require_once "./database/DataController.php";
+
 $q=$_GET["q"];
 $type=$_GET['type'];
 $source = $_GET['source'];
-$analysis=$_GET['analysis'];
-
+//$analysis=$_GET['analysis'];
+$group=$_GET['group'];
 //var_dump($_GET);
 
 $default_list = [];
 if($type=='drug') {
-    $drugname = new DrugName();
-    $result = $drugname->getDrugNameList($q);
+    $drugname = new DataController();
+    $result = $drugname->getDrugNameList($q,$group);
     foreach ($result as $row) {
         //array_push($default_list, $row['drug_name']);
-        array_push($default_list,[$row['drug_name'],$row['drug_concept_id']]);
+        array_push($default_list,[$row['name'],$row['drug_concept_id']]);
     }
 }
 elseif($type=='adr'){
-        $adrname = new ADRName();
-        $result = $adrname->getADRNameList($q);
+        $adrname = new DataController();
+        $result = $adrname->getADRNameList($q,$group);
         foreach ($result as $row) {
-            array_push($default_list, [$row['outcome_name'],$row['outcome_concept_id']]);
+            array_push($default_list, [$row['name'],$row['outcome_concept_id']]);
         }
 
 }

@@ -10,14 +10,16 @@ function get_source_analysis(){
 
 function showResult(str,type) {
     var searchboxid = "livesearch";
-
+    var group = document.querySelector('input[name="Drug"]:checked').value;
     if(type=="adr"){
         searchboxid = "livesearch_adr";
+        group = document.querySelector('input[name="ADR"]:checked').value;
     }
     var result = get_source_analysis();
     var source = result[0];
     var analysis = result[1];
     var x = document.getElementById(searchboxid);
+
     x.style.display = "";
 
     if (str.length == 0) {
@@ -39,7 +41,7 @@ function showResult(str,type) {
 
         }
     }
-    xmlhttp.open("GET", "livesearch.php?q=" + str + '&type='+type+'&source='+source+'&analysis='+analysis, true);
+    xmlhttp.open("GET", "livesearch.php?q=" + str + '&type='+type+'&source='+source+'&analysis='+analysis+'&group='+group, true);
     xmlhttp.send();
 
 
@@ -111,13 +113,17 @@ function pass_value(){
         adr += adrID[i].innerHTML + ",";
     }
     adr=adr.slice(0,-1);
+    var group_drug = document.querySelector('input[name="Drug"]:checked').value;
+    var group_adr = document.querySelector('input[name="ADR"]:checked').value;
+
 
     get_table_data(drug,adr,"ingredient");
     $('#img').show();
     get_heatmap_data(drug,adr);
 }
 
-function get_table_data(drug,adr,type) {
+
+function get_table_data(drug,adr,group_drug,group_adr) {
     if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
@@ -132,7 +138,7 @@ function get_table_data(drug,adr,type) {
 
         }
     }
-    xmlhttp.open("GET", "get_table.php?drug=" + drug+'&adr='+adr+'&type='+type, true);
+    xmlhttp.open("GET", "get_table.php?drug=" + drug+'&adr='+adr+'&group_drug='+group_drug+'&group_adr='+group_adr, true);
     xmlhttp.send();
 }
 
