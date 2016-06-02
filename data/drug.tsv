@@ -1,7 +1,2 @@
 day	hour	drug	outcome	value
-1	1	fosphenytoin	Deficiency anaemia	0
-1	2	fosphenytoin	Warm type haemolytic anaemia	0
-2	1	Escitalopram	Deficiency anaemia	0
-2	2	Escitalopram	Warm type haemolytic anaemia	0
-3	1	Amitriptyline	Deficiency anaemia	0
-3	2	Amitriptyline	Warm type haemolytic anaemia	0
+1	1	Sertraline	Deficiency anaemia	0

@@ -104,6 +104,7 @@ function pass_value(){
     var drug="";
     for (i = 0; i < drugID.length; i++) {
         drug += drugID[i].innerHTML + ",";
+        $( "#drugList" ).append('<div><label for="name"></label></div>');
     }
 
     drug=drug.slice(0,-1);
@@ -120,9 +121,17 @@ function pass_value(){
     console.log(drug);
     console.log(adr);
 
-    get_table_data(drug,adr,"ingredient");
+
+    // Display Heatmap
     $('#img').show();
     get_heatmap_data(drug,adr);
+
+    // Show drug list and outcome list on bar chart
+
+
+
+    // Display data in table
+    get_table_data(drug,adr,"ingredient");
 }
 
 
@@ -156,7 +165,7 @@ function get_heatmap_data(drug,adr){
 
     $.ajax({
         type:"POST",
-        url:"generateData.php",
+        url:"HeatmapData.php",
         data:data,
         success:function(result){
             console.log(result);
