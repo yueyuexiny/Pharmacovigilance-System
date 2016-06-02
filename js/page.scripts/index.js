@@ -118,11 +118,12 @@ function pass_value(){
     var group_adr = document.querySelector('input[name="ADR"]:checked').value;
 
 
-    console.log(drug);
-    console.log(adr);
+
 
 
     // Display Heatmap
+    get_table_data(drug,adr,group_drug);
+
     $('#img').show();
     get_heatmap_data(drug,adr);
 

@@ -74,12 +74,11 @@ class DataController
     // Get case count by drug and outcome ID
     function getDrugOutcomeCounts($drugID, $outcomeID){
         try{
-            $sql = "SELECT case_count
+            $sql = " SELECT case_count
                     FROM drug_name_outcome_meddra_statistics_all
                     where drug_concept_id=".$drugID.
                 " and outcome_concept_id=".$outcomeID;
-
-            //var_dump($sql);
+            
 
             $result = $this->dbconn->query($sql);
 
