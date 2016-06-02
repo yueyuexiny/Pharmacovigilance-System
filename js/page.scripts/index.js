@@ -113,10 +113,10 @@ function pass_value(){
     adr=adr.slice(0,-1);
 
     get_table_data(drug,adr,"ingredient");
-
-
-
+    $('#img').show();
+    get_heatmap_data(drug,adr);
 }
+
 function get_table_data(drug,adr,type) {
     if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -134,4 +134,33 @@ function get_table_data(drug,adr,type) {
     }
     xmlhttp.open("GET", "get_table.php?drug=" + drug+'&adr='+adr+'&type='+type, true);
     xmlhttp.send();
+}
+
+
+function get_heatmap_data(drug,adr){
+    var data ={
+        "drug":drug,
+        "adr":adr
+    }
+
+    console.log(data);
+
+    $.ajax({
+        type:"POST",
+        url:"generateData.php",
+        data:data,
+        success:function(result){
+            //console.log(result);
+            datasets = ["./data/drug.tsv"]//, "./data/outcome.tsv"];
+            $(".loader").show();
+            heatmapChart(datasets[0]);
+            $('#img').hide();
+        },
+        error:function(xhr,desc,err){
+             console.log(xhr);
+            console.log("Details: " + desc + "\nError:" + err);
+        }
+    });
+
+
 }
