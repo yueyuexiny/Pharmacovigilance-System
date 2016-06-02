@@ -117,6 +117,9 @@ function pass_value(){
     var group_adr = document.querySelector('input[name="ADR"]:checked').value;
 
 
+    console.log(drug);
+    console.log(adr);
+
     get_table_data(drug,adr,"ingredient");
     $('#img').show();
     get_heatmap_data(drug,adr);
@@ -156,9 +159,8 @@ function get_heatmap_data(drug,adr){
         url:"generateData.php",
         data:data,
         success:function(result){
-            //console.log(result);
+            console.log(result);
             datasets = ["./data/drug.tsv"]//, "./data/outcome.tsv"];
-            $(".loader").show();
             heatmapChart(datasets[0]);
             $('#img').hide();
         },

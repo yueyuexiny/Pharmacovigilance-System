@@ -16,42 +16,6 @@ class Heatmap
         $this->dbconn=$objDBController->getConn();
     }
 
-    // Get top 100 drugs
-    function getDrugConceptId(){
-        try{
-            $sql = "SELECT drug_concept_id, sum(case_count)
-                    FROM faers.standard_drug_outcome_statistics
-                    group by drug_concept_id
-                    order by sum(case_count) desc
-                    limit 100";
-
-            $result = $this->dbconn->query($sql);
-
-            return $result;
-        }catch(PDOException $e){
-            echo $e->getMessage();
-        }
-    }
-
-
-    // Get top 100 outcomes
-    function getOutcomeID(){
-        try{
-            $sql = "SELECT outcome_concept_id, sum(case_count)
-                    FROM faers.standard_drug_outcome_statistics
-                    group by outcome_concept_id
-                    order by sum(case_count) desc
-                    limit 100";
-
-            $result = $this->dbconn->query($sql);
-
-            return $result;
-        }catch(PDOException $e){
-            echo $e->getMessage();
-        }
-    }
-
-
     function getDrugOutcomeCounts($drugID, $outcomeID){
         try{
             $sql = "SELECT case_count
