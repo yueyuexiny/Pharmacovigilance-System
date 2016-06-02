@@ -33,10 +33,10 @@
                         </div>
                         <div class="col-xs-2">
                             <div class="radio">
-                                <label><input type="radio" name="Drug" value="Name" checked/>By Name</label>
+                                <label><input type="radio" name="Drug" value="name" checked/>By Name</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="Drug" value="Ingredient"/>By Ingredient</label>
+                                <label><input type="radio" name="Drug" value="ingredient"/>By Ingredient</label>
                             </div>
 
                         </div>
