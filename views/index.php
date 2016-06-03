@@ -1,6 +1,6 @@
 
 <div class="container">
-    <h3>Adverse Drug Events in FAERS</h3>
+
     <div id="search_criteria">
         <div class="panel panel-primary">
             <div class="panel-heading">

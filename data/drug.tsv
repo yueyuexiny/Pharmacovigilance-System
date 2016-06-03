@@ -1,2 +1,5 @@
 day	hour	drug	outcome	value
-1	1	Amitriptyline	Haemorrhagic anaemia	33
+1	1	Amitriptyline	Anaemia folate deficiency	5
+1	2	Amitriptyline	Subacute combined cord degeneration	0
+2	1	xylometazoline	Anaemia folate deficiency	0
+2	2	xylometazoline	Subacute combined cord degeneration	0

@@ -9,11 +9,11 @@
                 <div class="col-md-8">
                     <div id="bar"></div>
                 </div>
-                <div class="col-md-2" id="drugList">
+                <div class="col-md-2" id="drugListBarChart">
                     <label> Drug List</label>
                 </div>
-                <div class="col-md-2" id = "outcomeList">
-                    <label> Outcome List</label>
+                <div class="col-md-2" id = "outcomeListBarChart">
+                    <label> ADR List</label>
                 </div>
 
             </div>
