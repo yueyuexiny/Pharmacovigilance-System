@@ -1,5 +1,5 @@
 day	hour	drug	outcome	value
 1	1	Amitriptyline	Anaemia folate deficiency	5
-1	2	Amitriptyline	Subacute combined cord degeneration	0
-2	1	xylometazoline	Anaemia folate deficiency	0
-2	2	xylometazoline	Subacute combined cord degeneration	0
+1	2	Amitriptyline	Anaemia vitamin B12 deficiency	2
+2	1	Amobarbital	Anaemia folate deficiency	0
+2	2	Amobarbital	Anaemia vitamin B12 deficiency	0
