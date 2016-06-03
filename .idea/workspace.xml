@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9604dc20-5ac7-4f2e-bab7-a8b498c5a4a1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/barchart.tsv" afterPath="$PROJECT_DIR$/data/barchart.tsv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/DataController.php" afterPath="$PROJECT_DIR$/database/DataController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/page.scripts/index.js" afterPath="$PROJECT_DIR$/js/page.scripts/index.js" />
     </list>
     <ignored path="advanced.iws" />
@@ -25,7 +24,25 @@
     <favorites_list name="advanced" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/page.scripts/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.55">
+              <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+              <folding>
+                <marker date="1464965547000" expanded="true" signature="2137:2507" placeholder="..." />
+                <marker date="1464965547000" expanded="true" signature="2199:2483" placeholder="..." />
+                <marker date="1464965547000" expanded="false" signature="2299:2311" placeholder="..." />
+                <marker date="1464965547000" expanded="true" signature="3004:3381" placeholder="..." />
+                <marker date="1464965547000" expanded="true" signature="3067:3356" placeholder="..." />
+                <marker date="1464965547000" expanded="false" signature="3168:3180" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -117,7 +134,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -133,6 +149,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pharmacovigilance-system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="advanced" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pharmacovigilance-system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="advanced" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pharmacovigilance-system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="page.scripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -167,6 +215,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -282,12 +331,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1464904838000" expanded="true" signature="2137:2507" placeholder="..." />
-            <marker date="1464904838000" expanded="true" signature="2199:2483" placeholder="..." />
-            <marker date="1464904838000" expanded="false" signature="2299:2311" placeholder="..." />
-            <marker date="1464904838000" expanded="true" signature="3004:3381" placeholder="..." />
-            <marker date="1464904838000" expanded="true" signature="3067:3356" placeholder="..." />
-            <marker date="1464904838000" expanded="false" signature="3168:3180" placeholder="..." />
+            <marker date="1464965547000" expanded="true" signature="2137:2507" placeholder="..." />
+            <marker date="1464965547000" expanded="true" signature="2199:2483" placeholder="..." />
+            <marker date="1464965547000" expanded="false" signature="2299:2311" placeholder="..." />
+            <marker date="1464965547000" expanded="true" signature="3004:3381" placeholder="..." />
+            <marker date="1464965547000" expanded="true" signature="3067:3356" placeholder="..." />
+            <marker date="1464965547000" expanded="false" signature="3168:3180" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -506,7 +555,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="2" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -617,21 +665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/page.scripts/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.46">
-          <caret line="123" column="22" selection-start-line="123" selection-start-column="22" selection-end-line="123" selection-end-column="22" />
-          <folding>
-            <marker date="1464904838000" expanded="true" signature="2137:2507" placeholder="..." />
-            <marker date="1464904838000" expanded="true" signature="2199:2483" placeholder="..." />
-            <marker date="1464904838000" expanded="false" signature="2299:2311" placeholder="..." />
-            <marker date="1464904838000" expanded="true" signature="3004:3381" placeholder="..." />
-            <marker date="1464904838000" expanded="true" signature="3067:3356" placeholder="..." />
-            <marker date="1464904838000" expanded="false" signature="3168:3180" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/barchart.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.016666668">
@@ -644,7 +677,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18835616">
           <caret line="11" column="50" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="50" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/page.scripts/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.55">
+          <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+          <folding>
+            <marker date="1464965547000" expanded="true" signature="2137:2507" placeholder="..." />
+            <marker date="1464965547000" expanded="true" signature="2199:2483" placeholder="..." />
+            <marker date="1464965547000" expanded="false" signature="2299:2311" placeholder="..." />
+            <marker date="1464965547000" expanded="true" signature="3004:3381" placeholder="..." />
+            <marker date="1464965547000" expanded="true" signature="3067:3356" placeholder="..." />
+            <marker date="1464965547000" expanded="false" signature="3168:3180" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

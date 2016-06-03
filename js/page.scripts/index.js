@@ -129,10 +129,8 @@ function pass_value(){
 
     // Show drug list and outcome list on bar chart
 
-
-
     // Display data in table
-    get_table_data(drug,adr,"ingredient");
+    get_table_data(drug,adr,group_drug);
 }
 
 
