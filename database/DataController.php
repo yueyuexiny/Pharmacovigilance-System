@@ -120,6 +120,7 @@ class DataController
     function getOutcomeNameByID($outcomeConceptID,$group){
         try{
             $sql = "SELECT name FROM outcome_concept_id_meddra where outcome_concept_id=".$outcomeConceptID;
+            echo $sql;
             $result = $this->dbconn->query($sql);
 
             foreach ($result as $row) {
@@ -132,7 +133,33 @@ class DataController
         }
     }
 
+    function getCaseCountTimeline($drugID,$adrID,$group_drug,$group_adr){
+        $table="drug_ingredient_outcome_meddra_recieved_date_count";
+        /*if($group_drug=='ingredient'){
+            $table='drug_ingredient_outcome_meddra_statistics_all';
+        }
+        elseif($group_drug=='name'){
+            $table='drug_name_outcome_meddra_statistics_all';
+        }*/
 
+        try {
+            $sql = 'SELECT recieved_date,drug_concept_id,outcome_concept_id, case_count FROM '.$table.'  Where drug_concept_id in ('.$drugID.') and outcome_concept_id in ('.$adrID.')';
+            $result = $this->dbconn->query($sql);
+            $data = array();
+            foreach($result as $row){
+                $item = [];
+                $item['recieved_date']=$row['recieved_date'];
+                $item['outcome_concept_id']=$row['outcome_concept_id'];
+                $item['drug_concept_id']=$row['drug_concept_id'];
+                $item['case_count']=$row['case_count'];
+                array_push($data,$item);
+            }
+            return $data;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }
+
 
 ?>

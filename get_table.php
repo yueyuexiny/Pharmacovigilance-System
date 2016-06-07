@@ -6,6 +6,7 @@
  * Time: 2:45 PM
  */
 require_once "./database/DataController.php";
+require_once "get_timeline.php";
 
 #$type=$_GET['type'];
 $drug = $_GET['drug'];
@@ -50,4 +51,4 @@ $text.="</tbody>
 
 echo $text;
 
-
+write_timeline_file();

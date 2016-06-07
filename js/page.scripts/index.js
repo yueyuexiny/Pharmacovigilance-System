@@ -119,7 +119,7 @@ function pass_value(){
 
 
     // Display Heatmap
-    get_table_data(drug,adr,group_drug);
+    //get_table_data(drug,adr,group_drug);
 
     $('#img').show();
     get_heatmap_data(drug,adr);
@@ -127,7 +127,9 @@ function pass_value(){
     // Show drug list and outcome list on bar chart
 
     // Display data in table
-    get_table_data(drug,adr,group_drug);
+    get_table_data(drug,adr,group_drug,group_adr);
+
+    get_timeline_data(drug,adr,group_drug,group_adr)
 }
 
 
@@ -151,29 +153,75 @@ function get_table_data(drug,adr,group_drug,group_adr) {
 }
 
 
-function get_heatmap_data(drug,adr){
-    var data ={
-        "drug":drug,
-        "adr":adr
+function get_heatmap_data(drug,adr) {
+    var data = {
+        "drug": drug,
+        "adr": adr
     }
 
-    console.log(data);
+    //console.log(data);
 
     $.ajax({
-        type:"POST",
-        url:"HeatmapData.php",
-        data:data,
-        success:function(result){
-            console.log(result);
+        type: "POST",
+        url: "HeatmapData.php",
+        data: data,
+        success: function (result) {
+           // console.log(result);
             datasets = ["./data/drug.tsv"]//, "./data/outcome.tsv"];
             heatmapChart(datasets[0]);
             $('#img').hide();
         },
-        error:function(xhr,desc,err){
-             console.log(xhr);
+        error: function (xhr, desc, err) {
+            console.log(xhr);
             console.log("Details: " + desc + "\nError:" + err);
         }
     });
+}
+function get_timeline_data(drug,adr,group_drug,group_adr){
 
+    datafile = "./data/linechart.csv";
+    show_linechart(datafile);
 
+    /*var data = {
+        "drug": drug,
+        "adr": adr,
+        "group_drug":group_drug,
+        "group_adr":group_adr
+    }
+
+    //console.log(data);
+
+    $.ajax({
+        type: "POST",
+        url: "get_timeline.php",
+        data: data,
+        success: function (result) {
+            //var timelinedata = result;
+
+            //console.log(timelinedata);
+            datafile = "./data/linechart1.csv";
+            //show_linechart(datafile);
+
+        },
+        error: function (xhr, desc, err) {
+            console.log(xhr);
+            console.log("Details: " + desc + "\nError:" + err);
+        }
+    });*/
+
+    /*if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {  // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            //document.getElementById("timeline_data").innerHTML= xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET", "get_timeline.php?drug=" + drug+'&adr='+adr+'&group_drug='+group_drug+'&group_adr='+group_adr, true);
+    xmlhttp.send();
+    //var JSONData = document.getElementById("timeline_data").innerHTML;
+    //show_linechart(JSONData);*/
 }
