@@ -1,5 +1,5 @@
 
-var margin = { top: 50, right: 0, bottom: 50, left: 30 },
+/*var margin = { top: 50, right: 0, bottom: 50, left: 30 },
     width = 960 - margin.left - margin.right,
     height = 430 - margin.top - margin.bottom,
     gridSize = Math.floor(width / 22),
@@ -112,7 +112,7 @@ var heatmapChart = function(tsvFile) {
             legend.exit().remove();
         });
 };
-
+*/
 
 //heatmapChart(datasets[0]);
 
@@ -131,3 +131,239 @@ datasetpicker.enter()
 
 */
 
+
+
+
+var data = {};
+data.melted = [
+    {
+        "geneID":"Gene 4",
+        "condition":"Treatment 1",
+        "value":55.92
+    },
+    {
+        "geneID":"Gene 4",
+        "condition":"Treatment 10",
+        "value":44.26
+    },
+    {
+        "geneID":"Gene 4",
+        "condition":"Treatment 26",
+        "value":49.18
+    },
+    {
+        "geneID":"Gene 4",
+        "condition":"Treatment 73",
+        "value":34.8
+    },
+    {
+        "geneID":"Gene 6",
+        "condition":"Treatment 1",
+        "value":47.26
+    },
+    {
+        "geneID":"Gene 6",
+        "condition":"Treatment 10",
+        "value":45.08
+    },
+    {
+        "geneID":"Gene 6",
+        "condition":"Treatment 26",
+        "value":89.95
+    },
+    {
+        "geneID":"Gene 6",
+        "condition":"Treatment 73",
+        "value":48.29
+    },
+    {
+        "geneID":"Gene 8",
+        "condition":"Treatment 1",
+        "value":9.79
+    },
+    {
+        "geneID":"Gene 8",
+        "condition":"Treatment 10",
+        "value":10.12
+    },
+    {
+        "geneID":"Gene 8",
+        "condition":"Treatment 26",
+        "value":10.48
+    },
+    {
+        "geneID":"Gene 8",
+        "condition":"Treatment 73",
+        "value":14.73
+    },
+    {
+        "geneID":"Gene 9",
+        "condition":"Treatment 1",
+        "value":16.76
+    },
+    {
+        "geneID":"Gene 9",
+        "condition":"Treatment 10",
+        "value":18.15
+    },
+    {
+        "geneID":"Gene 9",
+        "condition":"Treatment 26",
+        "value":17.26
+    },
+    {
+        "geneID":"Gene 9",
+        "condition":"Treatment 73",
+        "value":16.59
+    },
+];
+data.ids = ['Gene 4','Gene 6','Gene 8','Gene 9'];
+data.conditions = ['Treatment 1', 'Treatment 10', 'Treatment 26', 'Treatment 73'];
+
+// d3.js
+var margin = {
+        top: 5,
+        right: 5,
+        bottom: 140,
+        left: 60
+    },
+    width = 600 - margin.left - margin.right,
+    height = 20*(data.ids.length);
+
+// Create graph
+var svg = d3.select('#expat-heatmap')
+    .append('svg:svg')
+    .attr({
+        'viewBox': '0 0 ' + (width + margin.left + margin.right) + ' ' + (height + margin.top + margin.bottom),
+        'preserveAspectRatio': 'xMidYMid meet'
+    })
+    .append('g')
+    .attr({
+        'transform': 'translate(' + margin.left + ',' + margin.top + ')',
+        'width': width,
+        'height': height
+    });
+
+// Coerce data
+data.melted.forEach(function(d) {
+    d.geneID = d.geneID;
+    d.condition = d.condition;
+    d.value = +d.value;
+});
+
+// Declare range
+var min = d3.min(data.melted, function(d) { return d.value; }),
+    max = d3.max(data.melted, function(d) { return d.value; });
+
+var x = d3.scale.ordinal().domain(data.conditions).rangeBands([0, width]),
+    y = d3.scale.ordinal().domain(data.ids).rangeBands([0, height]),
+    z = d3.scale.log().base(2).domain([min, max]).range(['white','steelblue']);
+
+// Get data
+svg.selectAll('.tile')
+    .data(data.melted)
+    .enter()
+    .append('rect')
+    .attr({
+        'x': function(d) { return x(d.condition); },
+        'y': function(d) { return y(d.geneID); },
+        'fill': function(d) { return z(d.value); },
+        'width': x.rangeBand(),
+        'height': y.rangeBand()
+    });
+
+// Add a legend for the color values.
+var legend = svg.selectAll(".legend")
+    .data(z.ticks())
+    .enter()
+    .append("g")
+    .attr({
+        'class': 'legend',
+        'transform': function(d, i) {
+            console.log(d);
+            return "translate(" + (i * 40) + "," + (height + margin.bottom - 40) + ")";
+        }
+    });
+
+legend.append("rect")
+    .attr({
+        'width': 40,
+        'height': 20,
+        'fill': z
+    });
+
+legend.append("text")
+    .attr({
+        'font-size': 10,
+        'x': 0,
+        'y': 30
+    })
+    .text(String);
+
+svg.append("text")
+    .attr({
+        'class': 'label',
+        'font-size': 10,
+        'x': 0,
+        'y': height + margin.bottom - 45
+    })
+    .text('Relative expression');
+
+// Append axes
+var x_axis = d3.svg.axis()
+    .scale(x)
+    .orient('bottom')
+    .tickSize(3,0),
+    y_axis = d3.svg.axis()
+        .scale(y)
+        .orient('left')
+        .tickSize(0);
+
+svg.append('g')
+    .attr({
+        'class': 'x axis',
+        'transform': 'translate(0,'+height+')'
+    })
+    .call(x_axis)
+    .selectAll('text')
+    .style('text-anchor', 'start')
+    .attr({
+        'dx': '8',
+        'dy': '-2',
+        'transform': 'rotate(90)',
+        'font-size': '10'
+    });
+
+svg.append('g')
+    .attr({
+        'class': 'y axis'
+    })
+    .call(y_axis)
+    .selectAll('text')
+    .style('text-anchor', 'end')
+    .attr({
+        'font-size': '10'
+    })
+    .selectAll('path.domain	')
+    .attr({
+        'stroke': '0'
+    });
+
+// Append borders
+svg
+    .append('svg:line')
+    .attr({
+        'class': 'border-top',
+        'x1': 0,
+        'x2': width,
+        'y1': 0,
+        'y2': 0
+    });
+svg.append('svg:line')
+    .attr({
+        'class': 'border-right',
+        'x1': width,
+        'x2': width,
+        'y1': height,
+        'y2': 0
+    });

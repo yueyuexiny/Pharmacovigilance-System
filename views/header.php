@@ -29,9 +29,10 @@
 
     <!--css-->
     <link href="./css/theme.css" rel="stylesheet">
-    <link href="./css/heatmap.css" rel="stylesheet">
+
     <link href="./css/barchart.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/dc.css"/>
+    <link href="./css/heatmap.css" rel="stylesheet">
 
 
     <!--js-->

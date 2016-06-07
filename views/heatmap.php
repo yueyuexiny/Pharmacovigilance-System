@@ -9,6 +9,8 @@
                 </div>
             <div id="chart"></div>
             <div id="dataset-picker"></div>
+
+            <div id="expat-heatmap"></div>
         </div>
     </div>
 
