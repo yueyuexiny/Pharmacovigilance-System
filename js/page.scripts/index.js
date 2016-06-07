@@ -165,8 +165,7 @@ function get_heatmap_data(drug,adr){
         data:data,
         success:function(result){
             console.log(result);
-            datasets = ["./data/drug.tsv"]//, "./data/outcome.tsv"];
-            heatmapChart(datasets[0]);
+            heatmapChart(result);
             $('#img').hide();
         },
         error:function(xhr,desc,err){
