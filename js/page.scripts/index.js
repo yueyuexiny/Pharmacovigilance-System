@@ -118,9 +118,6 @@ function pass_value(){
     var group_adr = document.querySelector('input[name="ADR"]:checked').value;
 
 
-
-
-
     // Display Heatmap
     get_table_data(drug,adr,group_drug);
 
