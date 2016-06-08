@@ -1,6 +1,13 @@
 var groupNum_drug = [1]; // track id of existing input group
 var groupNum_adr = [1]; // track id of existing input group
 
+function clear_chosen_drug(){
+    document.getElementById("searchresult").innerHTML="";
+}
+
+function clear_chosen_adr(){
+    document.getElementById("searchresult_adr").innerHTML="";
+}
 function get_source_analysis(){
     var x = document.getElementById("source");
     var y = document.getElementById("analysis");
