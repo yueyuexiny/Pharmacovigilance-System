@@ -6,13 +6,13 @@
  * Time: 2:45 PM
  */
 
-//echo 'yes';
-//write_timeline_file();
 
 if(is_ajax()){
 
     if(isset($_GET["drug"]) && isset($_GET["adr"])){
         write_timeline_file();
+        $result = get_timeline_data();
+        echo json_encode($result);
     }
 }
 
@@ -50,7 +50,6 @@ function write_timeline_file(){
     $group_drug=$_GET['group_drug'];
     $table = new DataController();
     $result = $table->getCaseCountTimeline($drug,$adr,$group_drug,$group_adr);
-    $data = get_dates($result);
     $names = get_names($result);
     $timeline_data = array();
     foreach($result as $row) {
@@ -58,7 +57,6 @@ function write_timeline_file(){
         $date=$row['recieved_date'];
         $timeline_data[$date][$name]=$row['case_count'];
     }
-    //var_dump($timeline_data);
     $file = "./data/linechart1.csv";
     $current = "date";
     foreach($names as $name){
@@ -82,6 +80,48 @@ function write_timeline_file(){
     //echo $current;
     file_put_contents($file, $current);
 }
+
+function get_timeline_data(){
+    require_once "./database/DataController.php";
+    $drug = $_GET['drug'];
+    $adr=$_GET['adr'];
+    $group_adr=$_GET['group_adr'];
+    $group_drug=$_GET['group_drug'];
+    $table = new DataController();
+    $result = $table->getCaseCountTimeline($drug,$adr,$group_drug,$group_adr);
+    $names = get_names($result);
+    $timeline_data = array();
+    foreach($result as $row) {
+        $name = $row['drug_concept_id'].'_'.$row['outcome_concept_id'];
+        $date=$row['recieved_date'];
+        $timeline_data[$date][$name]=$row['case_count'];
+    }
+
+    //print_r($timeline_data);
+    $data=array();
+
+
+
+    foreach(array_keys($timeline_data) as $date ){
+        $item = array();
+        $item['date']=strval($date);
+
+        foreach($names as $name){
+            if(array_key_exists($name,$timeline_data[$date])){
+
+                $item[$name]=$timeline_data[$date][$name];
+            }
+            else{
+                $item[$name]='0';
+            }
+        }
+        array_push($data,$item);
+
+    }
+    return $data;
+
+}
+
 
 //echo $current;
 

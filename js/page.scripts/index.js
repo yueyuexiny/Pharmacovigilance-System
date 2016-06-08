@@ -1,12 +1,16 @@
 var groupNum_drug = [1]; // track id of existing input group
 var groupNum_adr = [1]; // track id of existing input group
 
-function clear_chosen_drug(){
-    document.getElementById("searchresult").innerHTML="";
-}
+function clear_chosen(str){
+    var id = "searchresult";
+    var id_live = "livesearch";
+    if(str=='adr'){
+        id="searchresult_adr";
+        id_live = "livesearch_adr";
+    }
+    document.getElementById(id).innerHTML="";
+    document.getElementById(id_live).innerHTML="";
 
-function clear_chosen_adr(){
-    document.getElementById("searchresult_adr").innerHTML="";
 }
 function get_source_analysis(){
     var x = document.getElementById("source");
@@ -126,17 +130,17 @@ function pass_value(){
 
 
     // Display Heatmap
-    //get_table_data(drug,adr,group_drug);
 
     $('#img').show();
     get_heatmap_data(drug,adr,group_drug,group_adr);
 
-    // Show drug list and outcome list on bar chart
 
     // Display data in table
     //get_table_data(drug,adr,group_drug,group_adr);
 
-    //get_timeline_data(drug,adr,group_drug,group_adr)
+
+    //Display timeline data line chart
+    get_timeline_data(drug,adr,group_drug,group_adr)
 }
 
 
@@ -187,8 +191,6 @@ function get_heatmap_data(drug,adr,group_drug,group_adr) {
 }
 function get_timeline_data(drug,adr,group_drug,group_adr){
 
-    datafile = "./data/linechart1.csv";
-   // show_linechart(datafile);
 
     var data = {
         "drug": drug,
@@ -197,19 +199,18 @@ function get_timeline_data(drug,adr,group_drug,group_adr){
         "group_adr":group_adr
     }
 
-
     $.ajax({
         type: "GET",
         url: "get_timeline.php",
         data: data,
         success: function (result) {
-            //var timelinedata = result;
 
-            console.log(result);
+            var timelinedata = result;
+            show_linechart(timelinedata.slice());
+           /* datafile = "./data/linechart1.csv";
+            show_linechart(datafile);*/
 
-            //console.log(timelinedata);
-            datafile = "./data/linechart1.csv";
-            show_linechart(datafile);
+            
 
         },
         error: function (xhr, desc, err) {

@@ -33,10 +33,10 @@
                         </div>
                         <div class="col-xs-2">
                             <div class="radio">
-                                <label><input type="radio" name="Drug" value="name" checked onclick="clear_chosen_drug()"/>By Name</label>
+                                <label><input type="radio" name="Drug" value="name" checked onclick="clear_chosen('drug')"/>By Name</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="Drug" value="ingredient" onclick="clear_chosen_drug()" />By Ingredient</label>
+                                <label><input type="radio" name="Drug" value="ingredient" onclick="clear_chosen('drug')" />By Ingredient</label>
                             </div>
 
                         </div>
@@ -58,10 +58,10 @@
                         </div>
                         <div class="col-xs-2">
                             <div class="radio">
-                                <label><input type="radio" name="ADR" value="medDRA" checked onclick="clear_chosen_adr()"/>MedDRA</label>
+                                <label><input type="radio" name="ADR" value="medDRA" checked onclick="clear_chosen('adr')"/>MedDRA</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="ADR" value="HOI" onclick="clear_chosen_adr()"/>HOI</label>
+                                <label><input type="radio" name="ADR" value="HOI" onclick="clear_chosen('adr')"/>HOI</label>
                             </div>
 
                         </div>
