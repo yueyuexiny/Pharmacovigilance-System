@@ -8,6 +8,7 @@
 
 
 if(is_ajax()){
+
     if(isset($_GET["drug"]) && isset($_GET["adr"])){
         write_timeline_file();
         $result = get_timeline_data();

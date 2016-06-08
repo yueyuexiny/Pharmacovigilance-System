@@ -193,6 +193,7 @@ function get_heatmap_data(drug,adr,group_drug,group_adr) {
 }
 function get_timeline_data(drug,adr,group_drug,group_adr){
 
+
     var data = {
         "drug": drug,
         "adr": adr,
@@ -205,10 +206,13 @@ function get_timeline_data(drug,adr,group_drug,group_adr){
         url: "get_timeline.php",
         data: data,
         success: function (result) {
+
             var timelinedata = result;
             show_linechart(timelinedata.slice());
            /* datafile = "./data/linechart1.csv";
             show_linechart(datafile);*/
+
+            
 
         },
         error: function (xhr, desc, err) {
