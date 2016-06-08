@@ -120,7 +120,7 @@ class DataController
     function getOutcomeNameByID($outcomeConceptID,$group){
         try{
             $sql = "SELECT name FROM outcome_concept_id_meddra where outcome_concept_id=".$outcomeConceptID;
-            echo $sql;
+            //echo $sql;
             $result = $this->dbconn->query($sql);
 
             foreach ($result as $row) {
