@@ -1,6 +1,13 @@
 var groupNum_drug = [1]; // track id of existing input group
 var groupNum_adr = [1]; // track id of existing input group
 
+function clear_chosen_drug(){
+    document.getElementById("searchresult").innerHTML="";
+}
+
+function clear_chosen_adr(){
+    document.getElementById("searchresult_adr").innerHTML="";
+}
 function get_source_analysis(){
     var x = document.getElementById("source");
     var y = document.getElementById("analysis");
@@ -173,6 +180,7 @@ function get_heatmap_data(drug,adr,group_drug,group_adr) {
             heatmapChart(result);
 
             $('#img').hide();
+
         },
         error: function (xhr, desc, err) {
             console.log(xhr);
@@ -192,7 +200,6 @@ function get_timeline_data(drug,adr,group_drug,group_adr){
         "group_adr":group_adr
     }
 
-    //console.log(data);
 
     $.ajax({
         type: "GET",

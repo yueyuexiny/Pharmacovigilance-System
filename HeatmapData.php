@@ -9,7 +9,6 @@ if(is_ajax()){
        $adr_group = $_POST["adr_group"];
 
        $result = getResultByID($drugIDList, $outcomeIDList,$drugGroup,$adr_group);
-
        echo json_encode($result);
    }
 }
