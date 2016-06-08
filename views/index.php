@@ -90,5 +90,5 @@
 
         </div><!--panel-->
     </div><!--search_criteria-->
-    <!--</div><!--container-->
-    <!--
+</div><!--container-->
+

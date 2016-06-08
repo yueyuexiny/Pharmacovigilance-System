@@ -162,7 +162,42 @@ class DataController
             echo $e->getMessage();
         }
     }
+
+    function getAllDrugIDs($group){
+        if($group=='ingredient'){
+            $table = 'drug_concept_id_ingredient';
+        }
+        elseif($group=='name'){
+            $table='drug_concept_id_name';
+        }
+
+        try{
+            $sql = "SELECT drug_concept_id FROM ".$table." limit 100";
+            $result = $this->dbconn->query($sql);
+
+            $drugIDList =array();
+            foreach ($result as $row) {
+                 array_push($drugIDList, $row['drug_concept_id']);
+            }
+            return $drugIDList;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
+    function getAllAdrIDs($group){
+        try{
+            $sql = "SELECT * FROM outcome_concept_id_meddra limit 200";
+            $result = $this->dbconn->query($sql);
+
+            $adrIDList = array();
+            foreach ($result as $row) {
+                array_push($adrIDList,$row['outcome_concept_id']);
+            }
+            return $adrIDList;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
 }
-
-
 ?>

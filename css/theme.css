@@ -292,50 +292,6 @@ input#btn-search{
     padding-top: 20px;
 }
 
-/****** Pilot Projects *******/
-#pilot-projects > div.row {
-    margin :0 ;
-}
-#pilot-projects > div.row > div {
-    padding-left: 0;
-    padding-right: 5px;
-}
-
-#pilot-projects div.project {
-    border: 1px solid #BDBDBD;
-    border-radius: 5px;
-    min-height: 140px;
-    margin: 0;
-}
-
-#pilot-projects div.project > img {
-    height: 35px;
-    margin: 8px 5px;
-}
-
-#pilot-projects div.project > span {
-    padding: 5px 10px;
-    display: block;
-    background-color: #F3F3F8;
-    margin: 0;
-}
-
-#pilot-projects div.project > span > a { 
-    color: #000;
-    font-size: 16px;
-    font-weight: bold;    
-}
-
-#pilot-projects div.project > span > span.label { 
-    float: right;
-    margin-top: 5px;
-    font-size: 9px;
-}
-
-#pilot-projects div.project > p {
-    padding: 5px 10px;
-    font-size: 12px;
-}
 
 
 /****** footers *******/
@@ -356,7 +312,7 @@ html {
     right: 0;
     bottom: 0;
     left: 0;
-    padding: 1rem;
+    padding: 30px;
     text-align: center;
     margin-top: 20px;
 }

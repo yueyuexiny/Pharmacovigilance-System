@@ -1,3 +1,4 @@
+<div class="container">
 <div class="linechart">
 
     <div class="panel panel-default">
@@ -30,3 +31,4 @@
 
     </div>
 </div>
+    </div>

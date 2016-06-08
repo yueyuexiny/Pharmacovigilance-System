@@ -1,5 +1,8 @@
 var heatmapChart = function(hmdata) {
 
+    d3.select("svg").remove();
+
+    console.log(hmdata);
 // parse data
     dataObj = JSON.parse(hmdata);
 
@@ -16,19 +19,26 @@ var heatmapChart = function(hmdata) {
     var margin = {
             top: 5,
             right: 5,
-            bottom: 300,
-            left: 60
-        },
-        width = 1000 - margin.left - margin.right,
-        height = 40*(data.ids.length);
+            bottom: 200,
+            left: 250
+        }
+    if((data.conditions.length)>25){
+        var width = 1000;
+    }else{
+        var width = (data.conditions.length)*40
+
+    }
+
+    if(data.ids.length>25){
+        var height = 1000;
+    }else{
+        var height = 40*(data.ids.length);
+    }
+
 
 // Create graph
     var svg = d3.select('#expat-heatmap')
         .append('svg:svg')
-        /*.attr({
-            'viewBox': '0 0 ' + (width + margin.left + margin.right) + ' ' + (height + margin.top + margin.bottom),
-            'preserveAspectRatio': 'xMidYMid meet'
-        })*/
         .attr('width',width + margin.left + margin.right)
         .attr('height',height + margin.top + margin.bottom)
         .append('g')
@@ -49,9 +59,11 @@ var heatmapChart = function(hmdata) {
     var min = d3.min(data.melted, function(d) { return d.value; }),
         max = d3.max(data.melted, function(d) { return d.value; });
 
-    var x = d3.scale.ordinal().domain(data.conditions).rangeBands([0, width]),
+    var x = d3.scale.ordinal().domain(data.conditions).rangeBands([10, width]),
         y = d3.scale.ordinal().domain(data.ids).rangeBands([0, height]),
         z = d3.scale.log().base(2).domain([min, max]).range(['white','steelblue']);
+
+    console.log(x);
 
 // define color scale
     var buckets = 9,
@@ -66,7 +78,6 @@ var heatmapChart = function(hmdata) {
         .style("visibility","visible")
         .offset([-20, 0])
         .html(function(d) {
-            //console.log(d);
             return "Drug Name: "+ d.drugName.split("||",1)+ "<br> ADR Name: " + d.adrName.split("||",1) + "<br> Case Count:  <span style='color:red'>" + Math.round(d.value) ;
             //return "Value:  <span style='color:red'>" + Math.round(d.value) ;
         });
@@ -82,10 +93,20 @@ var heatmapChart = function(hmdata) {
     cards.enter().append("rect")
         .attr("x",function(d) { return x(d.adrName); })
         .attr("y",function(d) { return y(d.drugName); })
-        .attr("rx",6)
-        .attr("ry",6)
+        .attr("rx",0)
+        .attr("ry",0)
         .attr('fill', function(d) {return colorScale(d.value);})
-        .attr('width',x.rangeBand())
+        .attr('width',function(){
+            if(x.rangeBand()< 15){
+                return 15;
+            }else if(x.rangeBand()>40){
+                return 40;
+            }else{
+                return x.rangeBand();
+            }
+        })
+
+
         .attr('height', y.rangeBand())
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)

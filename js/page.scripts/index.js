@@ -134,9 +134,9 @@ function pass_value(){
     // Show drug list and outcome list on bar chart
 
     // Display data in table
-    get_table_data(drug,adr,group_drug,group_adr);
+    //get_table_data(drug,adr,group_drug,group_adr);
 
-    get_timeline_data(drug,adr,group_drug,group_adr)
+    //get_timeline_data(drug,adr,group_drug,group_adr)
 }
 
 
@@ -168,7 +168,6 @@ function get_heatmap_data(drug,adr,group_drug,group_adr) {
         'adr_group':group_adr
     }
 
-    //console.log(data);
 
     $.ajax({
 
@@ -176,9 +175,7 @@ function get_heatmap_data(drug,adr,group_drug,group_adr) {
         url:"HeatmapData.php",
         data:data,
         success:function(result){
-            console.log(result);
             heatmapChart(result);
-
             $('#img').hide();
 
         },
