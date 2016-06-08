@@ -173,6 +173,7 @@ function get_heatmap_data(drug,adr,group_drug,group_adr) {
             heatmapChart(result);
 
             $('#img').hide();
+
         },
         error: function (xhr, desc, err) {
             console.log(xhr);
@@ -182,20 +183,16 @@ function get_heatmap_data(drug,adr,group_drug,group_adr) {
 }
 function get_timeline_data(drug,adr,group_drug,group_adr){
 
-    datafile = "./data/linechart1.csv";
-    show_linechart(datafile);
-
-    /*var data = {
+    var data = {
         "drug": drug,
         "adr": adr,
         "group_drug":group_drug,
         "group_adr":group_adr
     }
 
-    //console.log(data);
 
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: "get_timeline.php",
         data: data,
         success: function (result) {
@@ -203,14 +200,14 @@ function get_timeline_data(drug,adr,group_drug,group_adr){
 
             //console.log(timelinedata);
             datafile = "./data/linechart1.csv";
-            //show_linechart(datafile);
+            show_linechart(datafile);
 
         },
         error: function (xhr, desc, err) {
             console.log(xhr);
             console.log("Details: " + desc + "\nError:" + err);
         }
-    });*/
+    });
 
     /*if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari

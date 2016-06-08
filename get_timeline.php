@@ -10,8 +10,7 @@
 //write_timeline_file();
 
 if(is_ajax()){
-    if(isset($_POST["drug"]) && isset($_POST["adr"])){
-        echo 'yes';
+    if(isset($_GET["drug"]) && isset($_GET["adr"])){
         write_timeline_file();
     }
 }
@@ -20,8 +19,6 @@ if(is_ajax()){
 function is_ajax() {
     return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 }
-
-
 
 function get_dates($result){
     $data = array();
@@ -50,12 +47,6 @@ function write_timeline_file(){
     $adr=$_GET['adr'];
     $group_adr=$_GET['group_adr'];
     $group_drug=$_GET['group_drug'];
-    //echo $drug.'<br>';
-    //echo $adr;
-   // $drug='710062,501343';
-   // $adr = '35104067,35104161';
-   // $group_drug="";
-   // $group_adr="";
     $table = new DataController();
     $result = $table->getCaseCountTimeline($drug,$adr,$group_drug,$group_adr);
     $data = get_dates($result);
