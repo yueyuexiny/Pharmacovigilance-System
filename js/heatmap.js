@@ -92,6 +92,7 @@ var heatmapChart = function(hmdata) {
         .on('click',function(d){
             console.log(d.drugName);
             console.log(d.adrName);
+
         })
     ;
 

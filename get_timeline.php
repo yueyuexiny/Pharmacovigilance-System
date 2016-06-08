@@ -11,7 +11,7 @@
 
 if(is_ajax()){
     if(isset($_POST["drug"]) && isset($_POST["adr"])){
-        echo 'yes';
+        //echo 'yes';
         write_timeline_file();
     }
 }
