@@ -13,15 +13,23 @@
 #expat-heatmap svg {
     width: 100%;
 }
-#expat-heatmap path,
+#expat-heatmap path{
+    fill: none;
+    shape-rendering: auto;
+    stroke: #E6E6E6;
+    stroke-width:0px;
+}
+
 #expat-heatmap line {
     fill: none;
     shape-rendering: auto;
     stroke: #E6E6E6;
-    stroke-width:2px;
+    stroke-width:1px;
 }
 #expat-heatmap rect {
     transition: fill .125s ease-in-out;
+    stroke: #E6E6E6;
+    stroke-width: 1px;
 }
 #expat-heatmap rect:hover {
     stroke: #eee;

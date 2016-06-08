@@ -16,19 +16,21 @@ var heatmapChart = function(hmdata) {
     var margin = {
             top: 5,
             right: 5,
-            bottom: 140,
+            bottom: 300,
             left: 60
         },
-        width = 600 - margin.left - margin.right,
-        height = 20*(data.ids.length);
+        width = 1000 - margin.left - margin.right,
+        height = 40*(data.ids.length);
 
 // Create graph
     var svg = d3.select('#expat-heatmap')
         .append('svg:svg')
-        .attr({
+        /*.attr({
             'viewBox': '0 0 ' + (width + margin.left + margin.right) + ' ' + (height + margin.top + margin.bottom),
             'preserveAspectRatio': 'xMidYMid meet'
-        })
+        })*/
+        .attr('width',width + margin.left + margin.right)
+        .attr('height',height + margin.top + margin.bottom)
         .append('g')
         .attr({
             'transform': 'translate(' + margin.left + ',' + margin.top + ')',
@@ -46,9 +48,6 @@ var heatmapChart = function(hmdata) {
 // Declare range
     var min = d3.min(data.melted, function(d) { return d.value; }),
         max = d3.max(data.melted, function(d) { return d.value; });
-
-    console.log(min);
-    console.log(max);
 
     var x = d3.scale.ordinal().domain(data.conditions).rangeBands([0, width]),
         y = d3.scale.ordinal().domain(data.ids).rangeBands([0, height]),
@@ -68,26 +67,33 @@ var heatmapChart = function(hmdata) {
         .offset([-20, 0])
         .html(function(d) {
             //console.log(d);
-            return "Drug Name: "+ d.drugName+ "<br> ADR Name: " + d.adrName + "<br> Case Count:  <span style='color:red'>" + Math.round(d.value) ;
+            return "Drug Name: "+ d.drugName.split("||",1)+ "<br> ADR Name: " + d.adrName.split("||",1) + "<br> Case Count:  <span style='color:red'>" + Math.round(d.value) ;
             //return "Value:  <span style='color:red'>" + Math.round(d.value) ;
         });
 
     tip(svg.append("g"));
 
+
 // Get data
+
     var cards = svg.selectAll('.tile')
         .data(data.melted)
-        .enter().append('rect')
-        .attr({
-            'x': function(d) { return x(d.adrName); },
-            'y': function(d) { return y(d.drugName); },
-            'fill': function(d) {return colorScale(d.value);},
-            'width': x.rangeBand(),
-            'height': y.rangeBand(),
 
-        })
+    cards.enter().append("rect")
+        .attr("x",function(d) { return x(d.adrName); })
+        .attr("y",function(d) { return y(d.drugName); })
+        .attr("rx",4)
+        .attr("ry",4)
+        .attr('fill', function(d) {return colorScale(d.value);})
+        .attr('width',x.rangeBand())
+        .attr('height', y.rangeBand())
         .on('mouseover', tip.show)
-        .on('mouseout', tip.hide);
+        .on('mouseout', tip.hide)
+        .on('click',function(d){
+            console.log(d.drugName.split("||",2)[1]);
+            console.log(d.adrName.split("||",2)[1]);
+        })
+    ;
 
 // Add a legend for the color values.
     var legend = svg.selectAll(".legend")
@@ -160,29 +166,6 @@ var heatmapChart = function(hmdata) {
         .style('text-anchor', 'end')
         .attr({
             'font-size': '10'
-        })
-        .selectAll('path.domain	')
-        .attr({
-            'stroke': '0'
-        });
-
-// Append borders
-    svg
-        .append('svg:line')
-        .attr({
-            'class': 'border-top',
-            'x1': 0,
-            'x2': width,
-            'y1': 0,
-            'y2': 0
-        });
-    svg.append('svg:line')
-        .attr({
-            'class': 'border-right',
-            'x1': width,
-            'x2': width,
-            'y1': height,
-            'y2': 0
         });
 }
 
