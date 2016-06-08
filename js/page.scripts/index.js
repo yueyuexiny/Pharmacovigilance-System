@@ -180,7 +180,7 @@ function get_heatmap_data(drug,adr) {
 }
 function get_timeline_data(drug,adr,group_drug,group_adr){
 
-    datafile = "./data/linechart.csv";
+    datafile = "./data/linechart1.csv";
     show_linechart(datafile);
 
     /*var data = {

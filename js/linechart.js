@@ -76,11 +76,11 @@ var show_linechart = function(filename) {
     //var JSONData = csvJSON(text);
     //var JSONData = JSON.parse(data);
     //var data = JSONData.slice();
-     var dateFormat = d3.time.format('%m/%d/%Y');
-    //var dateFormat = d3.time.format('%Y/%m/%d');
+    // var dateFormat = d3.time.format('%m/%d/%Y');
+    var dateFormat = d3.time.format('%Y%m%d');
     var numberFormat = d3.format('.2f');
     var keys = Object.keys(data[0]);
-    var drugnames = keys.slice(1,keys.length-2);//new data does not need -2
+    var drugnames = keys.slice(1,keys.length-1);//new data does not need -2
 
     data.forEach(function (d) {
         d.dd = dateFormat.parse(d.date);
@@ -159,7 +159,7 @@ var show_linechart = function(filename) {
         .mouseZoomable(true)
         // Specify a "range chart" to link its brush extent with the zoom of the current "focus chart".
         .rangeChart(volumeChart)
-        .x(d3.time.scale().domain([new Date(1985, 0, 1), new Date(2012, 11, 31)]))
+        .x(d3.time.scale().domain([new Date(2004, 0, 1), new Date(2016, 6, 8)]))
         .round(d3.time.month.round)
         .xUnits(d3.time.months)
         .elasticY(true)
@@ -193,7 +193,7 @@ var show_linechart = function(filename) {
         .group(volumeByMonthGroup)
         .centerBar(true)
         .gap(1)
-        .x(d3.time.scale().domain([new Date(1985, 0, 1), new Date(2012, 11, 31)]))
+        .x(d3.time.scale().domain([new Date(2004, 0, 1), new Date(2012, 11, 31)]))
         .round(d3.time.month.round)
         .alwaysUseRounding(true)
         .xUnits(d3.time.months);

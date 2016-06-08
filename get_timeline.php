@@ -48,14 +48,14 @@ function write_timeline_file(){
     require_once "./database/DataController.php";
     $drug = $_GET['drug'];
     $adr=$_GET['adr'];
-    $group_adr=$_GET['group_adr'];
+    /*$group_adr=$_GET['group_adr'];
     $group_drug=$_GET['group_drug'];
     echo $drug.'<br>';
-    echo $adr;
-    /*$drug='710062,501343';
+    echo $adr;*/
+    $drug='710062,501343';
     $adr = '35104067,35104161';
     $group_drug="";
-    $group_adr="";*/
+    $group_adr="";
     $table = new DataController();
     $result = $table->getCaseCountTimeline($drug,$adr,$group_drug,$group_adr);
     $data = get_dates($result);
@@ -66,7 +66,7 @@ function write_timeline_file(){
         $date=$row['recieved_date'];
         $timeline_data[$date][$name]=$row['case_count'];
     }
-    var_dump($timeline_data);
+    //var_dump($timeline_data);
     $file = "./data/linechart1.csv";
     $current = "date,";
     foreach($names as $name){
