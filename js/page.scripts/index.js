@@ -122,7 +122,7 @@ function pass_value(){
     //get_table_data(drug,adr,group_drug);
 
     $('#img').show();
-    get_heatmap_data(drug,adr);
+    get_heatmap_data(drug,adr,group_drug,group_adr);
 
     // Show drug list and outcome list on bar chart
 
@@ -153,10 +153,12 @@ function get_table_data(drug,adr,group_drug,group_adr) {
 }
 
 
-function get_heatmap_data(drug,adr) {
+function get_heatmap_data(drug,adr,group_drug,group_adr) {
     var data = {
         "drug": drug,
-        "adr": adr
+        "adr": adr,
+        'drug_group':group_drug,
+        'adr_group':group_adr
     }
 
     //console.log(data);
