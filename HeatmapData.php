@@ -5,8 +5,10 @@ if(is_ajax()){
    if(isset($_POST["drug"]) && isset($_POST["adr"])){
        $drugIDList = explode(",",$_POST["drug"]);
        $outcomeIDList = explode(",",$_POST['adr']);
+       $drugGroup = $_POST["drug_group"];
+       $adr_group = $_POST["adr_group"];
 
-       $result = getResultByID($drugIDList, $outcomeIDList);
+       $result = getResultByID($drugIDList, $outcomeIDList,$drugGroup,$adr_group);
 
        echo json_encode($result);
    }
@@ -18,7 +20,7 @@ function is_ajax() {
 }
 
 
-function getResultByID($drugIDList, $adrIDList){
+function getResultByID($drugIDList, $adrIDList,$drugGroup,$adr_group){
     require_once dirname(__FILE__) .'/database/DataController.php';
     $hm = new DataController();
 
@@ -30,8 +32,8 @@ function getResultByID($drugIDList, $adrIDList){
         foreach($adrIDList as $adrID){
             $temp = array();
 
-            $drugName = $hm ->getDrugNameByID($drugID,'name');
-            $adrName = $hm ->getOutcomeNameByID($adrID,'meddra');
+            $drugName = $hm ->getDrugNameByID($drugID,$drugGroup);
+            $adrName = $hm ->getOutcomeNameByID($adrID,$adr_group);
             $case_count = $hm -> getDrugOutcomeCounts($drugID, $adrID);
 
             $temp['drugName'] = $drugName;
