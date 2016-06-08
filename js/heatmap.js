@@ -20,12 +20,12 @@ var heatmapChart = function(hmdata) {
             top: 5,
             right: 5,
             bottom: 200,
-            left: 250
+            left: 50
         }
     if((data.conditions.length)>25){
-        var width = 1000;
+        var width = 1000 + margin.left + margin.right;
     }else{
-        var width = (data.conditions.length)*40
+        var width = (data.conditions.length)*40 + margin.left + margin.right;
 
     }
 
@@ -39,12 +39,12 @@ var heatmapChart = function(hmdata) {
 // Create graph
     var svg = d3.select('#expat-heatmap')
         .append('svg:svg')
-        .attr('width',width + margin.left + margin.right)
+        .attr('width',width- margin.left - margin.right)
         .attr('height',height + margin.top + margin.bottom)
         .append('g')
         .attr({
             'transform': 'translate(' + margin.left + ',' + margin.top + ')',
-            'width': width,
+            'width': width- margin.left - margin.right,
             'height': height
         });
 

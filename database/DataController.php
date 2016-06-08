@@ -173,7 +173,7 @@ class DataController
         }
 
         try{
-            $sql = "SELECT drug_concept_id FROM ".$table." limit 100";
+            $sql = "SELECT drug_concept_id FROM ".$table." limit 50";
             $result = $this->dbconn->query($sql);
 
             $drugIDList =array();
@@ -188,7 +188,7 @@ class DataController
 
     function getAllAdrIDs($group){
         try{
-            $sql = "SELECT * FROM outcome_concept_id_meddra limit 200";
+            $sql = "SELECT * FROM outcome_concept_id_meddra limit 100";
             $result = $this->dbconn->query($sql);
 
             $adrIDList = array();
