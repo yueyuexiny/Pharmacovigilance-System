@@ -27,7 +27,6 @@ class DataController
         }
         try {
             $sql = 'SELECT * FROM '.$table.'  Where name like"'.$query.'%" limit 10';
-
             $result = $this->dbconn->query($sql);
 
             return $result;

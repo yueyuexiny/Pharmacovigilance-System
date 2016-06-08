@@ -48,14 +48,14 @@ function write_timeline_file(){
     require_once "./database/DataController.php";
     $drug = $_GET['drug'];
     $adr=$_GET['adr'];
-    /*$group_adr=$_GET['group_adr'];
+    $group_adr=$_GET['group_adr'];
     $group_drug=$_GET['group_drug'];
-    echo $drug.'<br>';
-    echo $adr;*/
-    $drug='710062,501343';
-    $adr = '35104067,35104161';
-    $group_drug="";
-    $group_adr="";
+    //echo $drug.'<br>';
+    //echo $adr;
+   // $drug='710062,501343';
+   // $adr = '35104067,35104161';
+   // $group_drug="";
+   // $group_adr="";
     $table = new DataController();
     $result = $table->getCaseCountTimeline($drug,$adr,$group_drug,$group_adr);
     $data = get_dates($result);
@@ -68,22 +68,20 @@ function write_timeline_file(){
     }
     //var_dump($timeline_data);
     $file = "./data/linechart1.csv";
-    $current = "date,";
+    $current = "date";
     foreach($names as $name){
-        $current .= $name.",";
+        $current .= ",".$name;
     }
     $current.="\n";
 
     foreach(array_keys($timeline_data) as $date ){
-        $current .= $date.',';
+        $current .= $date;
         foreach($names as $name){
-            //echo $name;
-            //print_r($timeline_data[$date]);
             if(array_key_exists($name,$timeline_data[$date])){
-                $current .=$timeline_data[$date][$name].',';
+                $current .=','.$timeline_data[$date][$name];
             }
             else{
-                $current .='0,';
+                $current .=',0';
             }
         }
         $current.="\n";

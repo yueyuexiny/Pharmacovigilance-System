@@ -80,7 +80,7 @@ var show_linechart = function(filename) {
     var dateFormat = d3.time.format('%Y%m%d');
     var numberFormat = d3.format('.2f');
     var keys = Object.keys(data[0]);
-    var drugnames = keys.slice(1,keys.length-1);//new data does not need -2
+    var drugnames = keys.slice(1,keys.length);//new data does not need -2
 
     data.forEach(function (d) {
         d.dd = dateFormat.parse(d.date);
@@ -193,7 +193,7 @@ var show_linechart = function(filename) {
         .group(volumeByMonthGroup)
         .centerBar(true)
         .gap(1)
-        .x(d3.time.scale().domain([new Date(2004, 0, 1), new Date(2012, 11, 31)]))
+        .x(d3.time.scale().domain([new Date(2004, 0, 1), new Date(2016, 11, 31)]))
         .round(d3.time.month.round)
         .alwaysUseRounding(true)
         .xUnits(d3.time.months);
