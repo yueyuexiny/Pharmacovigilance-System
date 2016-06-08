@@ -82,16 +82,16 @@ var heatmapChart = function(hmdata) {
     cards.enter().append("rect")
         .attr("x",function(d) { return x(d.adrName); })
         .attr("y",function(d) { return y(d.drugName); })
-        .attr("rx",4)
-        .attr("ry",4)
+        .attr("rx",6)
+        .attr("ry",6)
         .attr('fill', function(d) {return colorScale(d.value);})
         .attr('width',x.rangeBand())
         .attr('height', y.rangeBand())
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
         .on('click',function(d){
-            console.log(d.drugName.split("||",2)[1]);
-            console.log(d.adrName.split("||",2)[1]);
+            console.log(d.drugName);
+            console.log(d.adrName);
         })
     ;
 
@@ -103,7 +103,6 @@ var heatmapChart = function(hmdata) {
         .attr({
             'class': 'legend',
             'transform': function(d, i) {
-                console.log(d);
                 return "translate(" + (i * 40) + "," + (height + margin.bottom - 40) + ")";
             }
         });

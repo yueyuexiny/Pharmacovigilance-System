@@ -34,8 +34,8 @@ function getResultByID($drugIDList, $adrIDList){
             $adrName = $hm ->getOutcomeNameByID($adrID,'meddra');
             $case_count = $hm -> getDrugOutcomeCounts($drugID, $adrID);
 
-            $temp['drugName'] = $drugName . "||" . $drugID ;
-            $temp['adrName'] = $adrName . "||" . $adrID;
+            $temp['drugName'] = $drugName;
+            $temp['adrName'] = $adrName;
             $temp['value'] = $case_count;
 
             array_push($drug, $drugName);
