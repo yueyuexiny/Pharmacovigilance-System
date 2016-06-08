@@ -55,6 +55,8 @@ function getResultByID($drugIDList, $adrIDList,$drugGroup,$adr_group){
             $temp['drugName'] = $drugName;
             $temp['adrName'] = $adrName;
             $temp['value'] = $case_count;
+            $temp['drugId'] =$drugID;
+            $temp['adrId'] = $adrID;
 
             array_push($drug, $drugName);
             array_push($adr, $adrName);

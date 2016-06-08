@@ -1,3 +1,4 @@
+</div><!--/.container-->
 <div class="footer">
     <div class="col-md-2 col-md-offset-2">
         <a href="index.php"><img src="./img/ut-logo.png" alt="Mountain View" class="header-logo"

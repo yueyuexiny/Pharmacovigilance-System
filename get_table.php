@@ -13,10 +13,11 @@ $group_adr=$_GET['group_adr'];
 $group_drug=$_GET['group_drug'];
 $table = new DataController();
 $result = $table->get_data($drug,$adr,$group_drug,$group_adr);
-$text = '<div class="details">
-
-    <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title">Details</h3></div>
+$text = '
+    <div class="panel panel-default details">
+        <div class="panel-heading"><h3 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Details</a></h3></div>
+         <div id="collapseTwo" class="panel-collapse collapse in">
         <div class="panel-body">
             <table class="table table-hover">
                 <thead>
@@ -43,8 +44,9 @@ foreach($result as $row) {
 $text.="</tbody>
             </table>
         </div>
+        </div>
     </div>
-</div>";
+";
 
 echo $text;
 

@@ -176,7 +176,7 @@ input#btn-search{
 }
 
 .panel.panel-primary {
-    border-color: #DBDBEA;    
+    border-color: #DBDBEA;
 }
 
 .panel.panel-primary .title-icon {
@@ -189,7 +189,7 @@ input#btn-search{
 }
 
 .panel.panel-primary .title-icon .fa {
-    background: #fff;    
+    background: #fff;
     text-align: center;
     display: inline;
     border-radius: 50%;
@@ -233,64 +233,7 @@ input#btn-search{
     padding: 5px;
 }
 
-/* Statistics */
-#statistics-panel .stat-box {
-    padding: 25px 0;
-}
 
-#statistics-panel .stat-box i.fa {
-    display: block;
-    font-size: 40px;
-    margin : 0 auto 5px;
-}
-
-#statistics-panel .stat-box .stat-value {
-    display: inline;
-    margin: 0;
-    font-weight: bold;
-    font-size: 20px;
-    margin-right: 3px;
-}
-
-#statistics-panel .stat-box .stat-title {
-    margin: 0;
-    display: inline;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-#repositories-container .panel-body {
-    padding-top: 20px;
-}
-
-/* Features */
-#features ul {
-    list-style: none;
-    padding: 5px 0 0 20px;
-    margin-bottom: 0;
-}
-
-#features ul li:before {
-    content: "\00BB \0020";
-}
-
-/* Announcements */
-#announcement table {
-    margin: 0;
-}
-
-#announcement table > tbody > tr:nth-child(2n+1) > td {
-    background-color: #f3f3f8;
-}
-
-.glyphicon-stop { 
-    color: #2CA02C; 
-}
-
-#most-accessed .panel-body {
-    padding-top: 20px;
-}
 
 
 
@@ -329,135 +272,11 @@ html {
     color: #fff;
 }
 
-/********************************************
-*
-*     Styles for element on search page
-*
-*********************************************/
 
-.label-repo{
-    background-color:#3A87AE;
-}
-.container .jumbotron {
-    padding: 15px 30px 0px;
-}
-
-.container .jumbotron.search-block h4 {
-    margin-bottom: 0px;
-}
-
-.container .jumbotron.search-block input[type="radio"] {
-    margin-top: -7px;
-}
-
-.container .jumbotron.search-block-2 {
-    padding: 15px 20px 10px;
-    line-height: 12px;
-    margin-bottom: 20px;
-    border-radius: 0;
-    background: #F7FDF6;
-    background-image: linear-gradient(to bottom, #DFF0D8 0px, #f7fdf7 100%);
-    border: 1px solid #B5EBA9;
-}
-
-.container .jumbotron.search-block-2 input.form-control {
-    border-radius: 0;
-}
-
-
-#query {
-    text-transform: capitalize;
-}
-
-/****result table*****/
-.result-heading{
-    color:#0C5F22;
-}
-
-/****fix the width of table****/
-table.search-repo {
-    table-layout: auto;    
-}
-
-table.search-repo th {
-    width: auto !important;
-}
-
-/****page navigation*****/
-.pagination {
-    font-size: 12px;
-}
-
-#search-pagination {
-    margin: 10px 0;
-}
-
-#search-repository-pagination {
-    margin: 3px 0 0 0;
-}
-
-.pagination>li>a, .pagination>li>span {
-    padding: 5px 10px;
-}
-
-.pagination>li:first-child>a, .pagination>li:first-child>span{
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-}
-
-.pagination>li:last-child>a, .pagination>li:last-child>span {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-    background-color: #666;
-    color:#fff;
-}
-
-.pagination>li>a, .pagination>li>span {
-    background-color: #F1F1F1;
-    border: 1px solid #ddd;
-    color: #424251;
-}
-
-
-/****side bar.tsv*****/
-#sidebar > li > a{
-    color: black;
-}
-
-
-/**** Related Publications *****/
-#related-publications .panel-body {
-    padding: 0;
-}
-
-#related-publications .panel-body .list-group {
-    border-radius: 0;
-    margin:0 ;
-}
-
-#related-publications .panel-body .list-group .list-group-item { 
-    padding: 5px 10px;
-}
-
-#related-publications .panel-body .list-group .list-group-item .list-group-item-heading {
-    font-size: 12px;
-}
-
-#related-publications .panel-body .list-group .list-group-item .list-group-item-text {
-    font-size: 11px;
-}
-
-#related-publications .panel-body .list-group .list-group-item:first-child,
-#related-publications .panel-body .list-group .list-group-item:last-child {
-    border-radius: 0;
-}
 
 /**** recent searches *****/
 #recent ul {
-    margin: 0; 
+    margin: 0;
     padding: 0 0 0 10px;
 }
 
@@ -475,7 +294,7 @@ table.search-repo th {
 /****related searches*****/
 
 #related ul {
-    margin: 0; 
+    margin: 0;
     padding: 0 0 0 10px;
 }
 
@@ -541,376 +360,6 @@ textarea {
     color: #398439;
 }
 
-/********************************************
-*
-*     Styles for element on search-repository page
-*
-*********************************************/
-.pilot-logo {
-    width: 100px;
-    float: right;
-}
-
-.pilot > .panel-body{
-    text-align: center;
-}
-
-.pilot > .panel-heading{
-    background-color: #F2DEDE;
-    background-image:linear-gradient(to bottom, #F2DEDE 0px, #F2DEDE 100%);
-    color: #c67070;
-    border-color: #F2DEDE;
-}
-.pilot{
-    border-color: #F2DEDE;
-}
-
-/*Show more function*/
-.morecontent span {
-    display: none;
-}
-a.morelink {
-    text-decoration:none;
-    outline: none;
-    color: #0254EB;
-}
-/********************************************
-*
-*     Styles for element on single_item page
-*
-*********************************************/
-
-/****similar dataset*****/
-#similar-datasets .panel-body {
-    padding: 0;
-}
-
-#similar-datasets .panel-body .list-group {
-    border-radius: 0;
-    margin:0 ;
-}
-
-#similar-datasets .panel-body .list-group .list-group-item { 
-    padding: 5px 10px;
-}
-
-#similar-datasets .panel-body .list-group .list-group-item .list-group-item-heading {
-    font-size: 12px;
-}
-
-#similar-datasets .panel-body .list-group .list-group-item .list-group-item-text {
-    font-size: 11px;
-}
-
-#similar-datasets .panel-body .list-group .list-group-item:first-child,
-#similar-datasets .panel-body .list-group .list-group-item:last-child {
-    border-radius: 0;
-}
-
-/**** Dataset Info *****/
-.dataset-info {
-    margin-bottom: 40px;
-}
-
-.dataset-info .heading {
-    /* background-color: #F3F3F3; */
-    border: 1px solid #E6E6E6;
-    margin: 0 0 20px 0;
-    /* padding: 10px; */
-}
-
-.dataset-info .heading > div a.repository-logo > img {
-    display: inline;
-    height: 30px;
-    margin: 10px;
-}
-
-.dataset-info .heading > div .title {    
-    text-transform: capitalize;
-    display: inline-block;
-    width: 90%;
-    overflow:hidden !important;
-    white-space:nowrap; 
-    text-overflow: ellipsis;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.dataset-info table { 
-    margin-bottom: 0;
-}
-
-.dataset-info .panel {
-    margin-bottom: 20px;
-}
-
-.dataset-info .panel-body { 
-    padding: 0;
-}
-
-/****** Others *****/
-
-.biocaddie_green {
-    color:#009444;
-}
-
-.soon {
-    margin-top: 5px;
-    float: right;
-}
-
-/* css for feedback panel*/
-
-.bs-callout {
-    padding: 20px;
-    border: 1px solid #233120;
-    border-left-width: 8px;
-    border-radius: 3px;
-    margin-bottom: 50px;
-}
-
-.bs-callout h4 {
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-
-.bs-callout p:last-child {
-    margin-bottom: 0;
-}
-
-.bs-callout code {
-    border-radius: 3px;
-}
-
-.bs-callout+.bs-callout {
-    margin-top: -5px;
-}
-
-#dropdown-sort{
-    border-radius: 0;
-    box-shadow: none;
-}
-
-/* #### Search Result Panel */
-ol.search-result {
-    padding: 0;
-}
-
-ol.search-result > li {
-    position:relative; /* Create a positioning context */
-    margin: 0 0 10px 0;
-    padding:4px 8px; /* Add some spacing around the content */
-    list-style: none; /* Disable the normal item numbering */
-    /* border-top: 1px solid #666; */
-}
-ol.search-result > li .row-number {
-    /* Position and style the number */
-    position:absolute;
-    top:-1px;
-    left:-2em;
-    -moz-box-sizing:border-box;
-    -webkit-box-sizing:border-box;
-    box-sizing:border-box;
-    width:2em;
-    margin-right:8px;
-    padding:4px;
-    border-top:2px solid #666;
-    color:#fff;
-    background:#666;
-    font-weight:bold;
-    font-family:"Helvetica Neue", Arial, sans-serif;
-    text-align:center;
-}
-
-/* ol.search-result li:nth-child(odd){
-    background: #F3F3F3;
-} */
-
-ol.search-result .result-heading {
-    margin: 0 0 2px 0;
-    font-size: 15px;
-}
-
-ol.search-result .result-heading a {
-    color: #0C5F22;
-}
-
-ol.search-result .result-reposity {
-    padding: 1px 4px;
-}
-
-ol.search-result .result-reposity a {
-    color: #fff;
-    font-size: 10px;
-}
-
-ol.search-result .result-field {
-    margin: 0;
-}
-
-ol.search-result .result-field em {
-    font-weight: bold;
-    margin-right: 5px;
-}
-
-ol.search-result .result-source {
-    margin: 0;
-}
-
-#accordion-filters{
-    margin-bottom: 20px;
-}
-
-#accordion-filters h4.panel-title {
-    font-size: 13px;
-}
-
-#accordion-filters h4.panel-title a {
-    text-decoration: none;
-    cursor: pointer;
-}
-
-#accordion-filters h4.panel-title a i.fa {
-    margin-right: 5px;
-}
-
-#accordion-filters .panel-body {
-    padding: 5px;
-}
-
-.dropdown.open ul.dropdown-menu {
-    margin: 0;    
-    padding: 0;
-    min-width: 100px;
-    font-size: 12px;
-}
-
-.dropdown.open ul.dropdown-menu li a {
-    padding: 3px 10px;
-}
-
-#latest-datasets .panel-body {
-    padding: 0;
-}
-
-#latest-datasets .panel-body ul.list-group {
-    margin:0;
-    padding: 0;
-}
-
-#latest-datasets .panel-body ul.list-group .list-group-item {
-    border-radius: 0;
-}
-
-ul.no-disk {
-    list-style: none;
-    padding: 0 0 0 10px;
-}
-
-.btn .badge {
-    text-shadow: none;
-}
-
-.badge-default {
-    background-color: #999;
-}
-
-.badge-primary {
-    background-color: #5bc0de;
-}
-
-.badge-info {
-    background-color: #d9534f;
-}
-
-.badge-success {
-    background-color: #5cb85c;
-}
-
-.badge-danger {
-    background-color: #d9534f;
-}
-
-.badge-warning {
-    background-color: #efb73e;
-}
-
-
-table{
-    word-wrap:break-word;
-    table-layout: fixed;
-}
-
-/*For sharing*/
-.stpulldown-gradient
-{
-    background: #E1E1E1;
-    background: -moz-linear-gradient(top, #E1E1E1 0%, #A7A7A7 100%); /* firefox */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#E1E1E1), color-stop(100%,#A7A7A7)); /* webkit */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E1E1E1', endColorstr='#A7A7A7',GradientType=0 ); /* ie */
-    background: -o-linear-gradient(top, #E1E1E1 0%,#A7A7A7 100%); /* opera */
-    color: #636363;
-}
-#stpulldown .stpulldown-logo
-{
-    height: 40px;
-    width: 300px;
-    margin-left: 20px;
-    margin-top: 5px;
-    background:url("//sd.sharethis.com/disc/images/Logo_Area.png") no-repeat;
-}
-
-
-/********************************************
-*
-*     Styles for element on login page
-*
-*********************************************/
-/* enable absolute positioning */
-.inner-addon {
-    position: relative;
-}
-
-/* style icon */
-.inner-addon .glyphicon {
-    position: absolute;
-    padding: 10px;
-    pointer-events: none;
-}
-
-/* align icon */
-.left-addon .glyphicon  { left:  0px;}
-.right-addon .glyphicon { right: 0px;}
-
-/* add padding  */
-.left-addon input  { padding-left:  30px; }
-.right-addon input { padding-right: 30px; }
-
-a.account{
-    color: #0C5F22;
-    text-decoration: underline;
-}
-
-
-.box {font-family: Arial, sans-serif;background-color: #F1F1F1;border:0;width:340px;webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);margin:0 auto 25px;text-align:center;padding:10px 0px;}
-.box img{
-    padding: 10px;
-}
-.box a{color: #427fed;cursor: pointer;text-decoration: none;}
-.circle-image{width:100px;height:100px;-webkit-border-radius: 50%;border-radius: 50%;}
-.welcome{font-size: 16px;font-weight: bold;text-align: center;margin: 10px 0 0;min-height: 1em;}
-.oauthemail{font-size: 14px;}
-.logout{font-size: 13px;text-align: right;padding: 5px;margin: 20px 5px 0px 5px;border-top: #CCCCCC 1px solid;}
-.logout a{color:#8E009C;}
-
-/*For send to function*/
-.chidden {
-    display:none;
-}
-
-.option{
-    margin-bottom: 10px;
-}
 
 /************************
 * Advanced search page
@@ -982,17 +431,6 @@ button[class*='field'] { width: 150px;}
     max-width: 400px;
 }
 
-/************************
-* Recent activity page
-**************************/
-
-.custom-warning {
-    border: #F0AD4E solid 1px;
-    background-color:#fbf3cd ;
-    color: black;
-    font-weight: normal;
-    padding: 20px;
-}
 
 
 /************************
@@ -1051,4 +489,9 @@ button[class*='field'] { width: 150px;}
 
 .rowforsearch{
     padding-top:30px;
+}
+
+.panel-default {
+    margin-top: 30px;
+    margin-bottom: 50px;
 }

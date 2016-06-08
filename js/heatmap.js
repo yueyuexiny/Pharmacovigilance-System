@@ -52,6 +52,8 @@ var heatmapChart = function(hmdata) {
     data.melted.forEach(function(d) {
         d.drugName = d.drugName;
         d.adrName = d.adrName;
+        d.drugId = d.drugId;
+        d.adrId = d.adrId;
         d.value = +d.value;
     });
 
@@ -112,7 +114,9 @@ var heatmapChart = function(hmdata) {
         .on('mouseout', tip.hide)
         .on('click',function(d){
             console.log(d.drugName);
+            console.log(d.drugId);
             console.log(d.adrName);
+            console.log(d.adrId);
 
         })
     ;
