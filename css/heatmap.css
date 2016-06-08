@@ -1,26 +1,41 @@
-rect.bordered {
-    stroke: #E6E6E6;
-    stroke-width:2px;
-}
-
-text.mono {
-    font-size: 9pt;
-    font-family: Consolas, courier;
-    fill: #aaa;
-}
-
-text.axis-workweek {
-    fill: #000;
-}
-
-text.axis-worktime {
-    fill: #000;
-}
-
 .d3-tip {
     font-family: Verdana;
     background: rgba(0, 0, 0, 0.8);
     padding: 8px;
     color: #fff;
     z-index: 5070;
+}
+
+
+#expat-heatmap {
+    margin-bottom: 1.5em;
+}
+#expat-heatmap svg {
+    width: 100%;
+}
+#expat-heatmap path{
+    fill: none;
+    shape-rendering: auto;
+    stroke: #E6E6E6;
+    stroke-width:0px;
+}
+
+#expat-heatmap line {
+    fill: none;
+    shape-rendering: auto;
+    stroke: #E6E6E6;
+    stroke-width:1px;
+}
+#expat-heatmap rect {
+    transition: fill .125s ease-in-out;
+    stroke: #E6E6E6;
+    stroke-width: 2px;
+}
+#expat-heatmap rect:hover {
+    stroke: #eee;
+    stroke-width: 1.5px;
+}
+#expat-heatmap .legend rect {
+    stroke: #333;
+    stroke-width: 0.5px;
 }

@@ -162,13 +162,14 @@ function get_heatmap_data(drug,adr) {
     //console.log(data);
 
     $.ajax({
-        type: "POST",
-        url: "HeatmapData.php",
-        data: data,
-        success: function (result) {
-           // console.log(result);
-            datasets = ["./data/drug.tsv"]//, "./data/outcome.tsv"];
-            heatmapChart(datasets[0]);
+
+        type:"POST",
+        url:"HeatmapData.php",
+        data:data,
+        success:function(result){
+            console.log(result);
+            heatmapChart(result);
+
             $('#img').hide();
         },
         error: function (xhr, desc, err) {

@@ -6,7 +6,9 @@ if(is_ajax()){
        $drugIDList = explode(",",$_POST["drug"]);
        $outcomeIDList = explode(",",$_POST['adr']);
 
-        getResultByID($drugIDList, $outcomeIDList);
+       $result = getResultByID($drugIDList, $outcomeIDList);
+
+       echo json_encode($result);
    }
 }
 
@@ -16,35 +18,37 @@ function is_ajax() {
 }
 
 
-function getResultByID($drugIDList, $outcomeIDList){
+function getResultByID($drugIDList, $adrIDList){
     require_once dirname(__FILE__) .'/database/DataController.php';
     $hm = new DataController();
 
-    $current = "";
+    $data = array();
+    $drug = array();
+    $adr = array();
 
-    $rowNum = 1;
-    $colNum = 1;
+    foreach($drugIDList as $drugID) {
+        foreach($adrIDList as $adrID){
+            $temp = array();
 
-    $file = "./data/drug.tsv";
-    $current .= "day\thour\tdrug\toutcome\tvalue\n";
-
-    foreach($drugIDList as $drugID){
-        foreach($outcomeIDList as $outcomeID){
             $drugName = $hm ->getDrugNameByID($drugID,'name');
-            $conceptName = $hm ->getOutcomeNameByID($outcomeID,'meddra');
-            $case_count = $hm -> getDrugOutcomeCounts($drugID, $outcomeID);
+            $adrName = $hm ->getOutcomeNameByID($adrID,'meddra');
+            $case_count = $hm -> getDrugOutcomeCounts($drugID, $adrID);
 
-            $current .= $rowNum."\t".$colNum."\t".$drugName."\t".$conceptName."\t".$case_count."\n";
-            $colNum++;
+            $temp['drugName'] = $drugName;
+            $temp['adrName'] = $adrName;
+            $temp['value'] = $case_count;
+
+            array_push($drug, $drugName);
+            array_push($adr, $adrName);
+            array_push($data,$temp);
         }
-        $colNum=1;
-        $rowNum++;
     }
 
+    $result = array();
+    $result['data'] = $data;
+    $result ['drug'] = array_unique($drug);
+    $result ['adr'] = array_unique($adr);
 
-    echo $current;
-
-    $result = file_put_contents($file, $current);
-
+    return $result;
 }
 ?>
