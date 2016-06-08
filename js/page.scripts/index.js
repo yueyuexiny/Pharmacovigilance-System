@@ -138,6 +138,7 @@ function pass_value(){
     // Display data in table
     get_table_data(drug,adr,group_drug,group_adr);
 
+
     //Display timeline data line chart
     //get_timeline_data(drug,adr,group_drug,group_adr)
 }
@@ -153,8 +154,6 @@ function get_table_data(drug,adr,group_drug,group_adr) {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             document.getElementById("table_data").innerHTML = xmlhttp.responseText;
-            document.getElementById("table_data").style.border = "1px solid #A5ACB2";
-            document.getElementById("table_data").style.width = "auto";
 
         }
     }
@@ -171,7 +170,6 @@ function get_heatmap_data(drug,adr,group_drug,group_adr) {
         'adr_group':group_adr
     }
 
-    //console.log(data);
 
     $.ajax({
 
@@ -179,9 +177,7 @@ function get_heatmap_data(drug,adr,group_drug,group_adr) {
         url:"HeatmapData.php",
         data:data,
         success:function(result){
-            console.log(result);
             heatmapChart(result);
-
             $('#img').hide();
 
         },
@@ -191,26 +187,27 @@ function get_heatmap_data(drug,adr,group_drug,group_adr) {
         }
     });
 }
-function get_timeline_data(drug,adr,group_drug,group_adr){
+function get_timeline_data(drug,adr,group_drug,group_adr,global_drugname,global_adrname){
 
 
     var data = {
         "drug": drug,
         "adr": adr,
         "group_drug":group_drug,
-        "group_adr":group_adr
+        "group_adr":group_adr,
+        "adrnames":global_adrname,
+        "drugnames":global_drugname
     };
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "get_timeline.php",
         data: data,
         success: function (result) {
 
             var timelinedata = result;
             //console.log(result);
-            show_linechart(timelinedata.slice());
-           /* datafile = "./data/linechart1.csv";
-            show_linechart(datafile);*/
+            show_linechart(timelinedata.slice(),global_drugname,global_adrname);
+
 
             
 
@@ -221,22 +218,31 @@ function get_timeline_data(drug,adr,group_drug,group_adr){
         }
     });
 
+
 }
 var global_drugID = "";
 var global_adrID = "";
-function update_id(drug,adr,group_drug,group_adr){
+var global_adrname = {};
+var global_drugname = {};
+function update_id(drug,adr,drugname,adrname,group_drug,group_adr){
     if(global_drugID.length==0){
         global_drugID=drug;
+
     }
     else{
         global_drugID = global_drugID+','+drug;
     }
+    global_drugname[drug] = drugname;
     if(global_adrID.length==0){
         global_adrID=adr;
     }
     else{
         global_adrID = global_adrID+','+adr;
     }
-    get_timeline_data(global_drugID,global_adrID,group_drug,group_adr)
+    global_adrname[adr] = adrname;
+    get_timeline_data(global_drugID,global_adrID,group_drug,group_adr,global_drugname,global_adrname);
 
 }
+
+
+

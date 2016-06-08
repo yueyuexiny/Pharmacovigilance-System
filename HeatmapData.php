@@ -27,6 +27,23 @@ function getResultByID($drugIDList, $adrIDList,$drugGroup,$adr_group){
     $drug = array();
     $adr = array();
 
+
+    // Get all drugs and adrs
+    if($drugIDList[0]== "" && $adrIDList[0]==""){
+        $drugIDList = $hm ->getAllDrugIDs($drugGroup);
+        $adrIDList = $hm -> getAllAdrIDs($adr_group);
+    }
+    // Get all drugs
+    elseif($drugIDList[0]=="" && $adrIDList[0]!=""){
+        $drugIDList = $hm ->getAllDrugIDs($drugGroup);
+    }
+    //Get all adrs
+    elseif($adrIDList[0]=="" && $drugIDList[0]!=""){
+        $adrIDList = $hm -> getAllAdrIDs($adr_group);
+    }
+
+
+
     foreach($drugIDList as $drugID) {
         foreach($adrIDList as $adrID){
             $temp = array();
@@ -38,6 +55,8 @@ function getResultByID($drugIDList, $adrIDList,$drugGroup,$adr_group){
             $temp['drugName'] = $drugName;
             $temp['adrName'] = $adrName;
             $temp['value'] = $case_count;
+            $temp['drugId'] =$drugID;
+            $temp['adrId'] = $adrID;
 
             array_push($drug, $drugName);
             array_push($adr, $adrName);

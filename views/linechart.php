@@ -1,9 +1,9 @@
-<div class="linechart">
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Line Chart</h3>
-        </div>
+<div class="panel panel-default linechart">
+    <div class="panel-heading">
+        <h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Line Chart</a>
+        </h3>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse in">
         <div class="panel-body">
             <div class="row">
                 <div class="container">
@@ -26,7 +26,9 @@
             </div>
 
         </div>
-
-
     </div>
+
+
 </div>
+
+

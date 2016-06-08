@@ -212,7 +212,7 @@ var show_linechart = function(Jsondata) {
         var dateFormat = d3.time.format('%Y%m%d');
         var numberFormat = d3.format('.2f');
         var keys = Object.keys(data[0]);
-        var drugnames = keys.slice(1,keys.length);//new data does not need -2
+        var drugnames = keys.slice(1,keys.length);
         data.forEach(function (d) {
 
             d.dd = dateFormat.parse(d.date);
@@ -281,7 +281,7 @@ var show_linechart = function(Jsondata) {
         //Specify an area chart by using a line chart with `.renderArea(true)`.
         // <br>API: [Stack Mixin](https://github.com/dc-js/dc.js/blob/master/web/docs/api-latest.md#stack-mixin),
         // [Line Chart](https://github.com/dc-js/dc.js/blob/master/web/docs/api-latest.md#line-chart)
-        var startyear = 2000;
+        var startyear = 2004;
         moveChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
             .renderArea(true)
             .width(990)
@@ -292,7 +292,7 @@ var show_linechart = function(Jsondata) {
             .mouseZoomable(true)
             // Specify a "range chart" to link its brush extent with the zoom of the current "focus chart".
             .rangeChart(volumeChart)
-            .x(d3.time.scale().domain([new Date(startyear, 0, 1), new Date(2016, 6, 8)]))
+            .x(d3.time.scale().domain([new Date(startyear, 0, 1), new Date(2015, 12, 31)]))
             .round(d3.time.month.round)
             .xUnits(d3.time.months)
             .elasticY(true)
@@ -326,7 +326,7 @@ var show_linechart = function(Jsondata) {
             .group(volumeByMonthGroup)
             .centerBar(true)
             .gap(1)
-            .x(d3.time.scale().domain([new Date(startyear, 0, 1), new Date(2016, 11, 31)]))
+            .x(d3.time.scale().domain([new Date(startyear, 0, 1), new Date(2015, 12, 31)]))
             .round(d3.time.month.round)
             .alwaysUseRounding(true)
             .xUnits(d3.time.months);

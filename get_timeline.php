@@ -8,13 +8,15 @@
 
 
 if(is_ajax()){
-    if(isset($_GET["drug"]) && isset($_GET["adr"])){
-        $drugID = $_GET["drug"];
-        $adrID = $_GET['adr'];
-        $drugGroup = $_GET["group_drug"];
-        $adr_group = $_GET["group_adr"];
+    if(isset($_POST["drug"]) && isset($_POST["adr"])){
+        $drugID = $_POST["drug"];
+        $adrID = $_POST['adr'];
+        $drugGroup = $_POST["group_drug"];
+        $adr_group = $_POST["group_adr"];
+        $drugnames = $_POST["drugnames"];
+        $adrnames = $_POST["adrnames"];
         //write_timeline_file();
-        $result = get_timeline_data($drugID,$adrID,$drugGroup,$adr_group);
+        $result = get_timeline_data($drugID,$adrID,$drugGroup,$adr_group,$drugnames,$adrnames);
         echo json_encode($result);
     }
 }
@@ -35,10 +37,11 @@ function get_dates($result){
     return $data;
 }
 
-function get_names($result){
+function get_names($result,$drugnames,$adrnames){
     $names = array();
     foreach($result as $row){
-        $name = $row['drug_concept_id'].'_'.$row['outcome_concept_id'];
+       // $name = $row['drug_concept_id'].'_'.$row['outcome_concept_id'];
+        $name = $drugnames[$row['drug_concept_id']].'/'.$adrnames[$row['outcome_concept_id']];
         if(!in_array($name,$names)){
             array_push($names,$name);
         }
@@ -47,10 +50,10 @@ function get_names($result){
 }
 function write_timeline_file(){
     require_once "./database/DataController.php";
-    $drug = $_GET['drug'];
-    $adr=$_GET['adr'];
-    $group_adr=$_GET['group_adr'];
-    $group_drug=$_GET['group_drug'];
+    $drug = $_POST['drug'];
+    $adr=$_POST['adr'];
+    $group_adr=$_POST['group_adr'];
+    $group_drug=$_POST['group_drug'];
     $table = new DataController();
     $result = $table->getCaseCountTimeline($drug,$adr,$group_drug,$group_adr);
     $names = get_names($result);
@@ -84,15 +87,16 @@ function write_timeline_file(){
     file_put_contents($file, $current);
 }
 
-function get_timeline_data($drug,$adr,$group_adr,$group_drug){
+function get_timeline_data($drug,$adr,$group_adr,$group_drug,$drugnames,$adrnames){
     require_once "./database/DataController.php";
 
     $table = new DataController();
     $result = $table->getCaseCountTimeline($drug,$adr,$group_drug,$group_adr);
-    $names = get_names($result);
+    $names = get_names($result,$drugnames,$adrnames);
     $timeline_data = array();
     foreach($result as $row) {
-        $name = $row['drug_concept_id'].'_'.$row['outcome_concept_id'];
+        //$name = $row['drug_concept_id'].'_'.$row['outcome_concept_id'];
+        $name = $drugnames[$row['drug_concept_id']].'/'.$adrnames[$row['outcome_concept_id']];
         $date=$row['recieved_date'];
         $timeline_data[$date][$name]=$row['case_count'];
     }
