@@ -137,6 +137,7 @@ class DataController
     }
 
     function getCaseCountTimeline($drugID,$adrID,$group_drug,$group_adr){
+
         $table="drug_ingredient_outcome_meddra_recieved_date_count";
         /*if($group_drug=='ingredient'){
             $table='drug_ingredient_outcome_meddra_statistics_all';

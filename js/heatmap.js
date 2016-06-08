@@ -90,8 +90,10 @@ var heatmapChart = function(hmdata) {
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
         .on('click',function(d){
+
             console.log(d.drugName);
             console.log(d.adrName);
+            update_id("710062","35104161","a","b");
 
         })
     ;

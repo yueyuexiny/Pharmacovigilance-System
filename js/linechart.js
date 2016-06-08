@@ -213,7 +213,6 @@ var show_linechart = function(Jsondata) {
         var numberFormat = d3.format('.2f');
         var keys = Object.keys(data[0]);
         var drugnames = keys.slice(1,keys.length);//new data does not need -2
-
         data.forEach(function (d) {
 
             d.dd = dateFormat.parse(d.date);

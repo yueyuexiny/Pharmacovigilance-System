@@ -139,7 +139,7 @@ function pass_value(){
     get_table_data(drug,adr,group_drug,group_adr);
 
     //Display timeline data line chart
-    get_timeline_data(drug,adr,group_drug,group_adr)
+    //get_timeline_data(drug,adr,group_drug,group_adr)
 }
 
 
@@ -199,8 +199,7 @@ function get_timeline_data(drug,adr,group_drug,group_adr){
         "adr": adr,
         "group_drug":group_drug,
         "group_adr":group_adr
-    }
-
+    };
     $.ajax({
         type: "GET",
         url: "get_timeline.php",
@@ -208,6 +207,7 @@ function get_timeline_data(drug,adr,group_drug,group_adr){
         success: function (result) {
 
             var timelinedata = result;
+            //console.log(result);
             show_linechart(timelinedata.slice());
            /* datafile = "./data/linechart1.csv";
             show_linechart(datafile);*/
@@ -221,19 +221,22 @@ function get_timeline_data(drug,adr,group_drug,group_adr){
         }
     });
 
-    /*if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {  // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+}
+var global_drugID = "";
+var global_adrID = "";
+function update_id(drug,adr,group_drug,group_adr){
+    if(global_drugID.length==0){
+        global_drugID=drug;
     }
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            //document.getElementById("timeline_data").innerHTML= xmlhttp.responseText;
-        }
+    else{
+        global_drugID = global_drugID+','+drug;
     }
-    xmlhttp.open("GET", "get_timeline.php?drug=" + drug+'&adr='+adr+'&group_drug='+group_drug+'&group_adr='+group_adr, true);
-    xmlhttp.send();
-    //var JSONData = document.getElementById("timeline_data").innerHTML;
-    //show_linechart(JSONData);*/
+    if(global_adrID.length==0){
+        global_adrID=adr;
+    }
+    else{
+        global_adrID = global_adrID+','+adr;
+    }
+    get_timeline_data(global_drugID,global_adrID,group_drug,group_adr)
+
 }

@@ -8,10 +8,13 @@
 
 
 if(is_ajax()){
-
     if(isset($_GET["drug"]) && isset($_GET["adr"])){
-        write_timeline_file();
-        $result = get_timeline_data();
+        $drugID = $_GET["drug"];
+        $adrID = $_GET['adr'];
+        $drugGroup = $_GET["group_drug"];
+        $adr_group = $_GET["group_adr"];
+        //write_timeline_file();
+        $result = get_timeline_data($drugID,$adrID,$drugGroup,$adr_group);
         echo json_encode($result);
     }
 }
@@ -81,12 +84,9 @@ function write_timeline_file(){
     file_put_contents($file, $current);
 }
 
-function get_timeline_data(){
+function get_timeline_data($drug,$adr,$group_adr,$group_drug){
     require_once "./database/DataController.php";
-    $drug = $_GET['drug'];
-    $adr=$_GET['adr'];
-    $group_adr=$_GET['group_adr'];
-    $group_drug=$_GET['group_drug'];
+
     $table = new DataController();
     $result = $table->getCaseCountTimeline($drug,$adr,$group_drug,$group_adr);
     $names = get_names($result);
@@ -96,8 +96,6 @@ function get_timeline_data(){
         $date=$row['recieved_date'];
         $timeline_data[$date][$name]=$row['case_count'];
     }
-
-    //print_r($timeline_data);
     $data=array();
 
 
