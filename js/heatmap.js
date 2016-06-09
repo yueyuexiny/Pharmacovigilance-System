@@ -1,8 +1,6 @@
 var heatmapChart = function(hmdata) {
 
 
-    d3.select("svg").remove();
-    
 // parse data
     dataObj = JSON.parse(hmdata);
 
@@ -120,7 +118,9 @@ var heatmapChart = function(hmdata) {
             console.log(d.drugId);
             console.log(d.adrName);
             console.log(d.adrId);
-            update_id_pair(d.drugId,d.adrId, d.drugName, d.adrName,"a","b");
+            if(d.value>0){
+                update_id_pair(d.drugId,d.adrId, d.drugName, d.adrName,"a","b");
+            }
 
         })
     ;
