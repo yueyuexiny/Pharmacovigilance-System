@@ -1,6 +1,80 @@
 var groupNum_drug = [1]; // track id of existing input group
 var groupNum_adr = [1]; // track id of existing input group
 
+
+
+var global_source = ["FAERS"]; // selected data source
+var global_analysis = ""; // selected analysis method
+var global_drugGroup = "";  // selected drug group
+var global_drugIDList = "";  // selected drugs' ID
+var global_adrGroup = "";   // selected adr group
+var global_adrIDList = "";  // selected adrs' ID
+
+
+/*select drug ID and name, selected adr ID and name*/
+var selected_drugID = "";
+var selected_adrID = "";
+var selected_adrname = {};
+var selected_drugname = {};
+var selected_pairs = [];
+
+
+
+function submit(){
+    //Get data source and analysis method
+    var x = get_source_analysis();
+    global_source = x[0];
+    global_analysis = x[1];
+
+    // Get drug IDs
+    var drugID=document.querySelectorAll(".drugid");
+    var drug="";
+    for (i = 0; i < drugID.length; i++) {
+        drug += drugID[i].innerHTML + ",";
+        $( "#drugList" ).append('<div><label for="name"></label></div>');
+    }
+    global_drugIDList=drug.slice(0,-1);
+
+    // Get adr IDs
+    var adrID=document.querySelectorAll(".adrid");
+    var adr="";
+    for (i = 0; i < adrID.length; i++) {
+        adr += adrID[i].innerHTML + ",";
+    }
+    global_adrIDList=adr.slice(0,-1);
+
+    // Get drug and adr groups
+    global_drugGroup = document.querySelector('input[name="Drug"]:checked').value;
+    global_adrGroup = document.querySelector('input[name="ADR"]:checked').value;
+
+
+    // Display Heatmap
+    $('#img').show();
+    get_heatmap_data();
+
+    // Display data in table
+    get_table_data();
+
+    // Hide line chart
+    document.getElementById("monthly-move-chart").style.display = "none";
+    document.getElementById("monthly-volume-chart").style.display = "none";
+
+    // Clear the selected elements
+    selected_drugID = "";
+    selected_adrID = "";
+    selected_adrname = {};
+    selected_drugname = {};
+    selected_pairs = [];
+}
+
+
+/********************************************
+ *
+ * Functions for search creiteria panel
+ *
+ * ******************************************/
+
+// Clear selected drugs
 function clear_chosen(str){
     var id = "searchresult";
     var id_live = "livesearch";
@@ -12,13 +86,20 @@ function clear_chosen(str){
     document.getElementById(id_live).innerHTML="";
 
 }
+
+// Get selected data source and analysis method
 function get_source_analysis(){
-    var x = document.getElementById("source");
+    var source = [];
+    $.each($("input[name='sourcechk']:checked"), function(){
+        source.push($(this).val());
+    });
+
     var y = document.getElementById("analysis");
-    var result = [x.value,y.value];
+    var result = [source,y.value];
     return result;
 }
 
+// Return search results based on characters entered by the user
 function showResult(str,type) {
     var searchboxid = "livesearch";
     var group = document.querySelector('input[name="Drug"]:checked').value;
@@ -26,9 +107,9 @@ function showResult(str,type) {
         searchboxid = "livesearch_adr";
         group = document.querySelector('input[name="ADR"]:checked').value;
     }
-    var result = get_source_analysis();
-    var source = result[0];
-    var analysis = result[1];
+
+    var source = global_source[0];
+    var analysis = global_analysis;
     var x = document.getElementById(searchboxid);
 
     x.style.display = "";
@@ -54,10 +135,10 @@ function showResult(str,type) {
     }
     xmlhttp.open("GET", "livesearch.php?q=" + str + '&type='+type+'&source='+source+'&analysis='+analysis+'&group='+group, true);
     xmlhttp.send();
-
-
 }
 
+
+// Display selected drugs
 function select_drug(str,id) {
     var next = groupNum_drug[groupNum_drug.length - 1] + 1;
     groupNum_drug.push(next);
@@ -79,7 +160,7 @@ function select_drug(str,id) {
 
 };
 
-
+// Display selected adrs
 function select_adr(str,id) {
 
     var next = groupNum_adr[groupNum_adr.length - 1] + 1;
@@ -99,64 +180,22 @@ function select_adr(str,id) {
                  </div>';
 
     div.innerHTML = div.innerHTML + text;
-
-
 };
 
+// Remove selected drug or adr
 function remove_me(id) {
     document.getElementById(id).remove();
 }
-var global_drugID = "";
-var global_adrID = "";
-var global_adrname = {};
-var global_drugname = {};
-var global_pairs = [];
-
-function pass_value(){
-    var x = get_source_analysis();
-
-    var drugID=document.querySelectorAll(".drugid");
-
-    var drug="";
-    for (i = 0; i < drugID.length; i++) {
-        drug += drugID[i].innerHTML + ",";
-        $( "#drugList" ).append('<div><label for="name"></label></div>');
-    }
-
-    drug=drug.slice(0,-1);
-    var adrID=document.querySelectorAll(".adrid");
-    var adr="";
-    for (i = 0; i < adrID.length; i++) {
-        adr += adrID[i].innerHTML + ",";
-    }
-    adr=adr.slice(0,-1);
-    var group_drug = document.querySelector('input[name="Drug"]:checked').value;
-    var group_adr = document.querySelector('input[name="ADR"]:checked').value;
-
-    global_drugID = "";
-    global_adrID = "";
-    global_adrname = {};
-    global_drugname = {};
-    global_pairs = [];
-    document.getElementById("monthly-move-chart").style.display = "none";
-    document.getElementById("monthly-volume-chart").style.display = "none";
-    console.log(global_pairs);
-    // Display Heatmap
-
-    $('#img').show();
-    get_heatmap_data(drug,adr,group_drug,group_adr);
 
 
-    // Display data in table
-    get_table_data(drug,adr,group_drug,group_adr);
+/**************************************
+ *
+ * Functions for displaying table
+ *
+ * *************************************/
 
-
-    //Display timeline data line chart
-    //get_timeline_data(drug,adr,group_drug,group_adr)
-}
-
-
-function get_table_data(drug,adr,group_drug,group_adr) {
+// Retrieve data from database and display in table
+function get_table_data() {
     if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
@@ -169,22 +208,26 @@ function get_table_data(drug,adr,group_drug,group_adr) {
 
         }
     };
-    xmlhttp.open("GET", "get_table.php?drug=" + drug+'&adr='+adr+'&group_drug='+group_drug+'&group_adr='+group_adr, true);
+    xmlhttp.open("GET", "get_table.php?drug=" + global_drugIDList+'&adr='+global_adrIDList+'&group_drug='+global_drugGroup+'&group_adr='+global_adrGroup, true);
     xmlhttp.send();
 }
 
+/********************************************
+ *
+ * Functions for displaying heatmap chart
+ *
+ * ******************************************/
 
-function get_heatmap_data(drug,adr,group_drug,group_adr) {
+// Generate data for heatmap
+function get_heatmap_data() {
     var data = {
-        "drug": drug,
-        "adr": adr,
-        'drug_group':group_drug,
-        'adr_group':group_adr
+        "drug": global_drugIDList,
+        "adr": global_adrIDList,
+        'drug_group':global_drugGroup,
+        'adr_group':global_adrGroup
     };
 
-
     $.ajax({
-
         type:"POST",
         url:"HeatmapData.php",
         data:data,
@@ -200,63 +243,57 @@ function get_heatmap_data(drug,adr,group_drug,group_adr) {
     });
 }
 
-function get_timeline_data(drug,adr,group_drug,group_adr,global_drugname,global_adrname){
 
+/********************************************
+ *
+ * Functions for displaying timeline chart
+ *
+ * ******************************************/
 
+// Retrieve timeline data for different drug and adr combinations
+function get_timeline_data(adr,selected_drugname,selected_adrname){
     var data = {
-        "drug": drug,
+        "drug": global_drugIDList,
         "adr": adr,
-        "group_drug":group_drug,
-        "group_adr":group_adr,
-        "adrnames":global_adrname,
-        "drugnames":global_drugname
+        "group_drug":global_drugGroup,
+        "group_adr":global_adrGroup,
+        "adrnames":selected_adrname,
+        "drugnames":selected_drugname
     };
     $.ajax({
         type: "POST",
         url: "get_timeline.php",
         data: data,
         success: function (result) {
-
             var timelinedata = result;
-            //console.log(result);
-            show_linechart(timelinedata.slice(),global_drugname,global_adrname);
-
-
-            
-
+            show_linechart(timelinedata.slice(),selected_drugname,selected_adrname);
         },
         error: function (xhr, desc, err) {
             console.log(xhr);
             console.log("Details: " + desc + "\nError:" + err);
         }
     });
-
-
 }
 
-function get_timeline_data_pair(pairs,group_drug,group_adr,global_drugname,global_adrname){
 
-
+// Retrieve timeline data for one drug and adr pair
+function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
+    console.log(selected_adrname);
     var data = {
         "pairs": pairs,
-        "group_drug":group_drug,
-        "group_adr":group_adr,
-        "adrnames":global_adrname,
-        "drugnames":global_drugname
+        "group_drug":global_drugGroup,
+        "group_adr":global_adrGroup,
+        "adrnames":selected_adrname,
+        "drugnames":selected_drugname
     };
+
     $.ajax({
         type: "POST",
         url: "get_timeline_pairs.php",
         data: data,
         success: function (result) {
-
             var timelinedata = result;
-            //console.log(result);
-            show_linechart(timelinedata.slice(),global_drugname,global_adrname);
-
-
-
-
+            show_linechart(timelinedata.slice(),selected_drugname,selected_adrname);
         },
         error: function (xhr, desc, err) {
             console.log(xhr);
@@ -267,27 +304,27 @@ function get_timeline_data_pair(pairs,group_drug,group_adr,global_drugname,globa
 
 }
 
-
-function update_id(drug,adr,drugname,adrname,group_drug,group_adr){
-    if(global_drugID.length==0){
-        global_drugID=drug;
-
+// Update drugID and adrID
+function update_id(drug,adr,drugname,adrname){
+    if(selected_drugID.length==0){
+        selected_drugID=drug;
     }
     else{
-        global_drugID = global_drugID+','+drug;
+        selected_drugID = selected_drugID+','+drug;
     }
-    global_drugname[drug] = drugname;
-    if(global_adrID.length==0){
-        global_adrID=adr;
+    selected_drugname[drug] = drugname;
+    if(selected_adrID.length==0){
+        selected_adrID=adr;
     }
     else{
-        global_adrID = global_adrID+','+adr;
+        selected_adrID = selected_adrID+','+adr;
     }
-    global_adrname[adr] = adrname;
-    get_timeline_data(global_drugID,global_adrID,group_drug,group_adr,global_drugname,global_adrname);
-
+    selected_adrname[adr] = adrname;
+    get_timeline_data(selected_drugID,selected_adrID,global_drugGroup,global_adrGroup,selected_drugname,selected_adrname);
 }
 
+
+// Check if a drug-adr pair is already on the timeline chart
 function check_if_exists(pairs, pair) {
 
     for (var i=0, l=pairs.length; i<l; i++) {
@@ -298,14 +335,15 @@ function check_if_exists(pairs, pair) {
     return false;
 }
 
-function update_id_pair(drug,adr,drugname,adrname,group_drug,group_adr){
-    if(!check_if_exists(global_pairs,[drug,adr])){
-        global_pairs.push([drug,adr]);
-
+// Update a pair of drugID and adrID
+function update_id_pair(drug,adr,drugname,adrname){
+    if(!check_if_exists(selected_pairs,[drug,adr])){
+        selected_pairs.push([drug,adr]);
     }
-    global_drugname[drug] = drugname;
-    global_adrname[adr] = adrname;
-    get_timeline_data_pair(global_pairs,group_drug,group_adr,global_drugname,global_adrname);
+    selected_drugname[drug] = drugname;
+    selected_adrname[adr] = adrname;
+
+    get_timeline_data_pair(selected_pairs,selected_drugname,selected_adrname);
 
 }
 
