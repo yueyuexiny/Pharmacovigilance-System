@@ -118,7 +118,7 @@ var heatmapChart = function(hmdata) {
             console.log(d.drugId);
             console.log(d.adrName);
             console.log(d.adrId);
-            update_id(d.drugId,d.adrId, d.drugName, d.adrName,"a","b");
+            update_id_pair(d.drugId,d.adrId, d.drugName, d.adrName,"a","b");
 
         })
     ;
