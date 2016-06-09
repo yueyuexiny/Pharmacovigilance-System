@@ -16,7 +16,7 @@
                         <span class="reset" style="display: none;">range: <span class="filter"></span></span>
                         <a class="reset"
                            href="javascript:moveChart.filterAll();volumeChart.filterAll();dc.redrawAll();"
-                           style="display: none;">reset</a>
+                           style="display: none;">reset time line</a>
 
                         <div class="clearfix"></div>
                     </div>
