@@ -28,11 +28,6 @@ elseif($adr=="" && $drug!=""){
 
 $result = $table->get_data($drug,$adr,$group_drug,$group_adr);
 $text = '
-    <div class="panel panel-default details">
-        <div class="panel-heading"><h3 class="panel-title">
-        <a role="button" data-target="#collapseTwo" data-toggle="collapse" aria-expanded="true" aria-controls="collapseTwo">Details</a></h3></div>
-         <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-        <div class="panel-body" style="max-height: 500px ;overflow-y: scroll;overflow-x: scroll;">
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -57,9 +52,7 @@ foreach($result as $row) {
     }
 $text.="</tbody>
             </table>
-        </div>
-        </div>
-    </div>
+
 ";
 
 echo $text;
