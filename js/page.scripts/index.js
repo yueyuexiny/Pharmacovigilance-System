@@ -106,7 +106,10 @@ function select_adr(str,id) {
 function remove_me(id) {
     document.getElementById(id).remove();
 }
-
+var global_drugID = "";
+var global_adrID = "";
+var global_adrname = {};
+var global_drugname = {};
 function pass_value(){
     var x = get_source_analysis();
 
@@ -128,7 +131,10 @@ function pass_value(){
     var group_drug = document.querySelector('input[name="Drug"]:checked').value;
     var group_adr = document.querySelector('input[name="ADR"]:checked').value;
 
-
+    global_drugID = "";
+    global_adrID = "";
+    global_adrname = {};
+    global_drugname = {};
     // Display Heatmap
 
     $('#img').show();
@@ -220,10 +226,7 @@ function get_timeline_data(drug,adr,group_drug,group_adr,global_drugname,global_
 
 
 }
-var global_drugID = "";
-var global_adrID = "";
-var global_adrname = {};
-var global_drugname = {};
+
 function update_id(drug,adr,drugname,adrname,group_drug,group_adr){
     if(global_drugID.length==0){
         global_drugID=drug;
