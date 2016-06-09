@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin-bottom: 30px">
 
     <div id="search_criteria">
         <div class="panel panel-primary">

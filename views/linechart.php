@@ -6,7 +6,7 @@
        </h3>
     </div>
 
-<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+    <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 
         <div class="panel-body">
             <div class="row">
@@ -16,7 +16,9 @@
                         <span class="reset" style="display: none;">range: <span class="filter"></span></span>
                         <a class="reset"
                            href="javascript:moveChart.filterAll();volumeChart.filterAll();dc.redrawAll();"
-                           style="display: none;">reset</a>
+                           style="display: none;">reset time line</a>
+
+                        <input class='btn-primary' id="clearAllLines" style="display: none;" type="button" onclick="clearAllLines()" value="Clear"/>
 
                         <div class="clearfix"></div>
                     </div>
