@@ -138,6 +138,9 @@ function pass_value(){
     global_adrname = {};
     global_drugname = {};
     global_pairs = [];
+    document.getElementById("monthly-move-chart").style.display = "none";
+    document.getElementById("monthly-volume-chart").style.display = "none";
+    console.log(global_pairs);
     // Display Heatmap
 
     $('#img').show();
@@ -296,7 +299,6 @@ function check_if_exists(pairs, pair) {
 }
 
 function update_id_pair(drug,adr,drugname,adrname,group_drug,group_adr){
-    //console.log(global_pairs);
     if(!check_if_exists(global_pairs,[drug,adr])){
         global_pairs.push([drug,adr]);
 
