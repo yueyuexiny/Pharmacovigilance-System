@@ -10,7 +10,8 @@
 // Note: It is often a good idea to have these objects accessible at the global scope so that they can be modified or
 // filtered by other page controls.
 
-var moveChart = dc.lineChart('#monthly-move-chart');
+//var moveChart = dc.lineChart('#monthly-move-chart');
+var moveChart = dc.compositeChart('#monthly-move-chart');
 var volumeChart = dc.barChart('#monthly-volume-chart');
 //### Load your data
 
@@ -177,6 +178,7 @@ var show_linechart_from_file = function(filename) {
         moveChart.title(function (d) {
             //var value = d.value.avg ? d.value.avg : d.value;
             var value = d.value;
+
             if (isNaN(value)) {
                 value = 0;
             }
@@ -248,36 +250,29 @@ var show_linechart = function(Jsondata) {
 
         // Group by total movement within month
         var tempNamespace = {};
+        var compose_array=[];
 
+        var colors = d3.scale.category10();
         function add_one_line(i){
             tempNamespace["monthlyMoveGroup"+i] = moveMonths.group().reduceSum(function (d) {
                 return d[drugnames[i]];
             });
-            if(i==0){
-                // Add the base layer of the stack with group. The second parameter specifies a series name for use in the
-                // legend.
-                // The `.valueAccessor` will be used for the base layer
-                moveChart.group(tempNamespace['monthlyMoveGroup'+0], drugnames[0])
+                var line = dc.lineChart(moveChart)
+                    .ordinalColors([colors(i)])
+                    .group(tempNamespace['monthlyMoveGroup'+i], drugnames[i])
                     .valueAccessor(function (d) {
                         return d.value;
-                    });
-            }
-            else{
-                // Stack additional layers with `.stack`. The first paramenter is a new group.
-                // The second parameter is the series name. The third is a value accessor.
-                moveChart
-                    .stack(tempNamespace['monthlyMoveGroup'+i], drugnames[i], function (d) {
-                        return d.value;
-                    });
+                    })
+                    .renderArea(true);
 
-            }
+                compose_array.push(line);
         }
 
 
       function render_plots(){
         var startyear = 2004;
         moveChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
-            .renderArea(true)
+            //.renderArea(true)
             .width(990)
             .height(200)
             .transitionDuration(1000)
@@ -299,7 +294,8 @@ var show_linechart = function(Jsondata) {
         for(var i=0;i<drugnames.length;i++){
             add_one_line(i);
         };
-
+        moveChart.compose(compose_array);
+          var monthNameFormat = d3.time.format('%Y/%m');
         // Title can be called by any stack layer.
         moveChart.title(function (d) {
             //var value = d.value.avg ? d.value.avg : d.value;
@@ -307,7 +303,7 @@ var show_linechart = function(Jsondata) {
             if (isNaN(value)) {
                 value = 0;
             }
-            return dateFormat(d.key) + '\n' + numberFormat(value);
+            return monthNameFormat(d.key) + '\n' + value;
         });
 
         //#### Range Chart

@@ -14,7 +14,7 @@
 
                     <div class="col-xs-8">
                         <div class="checkbox" id = "source">
-                        <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="FAERS">FAERS</label>
+                        <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="FAERS" checked>FAERS</label>
                         <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="Twitter">Twitter/Forum</label>
                         <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="Literature">Literature</label>
                         <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="EHR">EHR</label>
@@ -43,12 +43,12 @@
                         </div>
                         <div class="col-xs-2">
                             <div class="radio">
-                                <label><input type="radio" name="Drug" value="name" checked
-                                              onclick="clear_chosen('drug')"/>By Name</label>
+                                <label><input type="radio" name="Drug" value="ingredient" checked
+                                              onclick="clear_chosen('drug')"/>By Ingredient</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="Drug" value="ingredient"
-                                              onclick="clear_chosen('drug')"/>By Ingredient</label>
+                                <label><input type="radio" name="Drug" value="name"
+                                              onclick="clear_chosen('drug')"/>By Name</label>
                             </div>
 
                         </div>

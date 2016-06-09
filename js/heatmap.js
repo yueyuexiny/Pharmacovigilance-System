@@ -2,7 +2,7 @@ var heatmapChart = function(hmdata) {
 
     d3.select("svg").remove();
 
-    console.log(hmdata);
+    //console.log(hmdata);
 // parse data
     dataObj = JSON.parse(hmdata);
 
