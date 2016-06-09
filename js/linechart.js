@@ -343,9 +343,9 @@ function clearAllLines(){
     document.getElementById("monthly-move-chart").style.display = "none";
     document.getElementById("monthly-volume-chart").style.display = "none";
     document.getElementById("clearAllLines").style.display = "none";
-    global_adrname = {};
-    global_drugname = {};
-    global_pairs = [];
+    selected_adrname = {};
+    selected_drugname = {};
+    selected_pairs = [];
 }
 //#### Versions
 

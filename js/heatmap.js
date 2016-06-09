@@ -1,8 +1,8 @@
 var heatmapChart = function(hmdata) {
 
-    d3.select("svg").remove();
 
-    //console.log(hmdata);
+    d3.select("svg").remove();
+    
 // parse data
     dataObj = JSON.parse(hmdata);
 
@@ -14,6 +14,8 @@ var heatmapChart = function(hmdata) {
     });
     data.ids = drugArray;
     data.conditions = dataObj.adr;
+
+    var source = dataObj.source;
 
     // d3.js
     var margin = {

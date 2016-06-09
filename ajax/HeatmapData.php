@@ -1,14 +1,14 @@
 <?php
 
-
 if(is_ajax()){
    if(isset($_POST["drug"]) && isset($_POST["adr"])){
        $drugIDList = explode(",",$_POST["drug"]);
        $outcomeIDList = explode(",",$_POST['adr']);
        $drugGroup = $_POST["drug_group"];
        $adr_group = $_POST["adr_group"];
+       $source = $_POST["source"];
 
-       $result = getResultByID($drugIDList, $outcomeIDList,$drugGroup,$adr_group);
+       $result = getResultByID($drugIDList, $outcomeIDList,$drugGroup,$adr_group,$source);
        echo json_encode($result);
    }
 }
@@ -19,8 +19,8 @@ function is_ajax() {
 }
 
 
-function getResultByID($drugIDList, $adrIDList,$drugGroup,$adr_group){
-    require_once dirname(__FILE__) .'/database/DataController.php';
+function getResultByID($drugIDList, $adrIDList,$drugGroup,$adr_group,$source){
+    require_once dirname(__FILE__) . '/../database/DataController.php';
     $hm = new DataController();
 
     $data = array();
@@ -68,6 +68,7 @@ function getResultByID($drugIDList, $adrIDList,$drugGroup,$adr_group){
     $result['data'] = $data;
     $result ['drug'] = array_unique($drug);
     $result ['adr'] = array_unique($adr);
+    $result['source'] = $source;
 
     return $result;
 }

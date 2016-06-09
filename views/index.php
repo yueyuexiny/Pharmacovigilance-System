@@ -29,7 +29,7 @@
                     <div class="col-xs-8">
                         <select class="selectpicker" name="analysis" id="analysis"
                                 onchange="showinputbox(this)" value="number">
-                            <option value="cc"> Case Count</option>
+                            <option value="CaseCount"> Case Count</option>
                             <option value="PPR"> Reporting Odds Ratio</option>
                             <option value="ROR"> Proportional Reporting Ratio</option>
                         </select>
@@ -42,6 +42,7 @@
                             <h4>Drug</h4>
                         </div>
                         <div class="col-xs-2">
+
                             <div class="radio">
                                 <label><input type="radio" name="Drug" value="ingredient" checked
                                               onclick="clear_chosen('drug')"/>By Ingredient</label>
@@ -96,7 +97,7 @@
             <div class="panel-footer">
                 <div>
 
-                    <button class="btn btn-warning pull-right" id="btn-search" onclick="pass_value()">Submit</button>
+                    <button class="btn btn-warning pull-right" id="btn-search" onclick="submit()">Submit</button>
                     <span id="result"></span>
                     <span id="result_adr"></span>
                     <span id="result_source"></span>
