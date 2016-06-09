@@ -20,7 +20,7 @@ function is_ajax() {
 
 
 function getResultByID($drugIDList, $adrIDList,$drugGroup,$adr_group){
-    require_once dirname(__FILE__) .'/database/DataController.php';
+    require_once dirname(__FILE__) . '/../database/DataController.php';
     $hm = new DataController();
 
     $data = array();

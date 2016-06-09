@@ -229,7 +229,7 @@ function get_heatmap_data() {
 
     $.ajax({
         type:"POST",
-        url:"HeatmapData.php",
+        url:"ajax/HeatmapData.php",
         data:data,
         success:function(result){
             heatmapChart(result);
