@@ -49,8 +49,12 @@ function submit(){
 
 
     // Display Heatmap
+    d3.selectAll("svg").remove();
     $('#img').show();
-    get_heatmap_data();
+    for (i=0;i<global_source.length;i++){
+        show_heatmap(global_source[i]);
+    }
+
 
     // Display data in table
     get_table_data();
@@ -218,13 +222,14 @@ function get_table_data() {
  *
  * ******************************************/
 
-// Generate data for heatmap
-function get_heatmap_data() {
+// Show heatmap
+function show_heatmap(source) {
     var data = {
         "drug": global_drugIDList,
         "adr": global_adrIDList,
         'drug_group':global_drugGroup,
-        'adr_group':global_adrGroup
+        'adr_group':global_adrGroup,
+        'source':source
     };
 
     $.ajax({
