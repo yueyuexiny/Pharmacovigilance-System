@@ -39,8 +39,6 @@ function get_dates($result){
 function get_names($result,$drugnames,$adrnames){
     $names = array();
     foreach($result as $row){
-        echo 'names<br>';
-        print_r($row);
        // $name = $row['drug_concept_id'].'_'.$row['outcome_concept_id'];
         $name = $drugnames[$row['drug_concept_id']].'/'.$adrnames[$row['outcome_concept_id']];
         if(!in_array($name,$names)){

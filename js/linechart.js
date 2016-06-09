@@ -207,7 +207,6 @@ var show_linechart_from_file = function(filename) {
 
 
 var show_linechart = function(Jsondata) {
-
         var data = JSON.parse(Jsondata);
         var dateFormat = d3.time.format('%Y%m%d');
         var numberFormat = d3.format('.2f');
@@ -275,70 +274,7 @@ var show_linechart = function(Jsondata) {
         }
 
 
-        //#### Stacked Area Chart
-
-        //Specify an area chart by using a line chart with `.renderArea(true)`.
-        // <br>API: [Stack Mixin](https://github.com/dc-js/dc.js/blob/master/web/docs/api-latest.md#stack-mixin),
-        // [Line Chart](https://github.com/dc-js/dc.js/blob/master/web/docs/api-latest.md#line-chart)
-  /*      var startyear = 2004;
-        moveChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
-    /*           .renderArea(true)
-               .width(990)
-            .height(200)
-            .transitionDuration(1000)
-            .margins({top: 30, right: 50, bottom: 25, left: 40})
-            .dimension(moveMonths)
-            .mouseZoomable(true)
-            // Specify a "range chart" to link its brush extent with the zoom of the current "focus chart".
-            .rangeChart(volumeChart)
-            .x(d3.time.scale().domain([new Date(startyear, 0, 1), new Date(2015, 12, 31)]))
-            .round(d3.time.month.round)
-            .xUnits(d3.time.months)
-            .elasticY(true)
-            .renderHorizontalGridLines(true)
-            //##### Legend
-            // Position the legend relative to the chart origin and specify items' height and separation.
-            .legend(dc.legend().x(800).y(10).itemHeight(13).gap(5))
-            .brushOn(false)
-
-        for(var i=0;i<drugnames.length;i++){
-            add_one_line(i);
-        };
-
-        // Title can be called by any stack layer.
-        moveChart.title(function (d) {
-            //var value = d.value.avg ? d.value.avg : d.value;
-            var value = d.value;
-            if (isNaN(value)) {
-                value = 0;
-            }
-            return dateFormat(d.key) + '\n' + numberFormat(value);
-        });
-
-        //#### Range Chart
-
-        // Since this bar chart is specified as "range chart" for the area chart, its brush extent
-        // will always match the zoom of the area chart.
-        volumeChart.width(990) /* dc.barChart('#monthly-volume-chart', 'chartGroup'); */
-    /*           .height(40)
-            .margins({top: 0, right: 50, bottom: 20, left: 40})
-            .dimension(moveMonths)
-            .group(volumeByMonthGroup)
-            .centerBar(true)
-            .gap(1)
-            .x(d3.time.scale().domain([new Date(startyear, 0, 1), new Date(2015, 12, 31)]))
-            .round(d3.time.month.round)
-            .alwaysUseRounding(true)
-            .xUnits(d3.time.months);
-
-
-        //### Rendering
-
-        //simply call `.renderAll()` to render all charts on the page
-        dc.renderAll();*/
-
-
-    function render_plots(){
+      function render_plots(){
         var startyear = 2004;
         moveChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
             .renderArea(true)
@@ -397,23 +333,24 @@ var show_linechart = function(Jsondata) {
         dc.renderAll();
 
     }
-    function reset_data(ndx){
-        ndx.remove();
-    }
-    reset_data(ndx);
+
+    ndx.remove();
     ndx.add(data);
     render_plots();
     document.getElementById("monthly-move-chart").style.display = "";
     document.getElementById("monthly-volume-chart").style.display = "";
-    //dc.redrawAll();
-    //reset_data(ndx);
+    document.getElementById("clearAllLines").style.display = "";
 
-    //ndx.add(data);
-    //render_plots();
-    //dc.redrawAll();
 };
 
-
+function clearAllLines(){
+    document.getElementById("monthly-move-chart").style.display = "none";
+    document.getElementById("monthly-volume-chart").style.display = "none";
+    document.getElementById("clearAllLines").style.display = "none";
+    global_adrname = {};
+    global_drugname = {};
+    global_pairs = [];
+}
 //#### Versions
 
 //Determine the current version of dc with `dc.version`
