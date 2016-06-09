@@ -1,4 +1,3 @@
-
 <div class="container">
 
     <div id="search_criteria">
@@ -6,43 +5,57 @@
             <div class="panel-heading">
                 <h4>Search Criteria</h4>
             </div>
+
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-4 col-md-offset-2 row-fluid">
+                    <div class="col-xs-1 col-xs-offset-1">
                         <h4>Source:</h4>
-                        <select class="selectpicker" name="source" id="source" onchange="showinputbox(this)" value="FAERS">
-                            <option value="FERAS">FAERS</option>
-                            <option value="Twitter">Twitter/Forum</option>
-                            <option value="Literature">Literature</option>
-                            <option value="EHR">EHR</option>
-                        </select>
                     </div>
-                    <div class="col-md-4">
+
+                    <div class="col-xs-8">
+                        <div class="checkbox">
+                        <label class="checkbox-inline"><input type="checkbox" value="FAERS">FAERS</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="Twitter">Twitter/Forum</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="Literature">Literature</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="EHR">EHR</label>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="row rowforsearch">
+                    <div class="col-xs-1 col-xs-offset-1">
                         <h4>Analysis: </h4>
+                    </div>
+                    <div class="col-xs-8">
                         <select class="selectpicker" name="analysis" id="analysis"
                                 onchange="showinputbox(this)" value="number">
+                            <option value="cc"> Case Count</option>
                             <option value="PPR"> Reporting Odds Ratio</option>
                             <option value="ROR"> Proportional Reporting Ratio</option>
                         </select>
                     </div>
                 </div>
-                <div class="row rowforsearch" >
+
+                <div class="row rowforsearch">
                     <div id="group_drug1 form-group">
                         <div class="col-xs-1 col-xs-offset-1">
                             <h4>Drug</h4>
                         </div>
                         <div class="col-xs-2">
                             <div class="radio">
-                                <label><input type="radio" name="Drug" value="name" checked onclick="clear_chosen('drug')"/>By Name</label>
+                                <label><input type="radio" name="Drug" value="name" checked
+                                              onclick="clear_chosen('drug')"/>By Name</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="Drug" value="ingredient" onclick="clear_chosen('drug')" />By Ingredient</label>
+                                <label><input type="radio" name="Drug" value="ingredient"
+                                              onclick="clear_chosen('drug')"/>By Ingredient</label>
                             </div>
 
                         </div>
                         <div class="col-xs-6">
-                            <input type="text"  class="form-control"
-                                   id="searchbox" autocomplete="off" placeholder="Please enter to search" name="drugname" aria-describedby="sizing-addon1"
+                            <input type="text" class="form-control"
+                                   id="searchbox" autocomplete="off" placeholder="Please enter to search"
+                                   name="drugname" aria-describedby="sizing-addon1"
                                    onkeyup='showResult(this.value,"drug")'>
                             <div id="livesearch"></div>
                             <div id="searchresult"></div>
@@ -51,26 +64,29 @@
                     </div>
                 </div>
 
-                <div class="row rowforsearch" >
+                <div class="row rowforsearch">
                     <div id="group_adr1">
                         <div class="col-xs-1 col-xs-offset-1">
                             <h4>ADR</h4>
                         </div>
                         <div class="col-xs-2">
                             <div class="radio">
-                                <label><input type="radio" name="ADR" value="medDRA" checked onclick="clear_chosen('adr')"/>MedDRA</label>
+                                <label><input type="radio" name="ADR" value="medDRA" checked
+                                              onclick="clear_chosen('adr')"/>MedDRA</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="ADR" value="HOI" onclick="clear_chosen('adr')"/>HOI</label>
+                                <label><input type="radio" name="ADR" value="HOI"
+                                              onclick="clear_chosen('adr')"/>HOI</label>
                             </div>
 
                         </div>
                         <div class="col-xs-6">
                             <input type="text" size="25" class="input-group form-control"
-                                   id="searchbox_adr" autocomplete="off" placeholder="Please enter to search" name="adrname"
+                                   id="searchbox_adr" autocomplete="off" placeholder="Please enter to search"
+                                   name="adrname"
                                    onkeyup='showResult(this.value,"adr")'>
                             <div id="livesearch_adr"></div>
-                            <div id="searchresult_adr" ></div>
+                            <div id="searchresult_adr"></div>
                         </div>
                     </div>
                 </div>
