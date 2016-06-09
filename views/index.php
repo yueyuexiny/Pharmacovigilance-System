@@ -13,11 +13,11 @@
                     </div>
 
                     <div class="col-xs-8">
-                        <div class="checkbox">
-                        <label class="checkbox-inline"><input type="checkbox" value="FAERS">FAERS</label>
-                        <label class="checkbox-inline"><input type="checkbox" value="Twitter">Twitter/Forum</label>
-                        <label class="checkbox-inline"><input type="checkbox" value="Literature">Literature</label>
-                        <label class="checkbox-inline"><input type="checkbox" value="EHR">EHR</label>
+                        <div class="checkbox" id = "source">
+                        <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="FAERS">FAERS</label>
+                        <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="Twitter">Twitter/Forum</label>
+                        <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="Literature">Literature</label>
+                        <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="EHR">EHR</label>
                             </div>
                     </div>
                 </div>
