@@ -60,7 +60,6 @@ function get_names_for_pair($result,$drugnames,$adrnames){
     return $names;
 }
 
-
 function write_timeline_file(){
     require_once "./database/DataController.php";
     $drug = $_POST['drug'];
