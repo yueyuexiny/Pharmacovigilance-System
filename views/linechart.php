@@ -22,6 +22,7 @@
 
                         <div class="btn-group" role="group" id="monthOrYear" style="display: none;" data-toggle="buttons">
                             <label class="monthOrYearBtn btn btn-default" onclick="switch_year_or_month('month')" ><input type="radio" name="monthoryear" id="month" >By Month</label>
+                            <label class="monthOrYearBtn btn btn-default" onclick="switch_year_or_month('quarter')" ><input type="radio" name="monthoryear" id="quarter" >By Quarter</label>
                             <label class="monthOrYearBtn btn btn-default" onclick="switch_year_or_month('year')"><input type="radio" name="monthoryear" id="year" >By Year</label>
                         </div>
 
