@@ -28,8 +28,6 @@ var heatmapChart = function(hmdata) {
         var width = (data.conditions.length)*40;
     }
 
-    console.log(width);
-
     if(data.ids.length>25){
         var height = 1000;
     }else{
@@ -41,7 +39,7 @@ var heatmapChart = function(hmdata) {
     var svg = d3.select('#expat-heatmap')
         .append('svg:svg')
         .attr('width',width- margin.left - margin.right)
-        .attr('height',height + margin.top + margin.bottom)
+        .attr('height',40*(data.ids.length+5) + margin.top + margin.bottom)
         .append('g')
         .attr({
             'transform': 'translate(' + margin.left + ',' + margin.top + ')',
@@ -58,25 +56,24 @@ var heatmapChart = function(hmdata) {
         d.value = +d.value;
     });
 
-    // define color scale
-    var buckets = 9,
-        colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
-        colorScale = d3.scale.quantile()
-            .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
-            .range(colors);
+
 
 // Declare range
     var min = d3.min(data.melted, function(d) { return d.value; }),
         max = d3.max(data.melted, function(d) { return d.value; });
 
 
+    // define color scale
+    var buckets = 9,
+        colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+        colorScale = d3.scale.quantile()
+            .domain([0, buckets - 1,max/2])
+            .range(colors);
+    console.log(max);
 
     var x = d3.scale.ordinal().domain(data.conditions).rangeBands([0, width]),
         y = d3.scale.ordinal().domain(data.ids).rangeBands([0, height]),
         z = d3.scale.log().base(2).domain([min, max]).range(colors);
-
-    console.log(x);
-
 
 
 // Add tooltip
@@ -118,11 +115,6 @@ var heatmapChart = function(hmdata) {
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
         .on('click',function(d){
-
-            console.log(d.drugName);
-            console.log(d.drugId);
-            console.log(d.adrName);
-            console.log(d.adrId);
             if(d.value>0){
                 update_id_pair(d.drugId,d.adrId, d.drugName, d.adrName,"a","b");
             }
@@ -130,41 +122,30 @@ var heatmapChart = function(hmdata) {
         })
     ;
 
-// Add a legend for the color values.
+    var gridSize = Math.floor(width / 24),
+        legendElementWidth = gridSize*2;
+
     var legend = svg.selectAll(".legend")
-        .data(z.ticks())
-        .enter()
-        .append("g")
-        .attr({
-            'class': 'legend',
-            'transform': function(d, i) {
-                return "translate(" + (i * 40) + "," + (height + margin.bottom - 40) + ")";
-            }
-        });
+        .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+    legend.enter().append("g")
+        .attr("class", "legend");
 
     legend.append("rect")
-        .attr({
-            'width': 40,
-            'height': 20,
-            'fill': z
-        });
+        .attr("x", function(d, i) { return legendElementWidth * i; })
+        .attr("y", height*(data.ids.length+6))
+        .attr("width", legendElementWidth)
+        .attr("height", gridSize / 2)
+        .style("fill", function(d, i) { return colors[i]; });
 
     legend.append("text")
-        .attr({
-            'font-size': 10,
-            'x': 0,
-            'y': 30
-        })
-        .text(String);
+        .attr("class", "mono")
+        .text(function(d) { return "≥ " +Math.round(d); })
+        .attr("x", function(d, i) { return legendElementWidth * i; })
+        .attr("y", height*(data.ids.length+6) + gridSize);
 
-    svg.append("text")
-        .attr({
-            'class': 'label',
-            'font-size': 10,
-            'x': 0,
-            'y': height + margin.bottom - 45
-        });
-        //.text('Relative expression');
+    legend.exit().remove();
+
 
 // Append axes
     var x_axis = d3.svg.axis()
