@@ -38,7 +38,7 @@ var heatmapChart = function(hmdata) {
 // Create graph
     var svg = d3.select('#expat-heatmap')
         .append('svg:svg')
-        .attr('width',width- margin.left - margin.right)
+        .attr('width',width- margin.right)
         .attr('height',40*(data.ids.length+5) + margin.top + margin.bottom)
         .append('g')
         .attr({
@@ -69,7 +69,6 @@ var heatmapChart = function(hmdata) {
         colorScale = d3.scale.quantile()
             .domain([0, buckets - 1,max/2])
             .range(colors);
-    console.log(max);
 
     var x = d3.scale.ordinal().domain(data.conditions).rangeBands([0, width]),
         y = d3.scale.ordinal().domain(data.ids).rangeBands([0, height]),
@@ -122,8 +121,16 @@ var heatmapChart = function(hmdata) {
         })
     ;
 
-    var gridSize = Math.floor(width / 24),
-        legendElementWidth = gridSize*2;
+    if((data.conditions.length)>25){
+        var gridSize = 40;
+            legendElementWidth = gridSize*2;
+    }else{
+        var gridSize = Math.floor(width / data.conditions.length),
+            legendElementWidth = gridSize*2;
+    }
+
+
+    console.log(gridSize);
 
     var legend = svg.selectAll(".legend")
         .data([0].concat(colorScale.quantiles()), function(d) { return d; });
@@ -132,8 +139,8 @@ var heatmapChart = function(hmdata) {
         .attr("class", "legend");
 
     legend.append("rect")
-        .attr("x", function(d, i) { return legendElementWidth * i; })
-        .attr("y", height*(data.ids.length+6))
+        .attr("x", function(d, i) {return legendElementWidth * i; })
+        .attr("y", 40*(data.ids.length+6))
         .attr("width", legendElementWidth)
         .attr("height", gridSize / 2)
         .style("fill", function(d, i) { return colors[i]; });
@@ -142,7 +149,7 @@ var heatmapChart = function(hmdata) {
         .attr("class", "mono")
         .text(function(d) { return "≥ " +Math.round(d); })
         .attr("x", function(d, i) { return legendElementWidth * i; })
-        .attr("y", height*(data.ids.length+6) + gridSize);
+        .attr("y", 40*(data.ids.length+6) + gridSize);
 
     legend.exit().remove();
 
