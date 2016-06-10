@@ -32,6 +32,10 @@
                             <option value="CaseCount"> Case Count</option>
                             <option value="PPR"> Reporting Odds Ratio</option>
                             <option value="ROR"> Proportional Reporting Ratio</option>
+                            <option value="PPR"> Chi-Squared test</option>
+                            <option value="ROR"> Yules Q ratio</option>
+                            <option value="PPR"> Information Componet</option>
+                            <option value="ROR"> Leverage(X->Y)</option>
                         </select>
                     </div>
                 </div>

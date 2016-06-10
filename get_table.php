@@ -34,8 +34,13 @@ $text = '
                     <th>Drug name</th>
                     <th>Adr name</th>
                     <th>Case count</th>
-                    <th>ROR</th>
-                    <th>PRR</th>
+                    <th>Reporting Odds Ratio</th>
+                    <th>Proportional Reporting Ratio</th>
+                    <th>Relative Reporting Ratio</th>
+                    <th>Chi-Squared test </th>
+                    <th>Yules Q ratio</th>
+                    <th>Information Componet</th>
+                    <th>Leverage(X->Y)</th>
                 </tr>
                 </thead>
                 <tbody>';
@@ -47,6 +52,11 @@ foreach($result as $row) {
                     <td>".$row['case_count']."</td>
                     <td>".$row['prr']."</td>
                     <td>".$row['ror']."</td>
+                    <td>".$row['rrr']."</td>
+                    <td>".$row['chi']."</td>
+                    <td>".$row['Q']."</td>
+                    <td>".$row['IC']."</td>
+                    <td>".$row['L']."</td>
                 </tr>";
    $text.=$row;
     }

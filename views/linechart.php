@@ -20,6 +20,11 @@
 
                         <input class='btn-primary' id="clearAllLines" style="display: none;" type="button" onclick="clearAllLines()" value="Clear"/>
 
+                        <div class="btn-group" role="group" id="monthOrYear" style="display: none;">
+                            <button type="button" class="btn btn-default" onclick="">By Month</button>
+                            <button type="button" class="btn btn-default" onclick="">By Year</button>
+                        </div>
+
                         <div class="clearfix"></div>
                     </div>
                 </div>

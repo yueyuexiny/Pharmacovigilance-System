@@ -59,7 +59,7 @@ class DataController
         }
 
         try {
-            $sql = 'SELECT drug_concept_id,outcome_concept_id, case_count, prr,ror FROM '.$table.'  Where drug_concept_id in ('.$drugID.') and outcome_concept_id in ('.$adrID.')';
+            $sql = 'SELECT drug_concept_id,outcome_concept_id, case_count, prr,ror,rrr,chi,Q,IC,L FROM '.$table.'  Where drug_concept_id in ('.$drugID.') and outcome_concept_id in ('.$adrID.')';
             $result = $this->dbconn->query($sql);
 
             return $result;

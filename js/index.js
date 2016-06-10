@@ -271,7 +271,9 @@ function get_timeline_data(adr,selected_drugname,selected_adrname){
         data: data,
         success: function (result) {
             var timelinedata = result;
-            show_linechart(timelinedata.slice(),selected_drugname,selected_adrname);
+            //show_linechart(timelinedata.slice(),selected_drugname,selected_adrname);
+            console.log("hi");
+            show_linechart_by_year(timelinedata.slice(),selected_drugname,selected_adrname);
         },
         error: function (xhr, desc, err) {
             console.log(xhr);
@@ -299,6 +301,7 @@ function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
         success: function (result) {
             var timelinedata = result;
             show_linechart(timelinedata.slice(),selected_drugname,selected_adrname);
+            //show_linechart_by_year(timelinedata.slice(),selected_drugname,selected_adrname);
         },
         error: function (xhr, desc, err) {
             console.log(xhr);
