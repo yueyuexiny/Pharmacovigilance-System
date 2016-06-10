@@ -33,10 +33,6 @@
             <div class="row">
                 <div id="monthly-volume-chart">
                 </div>
-
-                <div id="yearly-volume-chart">
-                </div>
-
                 <p class="muted pull-right" style="margin-right: 15px;">select a time range to zoom in</p>
             </div>
 

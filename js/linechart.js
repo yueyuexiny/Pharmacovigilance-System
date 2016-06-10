@@ -153,7 +153,7 @@ var show_linechart_from_file = function(filename) {
 
 
 var show_linechart = function(Jsondata) {
-        var data = JSON.parse(Jsondata);
+        var data = JSON.parse(Jsondata.slice());
         var dateFormat = d3.time.format('%Y%m%d');
         var numberFormat = d3.format('.2f');
         var keys = Object.keys(data[0]);
@@ -285,7 +285,7 @@ var show_linechart = function(Jsondata) {
 
 
 var show_linechart_by_year = function(Jsondata) {
-    var data = JSON.parse(Jsondata);
+    var data = JSON.parse(Jsondata.slice());
     var dateFormat = d3.time.format('%Y%m%d');
     var numberFormat = d3.format('.2f');
     var keys = Object.keys(data[0]);
