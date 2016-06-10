@@ -20,9 +20,9 @@
 
                         <input class='btn-primary' id="clearAllLines" style="display: none;" type="button" onclick="clearAllLines()" value="Clear"/>
 
-                        <div class="btn-group" role="group" id="monthOrYear" style="display: none;">
-                            <button type="button" class="btn btn-default" onclick="">By Month</button>
-                            <button type="button" class="btn btn-default" onclick="">By Year</button>
+                        <div class="btn-group" role="group" id="monthOrYear" style="display: none;" data-toggle="buttons">
+                            <label class="monthOrYearBtn btn btn-default" onclick="switch_year_or_month('month')" ><input type="radio" name="monthoryear" id="month" >By Month</label>
+                            <label class="monthOrYearBtn btn btn-default" onclick="switch_year_or_month('year')"><input type="radio" name="monthoryear" id="year" >By Year</label>
                         </div>
 
                         <div class="clearfix"></div>
@@ -33,6 +33,10 @@
             <div class="row">
                 <div id="monthly-volume-chart">
                 </div>
+
+                <div id="yearly-volume-chart">
+                </div>
+
                 <p class="muted pull-right" style="margin-right: 15px;">select a time range to zoom in</p>
             </div>
 

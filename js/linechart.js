@@ -14,8 +14,6 @@
 var moveChart = dc.compositeChart('#monthly-move-chart');
 var volumeChart = dc.barChart('#monthly-volume-chart');
 
-//var moveChartYear = dc.compositeChart('#yearly-move-chart');
-//var volumeChartYear = dc.barChart('#yearly-volume-chart');
 
 var show_linechart_from_file = function(filename) {
     d3.csv(filename,function(data){
@@ -405,6 +403,7 @@ var show_linechart_by_year = function(Jsondata) {
     document.getElementById("clearAllLines").style.display = "";
     document.getElementById("monthOrYear").style.display = "";
 };
+
 
 function clearAllLines(){
     document.getElementById("monthly-move-chart").style.display = "none";

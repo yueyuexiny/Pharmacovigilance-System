@@ -10,7 +10,8 @@ var global_drugIDList = "";  // selected drugs' ID
 var global_adrGroup = "";   // selected adr group
 var global_adrIDList = "";  // selected adrs' ID
 
-
+var global_month_or_year="month";
+var global_timeline_data = "";
 /*select drug ID and name, selected adr ID and name*/
 var selected_drugID = "";
 var selected_adrID = "";
@@ -285,7 +286,7 @@ function get_timeline_data(adr,selected_drugname,selected_adrname){
 
 // Retrieve timeline data for one drug and adr pair
 function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
-    console.log(selected_adrname);
+    //console.log(selected_adrname);
     var data = {
         "pairs": pairs,
         "group_drug":global_drugGroup,
@@ -300,8 +301,13 @@ function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
         data: data,
         success: function (result) {
             var timelinedata = result;
-            show_linechart(timelinedata.slice(),selected_drugname,selected_adrname);
-            //show_linechart_by_year(timelinedata.slice(),selected_drugname,selected_adrname);
+            global_timeline_data = result;
+            if(global_month_or_year=="month"){
+                show_linechart(timelinedata.slice(),selected_drugname,selected_adrname);
+            }
+            else{
+                show_linechart_by_year(timelinedata.slice(),selected_drugname,selected_adrname);
+            }
         },
         error: function (xhr, desc, err) {
             console.log(xhr);
@@ -355,5 +361,18 @@ function update_id_pair(drug,adr,drugname,adrname){
 
 }
 
+function switch_year_or_month(a){
+    global_month_or_year = a;
+    //console.log(global_month_or_year);
+    //global_timeline_data = result;
+    if(global_month_or_year=="month"){
+        show_linechart(global_timeline_data.slice(),selected_drugname,selected_adrname);
+    }
+    else{
+        show_linechart_by_year(global_timeline_data.slice(),selected_drugname,selected_adrname);
+    }
+}
 
-
+$(document).ready(function() {
+    $(".monthOrYearBtn").first().button("toggle");
+});
