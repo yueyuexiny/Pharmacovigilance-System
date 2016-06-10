@@ -20,14 +20,15 @@ var heatmapChart = function(hmdata) {
             top: 5,
             right: 5,
             bottom: 200,
-            left: 50
+            left: 80
         }
     if((data.conditions.length)>25){
-        var width = 1000 + margin.left + margin.right;
+        var width = 1000;
     }else{
-        var width = (data.conditions.length)*40 + margin.left + margin.right;
-
+        var width = (data.conditions.length)*40;
     }
+
+    console.log(width);
 
     if(data.ids.length>25){
         var height = 1000;
@@ -57,22 +58,26 @@ var heatmapChart = function(hmdata) {
         d.value = +d.value;
     });
 
+    // define color scale
+    var buckets = 9,
+        colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+        colorScale = d3.scale.quantile()
+            .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+            .range(colors);
+
 // Declare range
     var min = d3.min(data.melted, function(d) { return d.value; }),
         max = d3.max(data.melted, function(d) { return d.value; });
 
-    var x = d3.scale.ordinal().domain(data.conditions).rangeBands([10, width]),
+
+
+    var x = d3.scale.ordinal().domain(data.conditions).rangeBands([0, width]),
         y = d3.scale.ordinal().domain(data.ids).rangeBands([0, height]),
-        z = d3.scale.log().base(2).domain([min, max]).range(['white','steelblue']);
+        z = d3.scale.log().base(2).domain([min, max]).range(colors);
 
     console.log(x);
 
-// define color scale
-    var buckets = 9,
-        colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
-        colorScale = d3.scale.quantile()
-        .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
-        .range(colors);
+
 
 // Add tooltip
     var tip = d3.tip()
