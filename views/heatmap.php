@@ -1,7 +1,7 @@
 <div class="panel panel-default heatmap">
     <div class="panel-heading">
         <h3 class="panel-title">
-            <a role="button" data-target="#collapseOne" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">Drug/Adverse Drug Reaction
+            <a role="button" data-target="#collapseOne" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne"><i class="glyphicon glyphicon-plus"></i>  Drug/Adverse Drug Reaction
                 Heatmap</a></h3>
     </div>
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">

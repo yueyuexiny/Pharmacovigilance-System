@@ -2,7 +2,7 @@
 
     <div class="panel-heading">
        <h3 class="panel-title"> <a role="button" data-target="#collapseThree" data-toggle="collapse" aria-expanded="true" aria-controls="collapseThree">
-            <i class="fa fa-expand"></i> Line Chart</a>
+               <i class="glyphicon glyphicon-plus"></i>  Line Chart</a>
        </h3>
     </div>
 

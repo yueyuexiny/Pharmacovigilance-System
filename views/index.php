@@ -12,7 +12,7 @@
                         <h4>Source:</h4>
                     </div>
 
-                    <div class="col-xs-8">
+                    <div class="col-xs-5">
                         <div class="checkbox" id = "source">
                         <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="FAERS" checked>FAERS</label>
                         <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="Twitter">Twitter/Forum</label>
@@ -20,13 +20,11 @@
                         <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="EHR">EHR</label>
                             </div>
                     </div>
-                </div>
 
-                <div class="row rowforsearch">
-                    <div class="col-xs-1 col-xs-offset-1">
+                    <div class="col-xs-1 ">
                         <h4>Analysis: </h4>
                     </div>
-                    <div class="col-xs-8">
+                    <div class="col-xs-3">
                         <select class="selectpicker" name="analysis" id="analysis"
                                 onchange="showinputbox(this)" value="number">
                             <option value="CaseCount"> Case Count</option>

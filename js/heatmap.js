@@ -39,7 +39,7 @@ var heatmapChart = function(hmdata) {
     var svg = d3.select('#expat-heatmap')
         .append('svg:svg')
         .attr('width',width- margin.right)
-        .attr('height',40*(data.ids.length+5) + margin.top + margin.bottom)
+        .attr('height',40*(data.ids.length+6))
         .append('g')
         .attr({
             'transform': 'translate(' + margin.left + ',' + margin.top + ')',
@@ -98,6 +98,7 @@ var heatmapChart = function(hmdata) {
         .attr("y",function(d) { return y(d.drugName); })
         .attr("rx",0)
         .attr("ry",0)
+        .attr('transform', 'translate(0,120)')
         .attr('fill', function(d) {return colorScale(d.value);})
         .attr('width',function(){
             if(x.rangeBand()< 15){
@@ -140,7 +141,7 @@ var heatmapChart = function(hmdata) {
 
     legend.append("rect")
         .attr("x", function(d, i) {return legendElementWidth * i; })
-        .attr("y", 40*(data.ids.length+6))
+        .attr("y", 40*(data.ids.length+4))
         .attr("width", legendElementWidth)
         .attr("height", gridSize / 2)
         .style("fill", function(d, i) { return colors[i]; });
@@ -149,7 +150,7 @@ var heatmapChart = function(hmdata) {
         .attr("class", "mono")
         .text(function(d) { return "≥ " +Math.round(d); })
         .attr("x", function(d, i) { return legendElementWidth * i; })
-        .attr("y", 40*(data.ids.length+6) + gridSize);
+        .attr("y", 40*(data.ids.length+4) + gridSize);
 
     legend.exit().remove();
 
@@ -157,7 +158,7 @@ var heatmapChart = function(hmdata) {
 // Append axes
     var x_axis = d3.svg.axis()
         .scale(x)
-        .orient('bottom')
+        .orient('top')
         .tickSize(3,0),
         y_axis = d3.svg.axis()
             .scale(y)
@@ -167,7 +168,7 @@ var heatmapChart = function(hmdata) {
     svg.append('g')
         .attr({
             'class': 'x axis',
-            'transform': 'translate(0,'+height+')'
+            'transform': 'translate(0,120)'
         })
         .call(x_axis)
         .selectAll('text')
@@ -175,13 +176,14 @@ var heatmapChart = function(hmdata) {
         .attr({
             'dx': '8',
             'dy': '-2',
-            'transform': 'rotate(90)',
+            'transform': 'rotate(270)',
             'font-size': '10'
         });
 
     svg.append('g')
         .attr({
-            'class': 'y axis'
+            'class': 'y axis',
+            'transform': 'translate(0,120)'
         })
         .call(y_axis)
         .selectAll('text')
