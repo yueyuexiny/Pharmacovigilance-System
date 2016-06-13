@@ -305,6 +305,9 @@ function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
             if(global_month_or_year=="month"){
                 show_linechart(global_timeline_data,selected_drugname,selected_adrname);
             }
+            else if(global_month_or_year=="quarter"){
+                show_linechart_by_quarter(global_timeline_data,selected_drugname,selected_adrname);
+            }
             else{
                 show_linechart_by_year(global_timeline_data,selected_drugname,selected_adrname);
             }
@@ -367,6 +370,9 @@ function switch_year_or_month(a){
     global_month_or_year = a;
     if(global_month_or_year=="month"){
         show_linechart(global_timeline_data,selected_drugname,selected_adrname);
+    }
+    else if(global_month_or_year=="quarter"){
+        show_linechart_by_quarter(global_timeline_data,selected_drugname,selected_adrname);
     }
     else{
         show_linechart_by_year(global_timeline_data,selected_drugname,selected_adrname);
