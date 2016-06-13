@@ -34,9 +34,9 @@ $text = '
                     <th>Drug name</th>
                     <th>Adr name</th>
                     <th>Case count</th>
-                    <th>Reporting Odds Ratio</th>
-                    <th>Proportional Reporting Ratio</th>
-                    <th>Relative Reporting Ratio</th>
+                    <th>ROR</th>
+                    <th>PRR</th>
+                    <th>RRR</th>
                     <th>Chi-Squared test </th>
                     <th>Yules Q ratio</th>
                     <th>Information Componet</th>
