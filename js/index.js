@@ -23,10 +23,7 @@ var selected_pairs = [];
 
 
 function submit(){
-    //Get data source and analysis method
-    var x = get_source_analysis();
-    global_source = x[0];
-    global_analysis = x[1];
+
 
     // Get drug IDs
     var drugID=document.querySelectorAll(".drugid");
@@ -45,25 +42,36 @@ function submit(){
     }
     global_adrIDList=adr.slice(0,-1);
 
+    //Get data source and analysis method
+    var x = get_source_analysis();
+    global_source = x[0];
+    global_analysis = x[1];
+
+
     // Get drug and adr groups
     global_drugGroup = document.querySelector('input[name="Drug"]:checked').value;
     global_adrGroup = document.querySelector('input[name="ADR"]:checked').value;
 
+    if(global_drugIDList == "" && global_adrIDList==""){
+        alert("Please Enter at Least One Drug or ADR");
+    }else{
+        // Display Heatmap
+        d3.selectAll("svg").remove();
+        $('#img').show();
+        for (i=0;i<global_source.length;i++){
+            show_heatmap(global_source[i]);
+        }
 
-    // Display Heatmap
-    d3.selectAll("svg").remove();
-    $('#img').show();
-    for (i=0;i<global_source.length;i++){
-        show_heatmap(global_source[i]);
+
+        // Display data in table
+        get_table_data();
+
+        // Hide line chart
+        document.getElementById("monthly-move-chart").style.display = "none";
+        document.getElementById("monthly-volume-chart").style.display = "none";
     }
 
 
-    // Display data in table
-    get_table_data();
-
-    // Hide line chart
-    document.getElementById("monthly-move-chart").style.display = "none";
-    document.getElementById("monthly-volume-chart").style.display = "none";
 
     // Clear the selected elements
     selected_drugID = "";

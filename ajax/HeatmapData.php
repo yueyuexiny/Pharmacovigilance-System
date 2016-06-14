@@ -29,12 +29,12 @@ function getResultByID($drugIDList, $adrIDList,$drugGroup,$adr_group,$source){
 
 
     // Get all drugs and adrs
-    if($drugIDList[0]== "" && $adrIDList[0]==""){
+   /* if($drugIDList[0]== "" && $adrIDList[0]==""){
         $drugIDList = $hm ->getAllDrugIDs($drugGroup);
         $adrIDList = $hm -> getAllAdrIDs($adr_group);
-    }
+    }*/
     // Get all drugs
-    elseif($drugIDList[0]=="" && $adrIDList[0]!=""){
+    if($drugIDList[0]=="" && $adrIDList[0]!=""){
         $drugIDList = $hm ->getAllDrugIDs($drugGroup);
     }
     //Get all adrs
