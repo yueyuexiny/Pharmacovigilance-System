@@ -310,6 +310,7 @@ function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
         data: data,
         success: function (result) {
             global_timeline_data = result;
+            //console.log(result);
             if(global_month_or_year=="month"){
                 show_linechart(global_timeline_data,selected_drugname,selected_adrname);
             }

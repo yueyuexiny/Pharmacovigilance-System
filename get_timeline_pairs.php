@@ -136,9 +136,8 @@ function get_timeline_data($drug,$adr,$group_adr,$group_drug,$drugnames,$adrname
 
 }
 
-function get_timeline_data_pairs($pairs,$group_adr,$group_drug,$drugnames,$adrnames){
+function get_timeline_data_pairs($pairs,$group_drug,$group_adr,$drugnames,$adrnames){
     require_once "./database/DataController.php";
-
     $table = new DataController();
     $results = [];
     foreach($pairs as $pair){

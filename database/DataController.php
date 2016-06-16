@@ -138,14 +138,13 @@ class DataController
 
     function getCaseCountTimeline($drugID,$adrID,$group_drug,$group_adr){
 
-        $table="drug_ingredient_outcome_meddra_recieved_date_count";
-        /*if($group_drug=='ingredient'){
-            $table='drug_ingredient_outcome_meddra_statistics_all';
+        $table="";
+        if($group_drug=='ingredient'){
+            $table='drug_ingredient_outcome_meddra_recieved_date_count';
         }
         elseif($group_drug=='name'){
-            $table='drug_name_outcome_meddra_statistics_all';
-        }*/
-
+            $table='drug_name_outcome_meddra_recieved_date_count';
+        }
         try {
             $sql = 'SELECT recieved_date,drug_concept_id,outcome_concept_id, case_count FROM '.$table.'  Where drug_concept_id in ('.$drugID.') and outcome_concept_id in ('.$adrID.')';
             $result = $this->dbconn->query($sql);
