@@ -239,7 +239,8 @@ function show_heatmap(source) {
         "adr": global_adrIDList,
         'drug_group':global_drugGroup,
         'adr_group':global_adrGroup,
-        'source':source
+        'source':source,
+        'analysis':global_analysis
     };
 
     $.ajax({
