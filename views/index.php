@@ -25,15 +25,14 @@
                         <h4>Analysis: </h4>
                     </div>
                     <div class="col-xs-3">
-                        <select class="selectpicker" name="analysis" id="analysis"
-                                onchange="showinputbox(this)" value="number">
-                            <option value="CaseCount"> Case Count</option>
-                            <option value="PPR"> Reporting Odds Ratio</option>
-                            <option value="ROR"> Proportional Reporting Ratio</option>
-                            <option value="PPR"> Chi-Squared test</option>
-                            <option value="ROR"> Yules Q ratio</option>
-                            <option value="PPR"> Information Componet</option>
-                            <option value="ROR"> Leverage(X->Y)</option>
+                        <select class="selectpicker" name="analysis" id="analysis">
+                            <option value="case_count"> Case Count</option>
+                            <option value="ror"> Reporting Odds Ratio</option>
+                            <option value="prr"> Proportional Reporting Ratio</option>
+                            <option value="chi"> Chi-Squared test</option>
+                            <option value="Q"> Yules Q ratio</option>
+                            <option value="IC"> Information Componet</option>
+                            <option value="L"> Leverage(X->Y)</option>
                         </select>
                     </div>
                 </div>

@@ -163,6 +163,34 @@ class DataController
         }
     }
 
+    function getAnalysisTimeline($drugID,$adrID,$group_drug,$group_adr,$analysis){
+
+        $table="";
+        if($group_drug=='ingredient'){
+            $table='drug_ingredient_outcome_meddra_statistics_year';
+        }
+        elseif($group_drug=='name'){
+            $table='drug_name_outcome_meddra_statistics_year';
+        }
+
+        try {
+            $sql = 'SELECT recieved_year,drug_concept_id,outcome_concept_id, '.$analysis.' FROM '.$table.'  Where drug_concept_id in ('.$drugID.') and outcome_concept_id in ('.$adrID.')';
+            $result = $this->dbconn->query($sql);
+            $data = array();
+            foreach($result as $row){
+                $item = [];
+                $item['recieved_date']=$row['recieved_year'];
+                $item['outcome_concept_id']=$row['outcome_concept_id'];
+                $item['drug_concept_id']=$row['drug_concept_id'];
+                $item[$analysis]=$row[$analysis];
+                array_push($data,$item);
+            }
+            return $data;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     function getAllDrugIDs($group){
         if($group=='ingredient'){
             $table = 'drug_concept_id_ingredient';

@@ -281,9 +281,12 @@ var show_linechart = function(Jsondata) {
     document.getElementById("monthOrYear").style.display = "";
 };
 
-var show_linechart_by_year = function(Jsondata) {
+var show_linechart_by_year = function(Jsondata,needgroup) {
     var data = JSON.parse(Jsondata.slice());
     var dateFormat = d3.time.format('%Y%m%d');
+    if(needgroup==false){
+        dateFormat = d3.time.format('%Y');
+    }
     var numberFormat = d3.format('.2f');
     var keys = Object.keys(data[0]);
     var drugnames = keys.slice(1,keys.length);

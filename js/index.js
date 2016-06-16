@@ -301,7 +301,8 @@ function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
         "group_drug":global_drugGroup,
         "group_adr":global_adrGroup,
         "adrnames":selected_adrname,
-        "drugnames":selected_drugname
+        "drugnames":selected_drugname,
+        "analysis":global_analysis,
     };
 
     $.ajax({
@@ -311,15 +312,24 @@ function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
         success: function (result) {
             global_timeline_data = result;
             //console.log(result);
-            if(global_month_or_year=="month"){
-                show_linechart(global_timeline_data,selected_drugname,selected_adrname);
-            }
-            else if(global_month_or_year=="quarter"){
-                show_linechart_by_quarter(global_timeline_data,selected_drugname,selected_adrname);
+            if(global_analysis!="case_count"){
+                global_month_or_year=="year"
+
+                show_linechart_by_year(global_timeline_data,false);
+                document.getElementById("monthOrYear").style.display="none";
             }
             else{
-                show_linechart_by_year(global_timeline_data,selected_drugname,selected_adrname);
+                if(global_month_or_year=="month"){
+                    show_linechart(global_timeline_data,true);
+                }
+                else if(global_month_or_year=="quarter"){
+                    show_linechart_by_quarter(global_timeline_data,true);
+                }
+                else{
+                    show_linechart_by_year(global_timeline_data,true);
+                }
             }
+
         },
         error: function (xhr, desc, err) {
             console.log(xhr);

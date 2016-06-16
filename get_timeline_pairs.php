@@ -14,8 +14,9 @@ if(is_ajax()){
         $adr_group = $_POST["group_adr"];
         $drugnames = $_POST["drugnames"];
         $adrnames = $_POST["adrnames"];
+        $analysis = $_POST['analysis'];
         //write_timeline_file();
-        $result = get_timeline_data_pairs($pairs,$drugGroup,$adr_group,$drugnames,$adrnames);
+        $result = get_timeline_data_pairs($pairs,$drugGroup,$adr_group,$drugnames,$adrnames,$analysis);
         echo json_encode($result);
     }
 }
@@ -136,24 +137,28 @@ function get_timeline_data($drug,$adr,$group_adr,$group_drug,$drugnames,$adrname
 
 }
 
-function get_timeline_data_pairs($pairs,$group_drug,$group_adr,$drugnames,$adrnames){
+function get_timeline_data_pairs($pairs,$group_drug,$group_adr,$drugnames,$adrnames,$analysis){
     require_once "./database/DataController.php";
     $table = new DataController();
     $results = [];
     foreach($pairs as $pair){
         $drug = $pair[0];
         $adr = $pair[1];
-        $result = $table->getCaseCountTimeline($drug,$adr,$group_drug,$group_adr);
+        if($analysis=='case_count'){
+            $result = $table->getCaseCountTimeline($drug,$adr,$group_drug,$group_adr);
+        }
+        else{
+            $result = $table->getAnalysisTimeline($drug,$adr,$group_drug,$group_adr,$analysis);
+        }
         array_push($results,$result);
     }
     $names = get_names_for_pair($results,$drugnames,$adrnames);
     $timeline_data = array();
     foreach($results as $row) {
         foreach($row as $item){
-        //$name = $row['drug_concept_id'].'_'.$row['outcome_concept_id'];
             $name = $drugnames[$item['drug_concept_id']].'/'.$adrnames[$item['outcome_concept_id']];
             $date=$item['recieved_date'];
-            $timeline_data[$date][$name]=$item['case_count'];
+            $timeline_data[$date][$name]=$item[$analysis];
            }
         }
     $data=array();
