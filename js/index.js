@@ -314,7 +314,6 @@ function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
             //console.log(result);
             if(global_analysis!="case_count"){
                 global_month_or_year=="year"
-
                 show_linechart_by_year(global_timeline_data,false);
                 document.getElementById("monthOrYear").style.display="none";
             }
