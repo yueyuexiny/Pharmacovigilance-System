@@ -7,6 +7,7 @@ if(is_ajax()){
        $drugGroup = $_POST["drug_group"];
        $adr_group = $_POST["adr_group"];
        $source = $_POST["source"];
+       $analysis = $_POST["analysis"];
 
        $result = getResultByID($drugIDList, $outcomeIDList,$drugGroup,$adr_group,$source);
        echo json_encode($result);
@@ -27,12 +28,6 @@ function getResultByID($drugIDList, $adrIDList,$drugGroup,$adr_group,$source){
     $drug = array();
     $adr = array();
 
-
-    // Get all drugs and adrs
-   /* if($drugIDList[0]== "" && $adrIDList[0]==""){
-        $drugIDList = $hm ->getAllDrugIDs($drugGroup);
-        $adrIDList = $hm -> getAllAdrIDs($adr_group);
-    }*/
     // Get all drugs
     if($drugIDList[0]=="" && $adrIDList[0]!=""){
         $drugIDList = $hm ->getAllDrugIDs($drugGroup);
