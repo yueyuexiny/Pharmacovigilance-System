@@ -37,17 +37,6 @@ function get_dates($result){
     return $data;
 }
 
-function get_names($result,$drugnames,$adrnames){
-    $names = array();
-    foreach($result as $row){
-       // $name = $row['drug_concept_id'].'_'.$row['outcome_concept_id'];
-        $name = $drugnames[$row['drug_concept_id']].'/'.$adrnames[$row['outcome_concept_id']];
-        if(!in_array($name,$names)){
-            array_push($names,$name);
-        }
-    }
-    return $names;
-}
 
 function get_names_for_pair($result,$drugnames,$adrnames){
     $names = array();
@@ -61,84 +50,8 @@ function get_names_for_pair($result,$drugnames,$adrnames){
     return $names;
 }
 
-function write_timeline_file(){
-    require_once "./database/DataController.php";
-    $drug = $_POST['drug'];
-    $adr=$_POST['adr'];
-    $group_adr=$_POST['group_adr'];
-    $group_drug=$_POST['group_drug'];
-    $table = new DataController();
-    $result = $table->getCaseCountTimeline($drug,$adr,$group_drug,$group_adr);
-    $names = get_names($result);
-    $timeline_data = array();
-    foreach($result as $row) {
-        $name = $row['drug_concept_id'].'_'.$row['outcome_concept_id'];
-        $date=$row['recieved_date'];
-        $timeline_data[$date][$name]=$row['case_count'];
-    }
-    $file = "./data/linechart1.csv";
-    $current = "date";
-    foreach($names as $name){
-        $current .= ",".$name;
-    }
-    $current.="\n";
-
-    foreach(array_keys($timeline_data) as $date ){
-        $current .= $date;
-        foreach($names as $name){
-            if(array_key_exists($name,$timeline_data[$date])){
-                $current .=','.$timeline_data[$date][$name];
-            }
-            else{
-                $current .=',0';
-            }
-        }
-        $current.="\n";
-
-    }
-    //echo $current;
-    file_put_contents($file, $current);
-}
-
-function get_timeline_data($drug,$adr,$group_adr,$group_drug,$drugnames,$adrnames){
-    require_once "./database/DataController.php";
-
-    $table = new DataController();
-    $result = $table->getCaseCountTimeline($drug,$adr,$group_drug,$group_adr);
-    $names = get_names($result,$drugnames,$adrnames);
-    $timeline_data = array();
-    foreach($result as $row) {
-        //$name = $row['drug_concept_id'].'_'.$row['outcome_concept_id'];
-        $name = $drugnames[$row['drug_concept_id']].'/'.$adrnames[$row['outcome_concept_id']];
-        $date=$row['recieved_date'];
-        $timeline_data[$date][$name]=$row['case_count'];
-    }
-    $data=array();
-
-
-
-    foreach(array_keys($timeline_data) as $date ){
-        $item = array();
-        $item['date']=strval($date);
-
-        foreach($names as $name){
-            if(array_key_exists($name,$timeline_data[$date])){
-
-                $item[$name]=$timeline_data[$date][$name];
-            }
-            else{
-                $item[$name]='0';
-            }
-        }
-        array_push($data,$item);
-
-    }
-    return $data;
-
-}
-
 function get_timeline_data_pairs($pairs,$group_drug,$group_adr,$drugnames,$adrnames,$analysis){
-    require_once "./database/DataController.php";
+    require_once dirname(__FILE__)."../../models/DataController.php";
     $table = new DataController();
     $results = [];
     foreach($pairs as $pair){

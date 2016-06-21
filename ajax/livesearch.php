@@ -1,13 +1,12 @@
 
 <?php
-require_once "./database/DataController.php";
+require_once "../models/DataController.php";
 
 $q=$_GET["q"];
 $type=$_GET['type'];
 $source = $_GET['source'];
 //$analysis=$_GET['analysis'];
 $group=$_GET['group'];
-//var_dump($_GET);
 
 $default_list = [];
 if($type=='drug') {

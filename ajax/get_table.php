@@ -5,7 +5,7 @@
  * Date: 6/1/16
  * Time: 2:45 PM
  */
-require_once "./database/DataController.php";
+require_once dirname(__FILE__)."../../models/DataController.php";
 
 $drug = $_GET['drug'];
 $adr=$_GET['adr'];

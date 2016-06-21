@@ -21,7 +21,7 @@ function is_ajax() {
 
 
 function getResultByID($drugIDList, $adrIDList,$drugGroup,$adr_group,$source){
-    require_once dirname(__FILE__) . '/../database/DataController.php';
+    require_once dirname(__FILE__) . '/../models/DataController.php';
     $hm = new DataController();
 
     $data = array();

@@ -147,7 +147,7 @@ function showResult(str,type) {
 
         }
     }
-    xmlhttp.open("GET", "livesearch.php?q=" + str + '&type='+type+'&source='+source+'&analysis='+analysis+'&group='+group, true);
+    xmlhttp.open("GET", "ajax/livesearch.php?q=" + str + '&type='+type+'&source='+source+'&analysis='+analysis+'&group='+group, true);
     xmlhttp.send();
 }
 
@@ -222,7 +222,7 @@ function get_table_data() {
 
         }
     };
-    xmlhttp.open("GET", "get_table.php?drug=" + global_drugIDList+'&adr='+global_adrIDList+'&group_drug='+global_drugGroup+'&group_adr='+global_adrGroup, true);
+    xmlhttp.open("GET", "ajax/get_table.php?drug=" + global_drugIDList+'&adr='+global_adrIDList+'&group_drug='+global_drugGroup+'&group_adr='+global_adrGroup, true);
     xmlhttp.send();
 }
 
@@ -266,33 +266,6 @@ function show_heatmap(source) {
  *
  * ******************************************/
 
-// Retrieve timeline data for different drug and adr combinations
-function get_timeline_data(adr,selected_drugname,selected_adrname){
-    var data = {
-        "drug": global_drugIDList,
-        "adr": adr,
-        "group_drug":global_drugGroup,
-        "group_adr":global_adrGroup,
-        "adrnames":selected_adrname,
-        "drugnames":selected_drugname
-    };
-    $.ajax({
-        type: "POST",
-        url: "get_timeline.php",
-        data: data,
-        success: function (result) {
-            var timelinedata = result;
-            //show_linechart(timelinedata.slice(),selected_drugname,selected_adrname);
-            console.log("hi");
-            show_linechart_by_year(timelinedata.slice(),selected_drugname,selected_adrname);
-        },
-        error: function (xhr, desc, err) {
-            console.log(xhr);
-            console.log("Details: " + desc + "\nError:" + err);
-        }
-    });
-}
-
 
 // Retrieve timeline data for one drug and adr pair
 function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
@@ -308,11 +281,10 @@ function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
 
     $.ajax({
         type: "POST",
-        url: "get_timeline_pairs.php",
+        url: "ajax/get_timeline_pairs.php",
         data: data,
         success: function (result) {
             global_timeline_data = result;
-            //console.log(result);
             if(global_analysis!="case_count"){
                 global_month_or_year=="year"
                 show_linechart_by_year(global_timeline_data,false);
