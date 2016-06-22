@@ -11,7 +11,7 @@ class DataController
 
     function __construct()
     {
-        require_once dirname(__FILE__) . '../../dbcontroller.php';
+        require_once dirname(__FILE__) . '/dbcontroller.php';
 
         $objDBController = new DBController();
         $this->dbconn = $objDBController->getConn();
