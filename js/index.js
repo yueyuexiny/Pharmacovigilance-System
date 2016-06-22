@@ -10,7 +10,7 @@ var global_drugIDList = "";  // selected drugs' ID
 var global_adrGroup = "";   // selected adr group
 var global_adrIDList = "";  // selected adrs' ID
 
-var global_month_or_year="month"; //default select month line chart
+var global_month_or_year="quarter"; //default select month line chart
 var global_timeline_data = ""; //store the data for switch month or year line chart
 
 /*select drug ID and name, selected adr ID and name*/
@@ -240,7 +240,8 @@ function show_heatmap(source) {
         'drug_group':global_drugGroup,
         'adr_group':global_adrGroup,
         'source':source,
-        'analysis':global_analysis
+        'analysis':global_analysis,
+
     };
 
     $.ajax({
@@ -277,6 +278,7 @@ function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
         "adrnames":selected_adrname,
         "drugnames":selected_drugname,
         "analysis":global_analysis,
+        'monthoryear':global_month_or_year
     };
 
     $.ajax({
@@ -286,15 +288,21 @@ function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
         success: function (result) {
             global_timeline_data = result;
             if(global_analysis!="case_count"){
-                global_month_or_year=="year"
-                show_linechart_by_year(global_timeline_data,false);
-                document.getElementById("monthOrYear").style.display="none";
+
+                if(global_month_or_year=="year"){
+                    show_linechart_by_year(global_timeline_data,false);
+                }
+                else if(global_month_or_year=="quarter"){
+                    show_linechart_by_quarter(global_timeline_data,false);
+                }
+                document.getElementById("monthtab").style.display="none";
             }
             else{
                 if(global_month_or_year=="month"){
                     show_linechart(global_timeline_data,true);
                 }
                 else if(global_month_or_year=="quarter"){
+
                     show_linechart_by_quarter(global_timeline_data,true);
                 }
                 else{
@@ -359,14 +367,18 @@ function update_id_pair(drug,adr,drugname,adrname){
 //switch month or year linechart
 function switch_year_or_month(a){
     global_month_or_year = a;
+    var needgroup = false;
+    if(global_analysis!="case_count"){
+        needgroup = true;
+    }
     if(global_month_or_year=="month"){
-        show_linechart(global_timeline_data,selected_drugname,selected_adrname);
+        show_linechart(global_timeline_data,needgroup);
     }
     else if(global_month_or_year=="quarter"){
-        show_linechart_by_quarter(global_timeline_data,selected_drugname,selected_adrname);
+        show_linechart_by_quarter(global_timeline_data);
     }
     else{
-        show_linechart_by_year(global_timeline_data,selected_drugname,selected_adrname);
+        show_linechart_by_year(global_timeline_data);
     }
 }
 

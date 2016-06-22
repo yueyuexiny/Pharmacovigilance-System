@@ -15,8 +15,9 @@ if(is_ajax()){
         $drugnames = $_POST["drugnames"];
         $adrnames = $_POST["adrnames"];
         $analysis = $_POST['analysis'];
+        $monthoryear=$_POST['monthoryear'];
         //write_timeline_file();
-        $result = get_timeline_data_pairs($pairs,$drugGroup,$adr_group,$drugnames,$adrnames,$analysis);
+        $result = get_timeline_data_pairs($pairs,$drugGroup,$adr_group,$drugnames,$adrnames,$analysis,$monthoryear);
         echo json_encode($result);
     }
 }
@@ -50,7 +51,7 @@ function get_names_for_pair($result,$drugnames,$adrnames){
     return $names;
 }
 
-function get_timeline_data_pairs($pairs,$group_drug,$group_adr,$drugnames,$adrnames,$analysis){
+function get_timeline_data_pairs($pairs,$group_drug,$group_adr,$drugnames,$adrnames,$analysis,$monthoryear){
     require_once dirname(__FILE__)."../../models/DataController.php";
     $table = new DataController();
     $results = [];
@@ -61,7 +62,7 @@ function get_timeline_data_pairs($pairs,$group_drug,$group_adr,$drugnames,$adrna
             $result = $table->getCaseCountTimeline($drug,$adr,$group_drug,$group_adr);
         }
         else{
-            $result = $table->getAnalysisTimeline($drug,$adr,$group_drug,$group_adr,$analysis);
+            $result = $table->getAnalysisTimeline($drug,$adr,$group_drug,$group_adr,$analysis,$monthoryear);
         }
         array_push($results,$result);
     }

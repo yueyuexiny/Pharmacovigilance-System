@@ -21,9 +21,11 @@
                         <input class='btn-primary' id="clearAllLines" style="display: none;" type="button" onclick="clearAllLines()" value="Clear"/>
 
                         <div class="btn-group" role="group" id="monthOrYear" style="display: none;" data-toggle="buttons">
-                            <label class="monthOrYearBtn btn btn-default" onclick="switch_year_or_month('month')" ><input type="radio" name="monthoryear" id="month" >By Month</label>
                             <label class="monthOrYearBtn btn btn-default" onclick="switch_year_or_month('quarter')" ><input type="radio" name="monthoryear" id="quarter" >By Quarter</label>
                             <label class="monthOrYearBtn btn btn-default" onclick="switch_year_or_month('year')"><input type="radio" name="monthoryear" id="year" >By Year</label>
+                            <label class="monthOrYearBtn btn btn-default" onclick="switch_year_or_month('month')" id="monthtab" ><input type="radio" name="monthoryear" id="month" >By Month</label>
+
+
                         </div>
 
                         <div class="clearfix"></div>

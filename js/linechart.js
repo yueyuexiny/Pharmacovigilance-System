@@ -404,7 +404,7 @@ var show_linechart_by_year = function(Jsondata,needgroup) {
     document.getElementById("monthOrYear").style.display = "";
 };
 
-var show_linechart_by_quarter = function(Jsondata) {
+var show_linechart_by_quarter = function(Jsondata,needgroup) {
     var data = JSON.parse(Jsondata.slice());
     var dateFormat = d3.time.format('%Y%m%d');
     var numberFormat = d3.format('.2f');

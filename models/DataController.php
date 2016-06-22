@@ -163,23 +163,44 @@ class DataController
         }
     }
 
-    function getAnalysisTimeline($drugID,$adrID,$group_drug,$group_adr,$analysis){
+    function getAnalysisTimeline($drugID,$adrID,$group_drug,$group_adr,$analysis,$quarteroryear){
 
         $table="";
-        if($group_drug=='ingredient'){
-            $table='drug_ingredient_outcome_meddra_statistics_year';
+        $quarter_table = ["1"=>"0101","2"=>'0401','3'=>'0701','4'=>'1001'];
+        if($quarteroryear=='year'){
+            $column = "recieved_year";
+            if($group_drug=='ingredient'){
+                $table='drug_ingredient_outcome_meddra_statistics_year';
+            }
+            elseif($group_drug=='name'){
+                $table='drug_name_outcome_meddra_statistics_year';
+            }
         }
-        elseif($group_drug=='name'){
-            $table='drug_name_outcome_meddra_statistics_year';
+        elseif($quarteroryear=='quarter'){
+            $column = "recieved_year,recieved_quarter";
+            if($group_drug=='ingredient'){
+                $table='drug_ingredient_outcome_meddra_statistics_quarter';
+            }
+            elseif($group_drug=='name'){
+                $table='drug_name_outcome_meddra_statistics_quarter';
+            }
         }
 
+
+
         try {
-            $sql = 'SELECT recieved_year,drug_concept_id,outcome_concept_id, '.$analysis.' FROM '.$table.'  Where drug_concept_id in ('.$drugID.') and outcome_concept_id in ('.$adrID.')';
+            $sql = 'SELECT '.$column.',drug_concept_id,outcome_concept_id, '.$analysis.' FROM '.$table.'  Where drug_concept_id in ('.$drugID.') and outcome_concept_id in ('.$adrID.')';
             $result = $this->dbconn->query($sql);
             $data = array();
             foreach($result as $row){
                 $item = [];
-                $item['recieved_date']=$row['recieved_year'];
+                if(isset($row['recieved_quarter'])){
+                    $item['recieved_date'] = $row['recieved_year'].$quarter_table[$row['recieved_quarter']];
+                }
+                else{
+                    $item['recieved_date']=$row['recieved_year'];
+                }
+
                 $item['outcome_concept_id']=$row['outcome_concept_id'];
                 $item['drug_concept_id']=$row['drug_concept_id'];
                 $item[$analysis]=$row[$analysis];
