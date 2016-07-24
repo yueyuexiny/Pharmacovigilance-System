@@ -13,7 +13,7 @@ var global_adrIDList = "";  // selected adrs' ID
 var global_month_or_year="quarter"; //default select month line chart
 var global_timeline_data = ""; //store the data for switch month or year line chart
 
-/*select drug ID and name, selected adr ID and name*/
+/*selected drug ID and name, selected adr ID and name*/
 var selected_drugID = "";
 var selected_adrID = "";
 var selected_adrname = {};
@@ -84,7 +84,7 @@ function submit(){
 
 /********************************************
  *
- * Functions for search creiteria panel
+ * Functions for search criteria panel
  *
  * ******************************************/
 
@@ -241,8 +241,9 @@ function show_heatmap(source) {
         'adr_group':global_adrGroup,
         'source':source,
         'analysis':global_analysis,
-
     };
+
+
 
     $.ajax({
         type:"POST",
@@ -251,6 +252,7 @@ function show_heatmap(source) {
         success:function(result){
             heatmapChart(result);
             $('#img').hide();
+
 
         },
         error: function (xhr, desc, err) {

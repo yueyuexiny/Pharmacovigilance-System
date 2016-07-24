@@ -71,7 +71,7 @@ class DataController
 
 
     // Get case count by drug and outcome ID
-    function getDrugOutcomeCounts($drugID, $outcomeID,$group_drug,$group_adr){
+    function getDrugOutcomeValue($drugID, $outcomeID,$group_drug,$group_adr,$analysis){
 
         if($group_drug=='ingredient'){
             $table='drug_ingredient_outcome_meddra_statistics_all';
@@ -81,16 +81,17 @@ class DataController
         }
 
         try{
-            $sql = " SELECT case_count FROM ".$table." where drug_concept_id=".$drugID." and outcome_concept_id=".$outcomeID;
-            
+            $sql = " SELECT ".$analysis." FROM ".$table." where drug_concept_id=".$drugID." and outcome_concept_id=".$outcomeID;
+
+           // var_dump($sql);
 
             $result = $this->dbconn->query($sql);
 
-            $case_count = 0;
+            $value = 0;
             foreach ($result as $row) {
-                $case_count = $row['case_count'];
+                $value = $row[$analysis];
             }
-            return $case_count;
+            return $value;
 
         }catch(PDOException $e){
             echo $e->getMessage();

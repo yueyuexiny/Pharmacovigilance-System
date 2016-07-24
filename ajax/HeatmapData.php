@@ -9,7 +9,7 @@ if(is_ajax()){
        $source = $_POST["source"];
        $analysis = $_POST["analysis"];
 
-       $result = getResultByID($drugIDList, $outcomeIDList,$drugGroup,$adr_group,$source);
+       $result = getResultByID($drugIDList, $outcomeIDList,$drugGroup,$adr_group,$source,$analysis);
        echo json_encode($result);
    }
 }
@@ -20,7 +20,7 @@ function is_ajax() {
 }
 
 
-function getResultByID($drugIDList, $adrIDList,$drugGroup,$adr_group,$source){
+function getResultByID($drugIDList, $adrIDList,$drugGroup,$adr_group,$source,$analysis){
     require_once dirname(__FILE__) . '/../models/DataController.php';
     $hm = new DataController();
 
@@ -37,15 +37,13 @@ function getResultByID($drugIDList, $adrIDList,$drugGroup,$adr_group,$source){
         $adrIDList = $hm -> getAllAdrIDs($adr_group);
     }
 
-
-
     foreach($drugIDList as $drugID) {
         foreach($adrIDList as $adrID){
             $temp = array();
 
             $drugName = $hm ->getDrugNameByID($drugID,$drugGroup);
             $adrName = $hm ->getOutcomeNameByID($adrID,$adr_group);
-            $case_count = $hm -> getDrugOutcomeCounts($drugID, $adrID,$drugGroup,$adr_group);
+            $case_count = $hm -> getDrugOutcomeValue($drugID, $adrID,$drugGroup,$adr_group,$analysis);
 
             $temp['drugName'] = $drugName;
             $temp['adrName'] = $adrName;

@@ -130,9 +130,6 @@ var heatmapChart = function(hmdata) {
             legendElementWidth = gridSize*2;
     }
 
-
-    console.log(gridSize);
-
     var legend = svg.selectAll(".legend")
         .data([0].concat(colorScale.quantiles()), function(d) { return d; });
 
