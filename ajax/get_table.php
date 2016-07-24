@@ -12,13 +12,10 @@ $adr=$_GET['adr'];
 $group_adr=$_GET['group_adr'];
 $group_drug=$_GET['group_drug'];
 $table = new DataController();
-// Get all drugs and adrs
-if($drug== "" && $adr==""){
-    $drug = implode(',',$table ->getAllDrugIDs($group_drug));
-    $adr = implode(',',$table -> getAllAdrIDs($group_adr));
-}
+
+
 // Get all drugs
-elseif($drug=="" && $adr!=""){
+if($drug=="" && $adr!=""){
     $drug = implode(',',$table ->getAllDrugIDs($group_drug));
 }
 //Get all adrs

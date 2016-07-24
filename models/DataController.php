@@ -83,8 +83,6 @@ class DataController
         try{
             $sql = " SELECT ".$analysis." FROM ".$table." where drug_concept_id=".$drugID." and outcome_concept_id=".$outcomeID;
 
-           // var_dump($sql);
-
             $result = $this->dbconn->query($sql);
 
             $value = 0;
@@ -238,6 +236,7 @@ class DataController
     function getAllAdrIDs($group){
         try{
             $sql = "SELECT * FROM outcome_concept_id_meddra limit 100";
+            
             $result = $this->dbconn->query($sql);
 
             $adrIDList = array();
