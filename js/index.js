@@ -243,7 +243,6 @@ function show_heatmap(source) {
         url:"ajax/HeatmapData.php",
         data:data,
         success:function(result){
-            console.log(result);
             heatmapChart(result);
             $('#img').hide();
         },

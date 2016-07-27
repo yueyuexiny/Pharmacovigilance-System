@@ -22,7 +22,7 @@ if(is_ajax()){
        if($drug_ID_list[0]!=""  && $adr_ID_list[0]==""){
            $flag = 1;
            $adr_ID_list = [];
-           $n = $num/count($drug_ID_list);
+           $n = round($num/count($drug_ID_list));
            foreach($drug_ID_list as $drug_ID){
                $result = $hm->getTopNAdr($drug_ID, $drug_group,$adr_group, $n, $analysis);
                foreach($result as $r){
@@ -34,7 +34,7 @@ if(is_ajax()){
        elseif($adr_ID_list[0]!="" && $drug_ID_list[0]==""){
            $flag = 2;
            $drug_ID_list=[];
-           $m = $num/count($adr_ID_list);
+           $m = round($num/count($adr_ID_list));
            foreach($adr_ID_list as $adr_ID){
                $result = $hm->getTopNDrug($adr_ID, $drug_group,$adr_group, $m, $analysis);
                foreach($result as $r2){
@@ -104,6 +104,7 @@ function getResultByID($hm, $drugIDList, $adrIDList,$drug_group,$adr_group,$sour
     }
 
     $result['source'] = $source;
+    $result['analysis'] = $analysis;
 
     return $result;
 }

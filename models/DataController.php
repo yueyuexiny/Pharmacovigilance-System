@@ -283,51 +283,6 @@ class DataController
         }
     }
 
-    function getAllDrugIDs($group)
-    {
-        if ($group == 'ingredient') {
-            $table = 'drug_concept_id_ingredient';
-        } elseif ($group == 'name') {
-            $table = 'drug_concept_id_name';
-        }
-
-        try {
-            $sql = "SELECT drug_concept_id FROM " . $table . " limit 50";
-            $result = $this->dbconn->query($sql);
-
-            $drugIDList = array();
-            foreach ($result as $row) {
-                array_push($drugIDList, $row['drug_concept_id']);
-            }
-            return $drugIDList;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-
-
-    function getAllAdrIDs($group){
-        if($group=='medDRA'){
-            $table = "outcome_concept_id_meddra";
-        }
-        elseif($group=='HOI'){
-            $table = "outcome_concept_id_hoi";
-        }
-        try{
-            $sql = "SELECT * FROM ".$table." limit 100";
-
-            $result = $this->dbconn->query($sql);
-
-            $adrIDList = array();
-            foreach ($result as $row) {
-                array_push($adrIDList, $row['outcome_concept_id']);
-            }
-            return $adrIDList;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-
     /*
      * Get top n adr by drug ID
      * @param:

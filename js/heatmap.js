@@ -30,8 +30,10 @@ var heatmapChart = function(hmdata) {
 
     if(data.ids.length>25){
         var height = 1000;
+        yvalue = 20*(data.ids.length/data.conditions.length + 5);
     }else{
         var height = 40*(data.ids.length);
+        yvalue = 40*(data.ids.length + 4);
     }
 
 
@@ -39,7 +41,7 @@ var heatmapChart = function(hmdata) {
     var svg = d3.select('#expat-heatmap')
         .append('svg:svg')
         .attr('width',width- margin.right)
-        .attr('height',40*(data.ids.length+6))
+        .attr('height',yvalue + 80)
         .append('g')
         .attr({
             'transform': 'translate(' + margin.left + ',' + margin.top + ')',
@@ -81,8 +83,7 @@ var heatmapChart = function(hmdata) {
         .style("visibility","visible")
         .offset([-20, 0])
         .html(function(d) {
-            return "Drug Name: "+ d.drugName.split("||",1)+ "<br> ADR Name: " + d.adrName.split("||",1) + "<br> Case Count:  <span style='color:red'>" + Math.round(d.value) ;
-            //return "Value:  <span style='color:red'>" + Math.round(d.value) ;
+            return "Drug Name: "+ d.drugName.split("||",1)+ "<br> ADR Name: " + d.adrName.split("||",1) + "<br> "+ dataObj.analysis +":  <span style='color:red'>" + Math.round(d.value) ;
         });
 
     tip(svg.append("g"));
@@ -138,7 +139,7 @@ var heatmapChart = function(hmdata) {
 
     legend.append("rect")
         .attr("x", function(d, i) {return legendElementWidth * i; })
-        .attr("y", 40*(data.ids.length+4))
+        .attr("y", yvalue-20)
         .attr("width", legendElementWidth)
         .attr("height", gridSize / 2)
         .style("fill", function(d, i) { return colors[i]; });
@@ -147,7 +148,7 @@ var heatmapChart = function(hmdata) {
         .attr("class", "mono")
         .text(function(d) { return "≥ " +Math.round(d); })
         .attr("x", function(d, i) { return legendElementWidth * i; })
-        .attr("y", 40*(data.ids.length+4) + gridSize);
+        .attr("y", yvalue + gridSize-20);
 
     legend.exit().remove();
 
