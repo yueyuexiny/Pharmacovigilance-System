@@ -37,25 +37,43 @@ class DataController
 
     function getADRNameList($query,$group)
     {
+        $table="";
+        if($group=='medDRA'){
+            $table = 'outcome_concept_id_meddra';
+        }
+        elseif($group=='HOI'){
+            $table='outcome_concept_id_hoi';
+        }
         try {
-
-            $sql = 'SELECT * FROM outcome_concept_id_meddra  Where name like"'.$query.'%" limit 10';
+            $sql = 'SELECT * FROM '.$table.'  Where name like"'.$query.'%" limit 10';
             $result = $this->dbconn->query($sql);
-
             return $result;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
+
     }
 
 
     function get_data($drugID,$adrID,$group_drug,$group_adr)
     {   $table="";
         if($group_drug=='ingredient'){
-            $table='drug_ingredient_outcome_meddra_statistics_all';
+            if($group_adr=='medDRA'){
+                $table='drug_ingredient_outcome_meddra_statistics_all';
+            }
+            else{
+                $table='drug_ingredient_outcome_hoi_statistics_all';
+            }
+
         }
         elseif($group_drug=='name'){
-            $table='drug_name_outcome_meddra_statistics_all';
+            if($group_adr=='medDRA'){
+                $table='drug_name_outcome_meddra_statistics_all';
+            }
+            else{
+                $table='drug_ingredient_outcome_hoi_statistics_all';//no drug_name for hoi
+            }
+
         }
 
         try {
@@ -73,11 +91,24 @@ class DataController
     // Get case count by drug and outcome ID
     function getDrugOutcomeValue($drugID, $outcomeID,$group_drug,$group_adr,$analysis){
 
+        $table="";
         if($group_drug=='ingredient'){
-            $table='drug_ingredient_outcome_meddra_statistics_all';
+            if($group_adr=='medDRA'){
+                $table='drug_ingredient_outcome_meddra_statistics_all';
+            }
+            else{
+                $table='drug_ingredient_outcome_hoi_statistics_all';
+            }
+
         }
         elseif($group_drug=='name'){
-            $table='drug_name_outcome_meddra_statistics_all';
+            if($group_adr=='medDRA'){
+                $table='drug_name_outcome_meddra_statistics_all';
+            }
+            else{
+                $table='drug_ingredient_outcome_hoi_statistics_all';//no drug_name dta for hoi
+            }
+
         }
 
         try{
@@ -121,8 +152,15 @@ class DataController
     }
 
     function getOutcomeNameByID($outcomeConceptID,$group){
+        $table="";
+        if($group=='medDRA'){
+            $table = 'outcome_concept_id_meddra';
+        }
+        elseif($group=='HOI'){
+            $table='outcome_concept_id_hoi';
+        }
         try{
-            $sql = "SELECT name FROM outcome_concept_id_meddra where outcome_concept_id=".$outcomeConceptID;
+            $sql = "SELECT name FROM ".$table." where outcome_concept_id=".$outcomeConceptID;
             $result = $this->dbconn->query($sql);
 
             foreach ($result as $row) {
@@ -139,10 +177,22 @@ class DataController
 
         $table="";
         if($group_drug=='ingredient'){
-            $table='drug_ingredient_outcome_meddra_recieved_date_count';
+            if($group_adr=='medDRA'){
+                $table='drug_ingredient_outcome_meddra_recieved_date_count';
+            }
+            else{
+                $table='drug_ingredient_outcome_hoi_recieved_date_count';
+            }
+
         }
         elseif($group_drug=='name'){
-            $table='drug_name_outcome_meddra_recieved_date_count';
+            if($group_adr=='medDRA'){
+                $table='drug_name_outcome_meddra_recieved_date_count';
+            }
+            else{
+                $table='drug_ingredient_outcome_hoi_recieved_date_count';//no drug_name data for hoi
+            }
+
         }
         try {
             $sql = 'SELECT recieved_date,drug_concept_id,outcome_concept_id, case_count FROM '.$table.'  Where drug_concept_id in ('.$drugID.') and outcome_concept_id in ('.$adrID.')';
@@ -169,19 +219,42 @@ class DataController
         if($quarteroryear=='year'){
             $column = "recieved_year";
             if($group_drug=='ingredient'){
-                $table='drug_ingredient_outcome_meddra_statistics_year';
+                if($group_adr=='medDRA'){
+                    $table='drug_ingredient_outcome_meddra_statistics_year';
+                }
+                else{
+                    $table='drug_ingredient_outcome_hoi_statistics_year';
+                }
+
             }
             elseif($group_drug=='name'){
-                $table='drug_name_outcome_meddra_statistics_year';
+                if($group_adr=='medDRA'){
+                    $table='drug_name_outcome_meddra_statistics_year';
+                }
+                else{
+                    $table='drug_ingredient_outcome_hoi_statistics_year';//no drug name for hoi
+                }
+
             }
         }
         elseif($quarteroryear=='quarter'){
             $column = "recieved_year,recieved_quarter";
             if($group_drug=='ingredient'){
-                $table='drug_ingredient_outcome_meddra_statistics_quarter';
+                if($group_adr=='medDRA'){
+                    $table='drug_ingredient_outcome_meddra_statistics_quarter';
+                }
+                else{
+                    $table='drug_ingredient_outcome_hoi_statistics_quarter';
+                }
+
             }
             elseif($group_drug=='name'){
-                $table='drug_name_outcome_meddra_statistics_quarter';
+                if($group_adr=='medDRA'){
+                    $table='drug_name_outcome_meddra_statistics_quarter';
+                }
+                else{
+                    $table='drug_ingredient_outcome_hoi_statistics_quarter';//no drug name for hoi
+                }
             }
         }
 
@@ -225,7 +298,7 @@ class DataController
 
             $drugIDList =array();
             foreach ($result as $row) {
-                 array_push($drugIDList, $row['drug_concept_id']);
+                array_push($drugIDList, $row['drug_concept_id']);
             }
             return $drugIDList;
         }catch(PDOException $e){
@@ -234,9 +307,15 @@ class DataController
     }
 
     function getAllAdrIDs($group){
+        if($group=='medDRA'){
+            $table = "outcome_concept_id_meddra";
+        }
+        elseif($group=='HOI'){
+            $table = "outcome_concept_id_hoi";
+        }
         try{
-            $sql = "SELECT * FROM outcome_concept_id_meddra limit 100";
-            
+            $sql = "SELECT * FROM ".$table." limit 100";
+
             $result = $this->dbconn->query($sql);
 
             $adrIDList = array();
