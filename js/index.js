@@ -5,9 +5,9 @@ var groupNum_adr = [1]; // track id of existing input group
 
 var global_source = ["FAERS"]; // selected data source
 var global_analysis = ""; // selected analysis method
-var global_drugGroup = "";  // selected drug group
+var global_drugGroup = "";  // selected drug group, ingredient or name
 var global_drugIDList = "";  // selected drugs' ID
-var global_adrGroup = "";   // selected adr group
+var global_adrGroup = "";   // selected adr group, MedDRA or HOI
 var global_adrIDList = "";  // selected adrs' ID
 
 var global_month_or_year="quarter"; //default select month line chart
@@ -23,8 +23,6 @@ var selected_pairs = [];
 
 
 function submit(){
-
-
     // Get drug IDs
     var drugID=document.querySelectorAll(".drugid");
     var drug="";
@@ -62,7 +60,6 @@ function submit(){
             show_heatmap(global_source[i]);
         }
 
-
         // Display data in table
         get_table_data();
 
@@ -70,8 +67,6 @@ function submit(){
         document.getElementById("monthly-move-chart").style.display = "none";
         document.getElementById("monthly-volume-chart").style.display = "none";
     }
-
-
 
     // Clear the selected elements
     selected_drugID = "";
@@ -243,17 +238,14 @@ function show_heatmap(source) {
         'analysis':global_analysis,
     };
 
-
-
     $.ajax({
         type:"POST",
         url:"ajax/HeatmapData.php",
         data:data,
         success:function(result){
+            console.log(result);
             heatmapChart(result);
             $('#img').hide();
-
-
         },
         error: function (xhr, desc, err) {
             console.log(xhr);
