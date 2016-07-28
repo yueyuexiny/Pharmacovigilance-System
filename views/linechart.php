@@ -10,8 +10,8 @@
 
         <div class="panel-body">
             <div class="row">
-                <div class="container">
-                    <div id="monthly-move-chart">
+                <div class="container" >
+                    <div id="monthly-move-chart" style="margin-left: 60px;">
                         <strong>Analysis result of Drug and ADR</strong>
                         <span class="reset" style="display: none;">range: <span class="filter"></span></span>
                         <a class="reset"
@@ -34,7 +34,7 @@
             </div>
 
             <div class="row">
-                <div id="monthly-volume-chart">
+                <div id="monthly-volume-chart" style="margin-left: 60px;">
                 </div>
                 <p class="muted pull-right" style="margin-right: 15px;">select a time range to zoom in</p>
             </div>
