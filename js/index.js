@@ -217,7 +217,7 @@ function get_table_data() {
 
         }
     };
-    xmlhttp.open("GET", "ajax/get_table.php?drug=" + global_drugIDList+'&adr='+global_adrIDList+'&group_drug='+global_drugGroup+'&group_adr='+global_adrGroup, true);
+    xmlhttp.open("GET", "ajax/get_table.php?drug=" + global_drugIDList+'&adr='+global_adrIDList+'&group_drug='+global_drugGroup+'&group_adr='+global_adrGroup+'&analysis='+global_analysis, true);
     xmlhttp.send();
 }
 
