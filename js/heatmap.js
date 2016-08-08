@@ -1,6 +1,5 @@
 var heatmapChart = function(hmdata) {
 
-
 // parse data
     dataObj = JSON.parse(hmdata);
 
@@ -14,6 +13,11 @@ var heatmapChart = function(hmdata) {
     data.conditions = dataObj.adr;
 
     var source = dataObj.source;
+
+    //$('#expat-heatmap').text(source);
+
+    //Add label
+
 
     // d3.js
     var margin = {
@@ -48,6 +52,8 @@ var heatmapChart = function(hmdata) {
             'width': width- margin.left - margin.right,
             'height': height
         });
+
+
 
 // Coerce data
     data.melted.forEach(function(d) {
@@ -149,6 +155,12 @@ var heatmapChart = function(hmdata) {
         .text(function(d) { return "≥ " +Math.round(d); })
         .attr("x", function(d, i) { return legendElementWidth * i; })
         .attr("y", yvalue + gridSize-20);
+
+    svg.append("text")
+        .attr("class", "mono")
+        .text(source)
+        .attr("x", -10)
+        .attr("y",5);
 
     legend.exit().remove();
 

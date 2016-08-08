@@ -12,7 +12,9 @@
             <div id="chart"></div>
             <div id="dataset-picker"></div>
 
-            <div id="expat-heatmap"></div>
+            <div id="expat-heatmap">
+                <label id="expat-heatmap-lbl"></label>
+            </div>
         </div>
     </div>
 </div>

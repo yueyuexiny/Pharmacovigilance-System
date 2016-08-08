@@ -24,7 +24,7 @@ if(is_ajax()){
            $adr_ID_list = [];
            $n = round($num/count($drug_ID_list));
            foreach($drug_ID_list as $drug_ID){
-               $result = $hm->getTopNAdr($drug_ID, $drug_group,$adr_group, $n, $analysis);
+               $result = $hm->getTopNAdr($drug_ID, $drug_group,$adr_group, $n, $analysis,$source);
                foreach($result as $r){
                    array_push($adr_ID_list,$r);
                }
@@ -75,7 +75,7 @@ function getResultByID($hm, $drugIDList, $adrIDList,$drug_group,$adr_group,$sour
 
             $drugName = $hm ->getDrugNameByID($drugID,$drug_group);
             $adrName = $hm ->getOutcomeNameByID($adrID,$adr_group);
-            $case_count = $hm -> getDrugOutcomeValue($drugID, $adrID,$drug_group,$adr_group,$analysis);
+            $case_count = $hm -> getDrugOutcomeValue($drugID, $adrID,$drug_group,$adr_group,$analysis,$source);
 
             $temp['drugName'] = $drugName;
             $temp['adrName'] = $adrName;
