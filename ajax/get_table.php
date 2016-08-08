@@ -12,16 +12,17 @@ $adr=$_GET['adr'];
 $group_adr=$_GET['group_adr'];
 $group_drug=$_GET['group_drug'];
 $analysis=$_GET['analysis'];
+$source=$_GET['source'];
 $table = new DataController();
 
 
 // Get all drugs
 if($drug=="" && $adr!=""){
-    $drug = implode(',',$table ->getTopNDrug($adr, $group_drug,$group_adr, 60, $analysis));
+    $drug = implode(',',$table ->getTopNDrug($adr, $group_drug,$group_adr, 60, $analysis,$source));
 }
 //Get all adrs
 elseif($adr=="" && $drug!=""){
-    $adr = implode(',',$table ->  getTopNAdr($drug, $group_drug,$group_adr, 60, $analysis));
+    $adr = implode(',',$table ->  getTopNAdr($drug, $group_drug,$group_adr, 60, $analysis,$source));
 }
 
 $result = $table->get_data($drug,$adr,$group_drug,$group_adr);
