@@ -6,6 +6,7 @@
  * Date: 6/2/16
  * Time: 1:44 PM
  */
+error_reporting(E_ERROR);
 class DataController
 {
     private $dbconn;
