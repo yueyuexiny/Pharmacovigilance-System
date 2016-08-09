@@ -61,7 +61,8 @@ function submit(){
         }
 
         // Display data in table
-        get_table_data();
+        show_source_button();
+        get_table_data(global_source[0]);
 
         // Hide line chart
         document.getElementById("monthly-move-chart").style.display = "none";
@@ -204,7 +205,7 @@ function remove_me(id) {
  * *************************************/
 
 // Retrieve data from database and display in table
-function get_table_data() {
+/*function get_table_data() {
     if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
@@ -217,10 +218,10 @@ function get_table_data() {
 
         }
     };
-    xmlhttp.open("GET", "ajax/get_table.php?drug=" + global_drugIDList+'&adr='+global_adrIDList+'&group_drug='+global_drugGroup+'&group_adr='+global_adrGroup+'&analysis='+global_analysis, true);
+    xmlhttp.open("GET", "ajax/get_table.php?drug=" + global_drugIDList+'&adr='+global_adrIDList+'&group_drug='+global_drugGroup+'&group_adr='+global_adrGroup+'&analysis='+global_analysis+'&source='+global_source, true);
     xmlhttp.send();
 }
-
+*/
 /********************************************
  *
  * Functions for displaying heatmap chart

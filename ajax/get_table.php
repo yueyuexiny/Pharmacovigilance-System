@@ -25,7 +25,7 @@ elseif($adr=="" && $drug!=""){
     $adr = implode(',',$table ->  getTopNAdr($drug, $group_drug,$group_adr, 60, $analysis,$source));
 }
 
-$result = $table->get_data($drug,$adr,$group_drug,$group_adr);
+$result = $table->get_data($drug,$adr,$group_drug,$group_adr,$source);
 $text = '
             <table class="table table-hover">
                 <thead>

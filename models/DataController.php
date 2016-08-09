@@ -58,11 +58,14 @@ class DataController
 
 
 
-    function get_data($drugID,$adrID,$group_drug,$group_adr)
+    function get_data($drugID,$adrID,$group_drug,$group_adr,$source)
     {   $table="";
         if($group_drug=='ingredient'){
             if($group_adr=='medDRA'){
                 $table='drug_ingredient_outcome_meddra_statistics_all';
+                if($source=='EHR'){
+                    $table='cerner_drug_ingredient_outcome_meddra_statistics_all';
+                }
             }
             else{
                 $table='drug_ingredient_outcome_hoi_statistics_all';
@@ -335,9 +338,12 @@ class DataController
      * @return:
      *      $adr_ID_list: a list of adr ids
      * */
-    function getTopNDrug($adr_ID, $drug_group,$adr_group, $n, $analysis){
+    function getTopNDrug($adr_ID, $drug_group,$adr_group, $n, $analysis,$source){
         try{
             $table_name = strtolower("drug_".$drug_group."_outcome_".$adr_group."_statistics_all");
+            if($source == "EHR"){
+                $table_name = "cerner_".$table_name;
+            }
             $sql = "SELECT drug_concept_id FROM ".$table_name
                 ." where outcome_concept_id=:drug_concept_id order by "
                 .$analysis." desc limit ".$n;

@@ -22,6 +22,7 @@
 <script type="text/javascript" src="./js/dc.js"></script>
 <script type="text/javascript" src="./js/colorbrewer.js"></script>
 <script type="text/javascript" src="./js/linechart.js"></script>
+<script type="text/javascript" src="./js/table.js"></script>
 </body>
 
 </html>

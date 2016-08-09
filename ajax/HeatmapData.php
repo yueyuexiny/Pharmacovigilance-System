@@ -36,7 +36,7 @@ if(is_ajax()){
            $drug_ID_list=[];
            $m = round($num/count($adr_ID_list));
            foreach($adr_ID_list as $adr_ID){
-               $result = $hm->getTopNDrug($adr_ID, $drug_group,$adr_group, $m, $analysis);
+               $result = $hm->getTopNDrug($adr_ID, $drug_group,$adr_group, $m, $analysis,$source);
                foreach($result as $r2){
                    array_push($drug_ID_list,$r2);
                }
