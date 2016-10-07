@@ -260,12 +260,19 @@ class DataController
             $column = "recieved_year";
             if($group_drug=='ingredient'){
                 if($group_adr=='medDRA'){
-                    $table='drug_ingredient_outcome_meddra_statistics_year';
+                    if(source=='EHR'){
+                        $table='cerner_drug_ingredient_outcome_meddra_statistics_year';
+                    }else{
+                        $table='drug_ingredient_outcome_meddra_statistics_year';
+                    }
                 }
                 else{
-                    $table='drug_ingredient_outcome_hoi_statistics_year';
+                    if($source=='EHR'){
+                        $table='cerner_drug_ingredient_outcome_hoi_statistics_year';
+                    }else{
+                        $table='drug_ingredient_outcome_hoi_statistics_year';
+                    }
                 }
-
             }
             elseif($group_drug=='name'){
                 if($group_adr=='medDRA'){
@@ -274,19 +281,26 @@ class DataController
                 else{
                     $table='drug_ingredient_outcome_hoi_statistics_year';//no drug name for hoi
                 }
-
             }
         }
         elseif($quarteroryear=='quarter'){
             $column = "recieved_year,recieved_quarter";
             if($group_drug=='ingredient'){
                 if($group_adr=='medDRA'){
-                    $table='drug_ingredient_outcome_meddra_statistics_quarter';
+
+                    if($source=='EHR'){
+                        $table='cerner_drug_ingredient_outcome_meddra_statistics_quarter';
+                    }else{
+                        $table='drug_ingredient_outcome_meddra_statistics_quarter';
+                    }
                 }
                 else{
-                    $table='drug_ingredient_outcome_hoi_statistics_quarter';
+                    if($source=='EHR'){
+                        $table='cerner_drug_ingredient_outcome_hoi_statistics_quarter';
+                    }else{
+                        $table='drug_ingredient_outcome_hoi_statistics_quarter';
+                    }
                 }
-
             }
             elseif($group_drug=='name'){
                 if($group_adr=='medDRA'){
@@ -299,9 +313,12 @@ class DataController
         }
 
 
+
         try {
             $sql = 'SELECT ' . $column . ',drug_concept_id,outcome_concept_id, ' . $analysis . ' FROM ' . $table . '  Where drug_concept_id in (' . $drugID . ') and outcome_concept_id in (' . $adrID . ')';
             $result = $this->dbconn->query($sql);
+
+            var_dump($result);
             $data = array();
             foreach ($result as $row) {
                 $item = [];

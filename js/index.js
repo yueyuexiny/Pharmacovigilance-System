@@ -263,8 +263,7 @@ function show_heatmap(source) {
 
 
 // Retrieve timeline data for one drug and adr pair
-function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
-    //console.log(selected_adrname);
+function get_timeline_data_pair(pairs,selected_drugname,selected_adrname,source){
     var data = {
         "pairs": pairs,
         "group_drug":global_drugGroup,
@@ -272,7 +271,8 @@ function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
         "adrnames":selected_adrname,
         "drugnames":selected_drugname,
         "analysis":global_analysis,
-        'monthoryear':global_month_or_year
+        "monthoryear":global_month_or_year,
+        "source":source
     };
 
     $.ajax({
@@ -281,6 +281,8 @@ function get_timeline_data_pair(pairs,selected_drugname,selected_adrname){
         data: data,
         success: function (result) {
             global_timeline_data = result;
+            console.log(result);
+
             if(global_analysis!="case_count"){
 
                 if(global_month_or_year=="year"){
@@ -346,14 +348,14 @@ function check_if_exists(pairs, pair) {
 }
 
 // Update a pair of drugID and adrID
-function update_id_pair(drug,adr,drugname,adrname){
+function update_id_pair(drug,adr,drugname,adrname,source){
     if(!check_if_exists(selected_pairs,[drug,adr])){
         selected_pairs.push([drug,adr]);
     }
     selected_drugname[drug] = drugname;
     selected_adrname[adr] = adrname;
 
-    get_timeline_data_pair(selected_pairs,selected_drugname,selected_adrname);
+    get_timeline_data_pair(selected_pairs,selected_drugname,selected_adrname,source);
 
 }
 
