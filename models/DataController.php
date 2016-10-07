@@ -97,6 +97,10 @@ class DataController
     function getDrugOutcomeValue($drugID, $outcomeID, $group_drug, $group_adr, $analysis,$source)
     {
 
+       // $table = $this->constructTableName($source,$group_drug,$group_adr);
+
+       // var_dump($table);
+
         $table="";
         if($group_drug=='ingredient'){
             if($group_adr=='medDRA'){
@@ -136,6 +140,32 @@ class DataController
         }
     }
 
+    function constructTableName($source,$group_drug,$group_adr){
+        $tablename = "";
+        switch($source){
+            case "EHR":
+                $tablename = "cerner_";
+        }
+
+        switch($group_drug){
+            case "name":
+                $tablename +="drug_name_";
+            case "ingredient":
+                $tablename +="drug_ingredient_";
+        }
+
+        switch($group_adr){
+            case "medDRA":
+                $tablename+="outcome_meddra_";
+            case "HOI":
+                $tablename+="outcome_hoi_";
+        }
+
+        $tablename+= "statistics_all";
+
+        return $tablename;
+
+    }
 
     function getDrugNameByID($drugID, $group)
     {
@@ -221,7 +251,7 @@ class DataController
         }
     }
 
-    function getAnalysisTimeline($drugID, $adrID, $group_drug, $group_adr, $analysis, $quarteroryear)
+    function getAnalysisTimeline($drugID, $adrID, $group_drug, $group_adr, $analysis, $quarteroryear,$source)
     {
 
         $table = "";
