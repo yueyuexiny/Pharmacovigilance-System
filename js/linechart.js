@@ -16,11 +16,7 @@ var volumeChart = dc.barChart('#monthly-volume-chart');
 
 var show_linechart_from_file = function(filename) {
     d3.csv(filename,function(data){
-    //var text = readTextFile(filename);
-    //var JSONData = csvJSON(text);
-    //var JSONData = JSON.parse(data);
-    //var data = JSONData.slice();
-    // var dateFormat = d3.time.format('%m/%d/%Y');
+
     var dateFormat = d3.time.format('%Y%m%d');
     var numberFormat = d3.format('.2f');
     var keys = Object.keys(data[0]);
@@ -242,6 +238,7 @@ var show_linechart = function(Jsondata) {
         moveChart.title(function (d) {
             //var value = d.value.avg ? d.value.avg : d.value;
             var value = d.value;
+            console.log(value);
             if (isNaN(value)) {
                 value = 0;
             }

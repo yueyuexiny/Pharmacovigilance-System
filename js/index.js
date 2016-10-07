@@ -281,7 +281,6 @@ function get_timeline_data_pair(pairs,selected_drugname,selected_adrname,source)
         data: data,
         success: function (result) {
             global_timeline_data = result;
-            console.log(result);
 
             if(global_analysis!="case_count"){
 

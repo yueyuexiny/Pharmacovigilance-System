@@ -318,7 +318,6 @@ class DataController
             $sql = 'SELECT ' . $column . ',drug_concept_id,outcome_concept_id, ' . $analysis . ' FROM ' . $table . '  Where drug_concept_id in (' . $drugID . ') and outcome_concept_id in (' . $adrID . ')';
             $result = $this->dbconn->query($sql);
 
-            var_dump($result);
             $data = array();
             foreach ($result as $row) {
                 $item = [];

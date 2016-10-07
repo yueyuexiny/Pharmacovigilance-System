@@ -63,14 +63,10 @@ function get_timeline_data_pairs($pairs,$group_drug,$group_adr,$drugnames,$adrna
         }
         else{
             $result = $table->getAnalysisTimeline($drug,$adr,$group_drug,$group_adr,$analysis,$monthoryear,$source);
-            var_dump($result);
-
-
         }
         array_push($results,$result);
     }
 
-    var_dump($results);
     $names = get_names_for_pair($results,$drugnames,$adrnames);
     $timeline_data = array();
     foreach($results as $row) {
