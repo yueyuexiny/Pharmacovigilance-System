@@ -98,7 +98,7 @@
             <div class="panel-footer">
                 <div>
 
-                    <button class="btn btn-warning pull-right" id="btn-search" onclick="submit()">Submit</button>
+                    <button class="btn btn-primary pull-right" id="btn-search" style="background-color: #1c623d" onclick="submit()">Submit</button>
                     <span id="result"></span>
                     <span id="result_adr"></span>
                     <span id="result_source"></span>
