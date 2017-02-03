@@ -2,11 +2,11 @@
 <?php
 require_once "../models/DataController.php";
 
-$q=$_GET["q"];
-$type=$_GET['type'];
-$source = $_GET['source'];
+$q=htmlentities($_GET["q"]);
+$type=htmlentities($_GET['type']);
+$source = htmlentities($_GET['source']);
 //$analysis=$_GET['analysis'];
-$group=$_GET['group'];
+$group=htmlentities($_GET['group']);
 
 $default_list = [];
 if($type=='drug') {

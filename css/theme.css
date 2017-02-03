@@ -294,3 +294,11 @@ button[class*='field'] { width: 150px;}
     overflow-x: scroll;
 
 }
+
+.btn-danger{
+    background-color: #c9302c;
+}
+
+.btn-primary{
+    background-color: #1c623d;
+}

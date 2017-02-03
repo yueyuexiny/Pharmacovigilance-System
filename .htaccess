@@ -1,0 +1,3 @@
+Options -Indexes
+ErrorDocument 404  http://139.52.157.161/pharmacovigilance-system/404.php
+ErrorDocument 403  http://139.52.157.161/pharmacovigilance-system/403.php

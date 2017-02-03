@@ -6,7 +6,7 @@
        </h3>
     </div>
 
-    <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+    <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel">
 
         <div class="panel-body">
             <div class="row">

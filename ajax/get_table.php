@@ -7,12 +7,12 @@
  */
 require_once dirname(__FILE__)."../../models/DataController.php";
 
-$drug = $_GET['drug'];
-$adr=$_GET['adr'];
-$group_adr=$_GET['group_adr'];
-$group_drug=$_GET['group_drug'];
-$analysis=$_GET['analysis'];
-$source=$_GET['source'];
+$drug = htmlentities($_GET['drug']);
+$adr=htmlentities($_GET['adr']);
+$group_adr=htmlentities($_GET['group_adr']);
+$group_drug=htmlentities($_GET['group_drug']);
+$analysis=htmlentities($_GET['analysis']);
+$source=htmlentities($_GET['source']);
 $table = new DataController();
 
 

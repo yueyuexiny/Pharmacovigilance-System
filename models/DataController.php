@@ -29,11 +29,14 @@ class DataController
         }
         try {
             $sql = 'SELECT * FROM ' . $table . '  Where name like"' . $query . '%" limit 10';
-            $result = $this->dbconn->query($sql);
+            $stmt = $this->dbconn->prepare($sql);
+            $stmt->execute();
+
+            $result = $stmt->fetchAll();
 
             return $result;
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            die("Drug name not Found");
         }
     }
 
@@ -48,11 +51,12 @@ class DataController
         }
         try {
             $sql = 'SELECT * FROM '.$table.'  Where name like"'.$query.'%" limit 10';
-
-            $result = $this->dbconn->query($sql);
+            $stmt = $this->dbconn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
             return $result;
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            die("ADR not Found");
         }
 
     }
@@ -84,11 +88,13 @@ class DataController
 
         try {
             $sql = 'SELECT drug_concept_id,outcome_concept_id, case_count, prr,ror,rrr,chi,Q,IC,L FROM ' . $table . '  Where drug_concept_id in (' . $drugID . ') and outcome_concept_id in (' . $adrID . ')';
-            $result = $this->dbconn->query($sql);
+            $stmt = $this->dbconn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
 
             return $result;
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            die("Data not Found");
         }
     }
 
@@ -126,8 +132,10 @@ class DataController
 
         try {
             $sql = " SELECT " . $analysis . " FROM " . $table . " where drug_concept_id=" . $drugID . " and outcome_concept_id=" . $outcomeID;
+            $stmt = $this->dbconn->prepare($sql);
+            $stmt->execute();
 
-            $result = $this->dbconn->query($sql);
+            $result = $stmt->fetchAll();
 
             $value = 0;
             foreach ($result as $row) {
@@ -136,7 +144,7 @@ class DataController
             return $value;
 
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            die("Drug outcome not Found");
         }
     }
 
@@ -177,16 +185,17 @@ class DataController
         }
 
         try {
-            $sql = "SELECT name FROM " . $table . " where drug_concept_id=" . $drugID;
-            $result = $this->dbconn->query($sql);
+            $sql = "SELECT name FROM " . $table . " where drug_concept_id=:drugID";
+            $stmt = $this->dbconn->prepare($sql);
+            $stmt->execute(array(':drugID'=>$drugID));
+            $result = $stmt->fetchAll();
 
             foreach ($result as $row) {
                 $drugName = $row['name'];
-
             }
             return $drugName;
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            die("Drug name not Found");
         }
     }
 
@@ -200,16 +209,17 @@ class DataController
             $table='outcome_concept_id_hoi';
         }
         try{
-            $sql = "SELECT name FROM ".$table." where outcome_concept_id=".$outcomeConceptID;
-            $result = $this->dbconn->query($sql);
+            $sql = "SELECT name FROM ".$table." where outcome_concept_id=:outcome_concept_id";//.$outcomeConceptID;
+            $stmt = $this->dbconn->prepare($sql);
+            $stmt->execute(array(':outcome_concept_id'=>$outcomeConceptID));
+            $result = $stmt->fetchAll();
 
             foreach ($result as $row) {
                 $outcomeName = $row['name'];
-
             }
             return $outcomeName;
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            die("Outcome name not Found");
         }
     }
 
@@ -235,7 +245,10 @@ class DataController
         }
         try {
             $sql = 'SELECT recieved_date,drug_concept_id,outcome_concept_id, case_count FROM ' . $table . '  Where drug_concept_id in (' . $drugID . ') and outcome_concept_id in (' . $adrID . ')';
-            $result = $this->dbconn->query($sql);
+            $stmt = $this->dbconn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+
             $data = array();
             foreach ($result as $row) {
                 $item = [];
@@ -247,7 +260,7 @@ class DataController
             }
             return $data;
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            die("Case count data not Found");
         }
     }
 
@@ -316,7 +329,9 @@ class DataController
 
         try {
             $sql = 'SELECT ' . $column . ',drug_concept_id,outcome_concept_id, ' . $analysis . ' FROM ' . $table . '  Where drug_concept_id in (' . $drugID . ') and outcome_concept_id in (' . $adrID . ')';
-            $result = $this->dbconn->query($sql);
+            $stmt = $this->dbconn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
 
             $data = array();
             foreach ($result as $row) {
@@ -334,7 +349,7 @@ class DataController
             }
             return $data;
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            die("Analysis data not Found");
         }
     }
 
@@ -371,7 +386,7 @@ class DataController
             }
             return $adr_ID_list;
         }catch(PDOException $e) {
-            echo $e->getMessage();
+            die("Top N ADR names not Found");
         }
     }
 
@@ -392,11 +407,10 @@ class DataController
                 $table_name = "cerner_".$table_name;
             }
             $sql = "SELECT drug_concept_id FROM ".$table_name
-                ." where outcome_concept_id=:drug_concept_id order by "
-                .$analysis." desc limit ".$n;
+                ." where outcome_concept_id=:drug_concept_id order by :analysis desc limit ".$n;
 
             $stmt = $this->dbconn->prepare($sql);
-            $stmt -> execute(array(':drug_concept_id'=>$adr_ID,));
+            $stmt -> execute(array(':drug_concept_id'=>$adr_ID,':analysis'=>$analysis));
             $result = $stmt->fetchAll();
 
             $drug_ID_list = [];
@@ -405,7 +419,7 @@ class DataController
             }
             return $drug_ID_list;
         }catch(PDOException $e) {
-            echo $e->getMessage();
+            die("Top N Drug names not Found");
         }
     }
 
