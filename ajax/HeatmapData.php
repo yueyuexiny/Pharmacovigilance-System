@@ -7,8 +7,8 @@ if(is_ajax()){
 
     // Get parameters
    if(isset($_POST["drug"]) && isset($_POST["adr"])){
-       $drug_ID_list = htmlentities(explode(",",$_POST["drug"]));   // array
-       $adr_ID_list = htmlentities(explode(",",$_POST['adr']));
+       $drug_ID_list = explode(",",htmlentities($_POST["drug"]));   // array
+       $adr_ID_list = explode(",",htmlentities($_POST['adr']));
        $drug_group = htmlentities($_POST["drug_group"]);
        $adr_group = htmlentities($_POST["adr_group"]);
        $source = htmlentities($_POST["source"]);
