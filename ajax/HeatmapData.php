@@ -7,12 +7,12 @@ if(is_ajax()){
 
     // Get parameters
    if(isset($_POST["drug"]) && isset($_POST["adr"])){
-       $drug_ID_list = explode(",",$_POST["drug"]);   // array
-       $adr_ID_list = explode(",",$_POST['adr']);
-       $drug_group = $_POST["drug_group"];
-       $adr_group = $_POST["adr_group"];
-       $source = $_POST["source"];
-       $analysis = $_POST["analysis"];
+       $drug_ID_list = explode(",",htmlentities($_POST["drug"]));   // array
+       $adr_ID_list = explode(",",htmlentities($_POST['adr']));
+       $drug_group = htmlentities($_POST["drug_group"]);
+       $adr_group = htmlentities($_POST["adr_group"]);
+       $source = htmlentities($_POST["source"]);
+       $analysis = htmlentities($_POST["analysis"]);
 
        $num = 60;   // number of drug or ADR
 

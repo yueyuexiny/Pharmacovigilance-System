@@ -15,16 +15,17 @@
                     <div class="col-xs-5">
                         <div class="checkbox" id = "source">
                         <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="FAERS" checked>FAERS</label>
-                        <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="Twitter">Twitter/Forum</label>
+                       <!-- <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="Twitter">Twitter/Forum</label>-->
                         <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="Literature">Literature</label>
                         <label class="checkbox-inline"><input type="checkbox" name ="sourcechk" value="EHR">EHR</label>
                             </div>
                     </div>
 
                     <div class="col-xs-1 ">
-                        <h4>Analysis: </h4>
+                        <label for="analysis"> <h4>Analysis: </h4></label>
                     </div>
                     <div class="col-xs-3">
+
                         <select class="selectpicker" name="analysis" id="analysis">
                             <option value="case_count"> Case Count</option>
                             <option value="ror"> Reporting Odds Ratio</option>
@@ -40,7 +41,7 @@
                 <div class="row rowforsearch">
                     <div id="group_drug1 form-group">
                         <div class="col-xs-1 col-xs-offset-1">
-                            <h4>Drug</h4>
+                            <label for="searchbox"><h4>Drug</h4></label>
                         </div>
                         <div class="col-xs-2">
 
@@ -55,9 +56,10 @@
 
                         </div>
                         <div class="col-xs-6">
+
                             <input type="text" class="form-control"
                                    id="searchbox" autocomplete="off" placeholder="Please enter to search"
-                                   name="drugname" aria-describedby="sizing-addon1"
+                                   name="drugname"
                                    onkeyup='showResult(this.value,"drug")'>
                             <div id="livesearch"></div>
                             <div id="searchresult"></div>
@@ -69,7 +71,7 @@
                 <div class="row rowforsearch">
                     <div id="group_adr1">
                         <div class="col-xs-1 col-xs-offset-1">
-                            <h4>ADR</h4>
+                            <label for="searchbox_adr"><h4>ADR</h4></label>
                         </div>
                         <div class="col-xs-2">
                             <div class="radio">
@@ -98,7 +100,7 @@
             <div class="panel-footer">
                 <div>
 
-                    <button class="btn btn-warning pull-right" id="btn-search" onclick="submit()">Submit</button>
+                    <button class="btn btn-primary pull-right" id="btn-search" onclick="submit()">Submit</button>
                     <span id="result"></span>
                     <span id="result_adr"></span>
                     <span id="result_source"></span>

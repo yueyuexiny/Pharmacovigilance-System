@@ -9,14 +9,14 @@
 
 if(is_ajax()){
     if(isset($_POST["pairs"])){
-        $pairs = $_POST["pairs"];
-        $drugGroup = $_POST["group_drug"];
-        $adr_group = $_POST["group_adr"];
-        $drugnames = $_POST["drugnames"];
-        $adrnames = $_POST["adrnames"];
-        $analysis = $_POST['analysis'];
-        $monthoryear=$_POST['monthoryear'];
-        $source = $_POST['source'];
+        $pairs = htmlentities($_POST["pairs"]);
+        $drugGroup = htmlentities($_POST["group_drug"]);
+        $adr_group = htmlentities($_POST["group_adr"]);
+        $drugnames = htmlentities($_POST["drugnames"]);
+        $adrnames = htmlentities($_POST["adrnames"]);
+        $analysis = htmlentities($_POST['analysis']);
+        $monthoryear=htmlentities($_POST['monthoryear']);
+        $source = htmlentities($_POST['source']);
         $result = get_timeline_data_pairs($pairs,$drugGroup,$adr_group,$drugnames,$adrnames,$analysis,$monthoryear,$source);
         echo json_encode($result);
     }
