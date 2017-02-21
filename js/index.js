@@ -244,7 +244,7 @@ function show_heatmap(source) {
         url:"ajax/HeatmapData.php",
         data:data,
         success:function(result){
-            heatmapChart(result);
+	    heatmapChart(result);
             $('#img').hide();
         },
         error: function (xhr, desc, err) {
@@ -280,7 +280,7 @@ function get_timeline_data_pair(pairs,selected_drugname,selected_adrname,source)
         url: "ajax/get_timeline_pairs.php",
         data: data,
         success: function (result) {
-            global_timeline_data = result;
+	    global_timeline_data = result;
 
             if(global_analysis!="case_count"){
 

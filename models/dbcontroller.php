@@ -8,10 +8,10 @@
  */
 class DBController
 {
-    private $host = "139.52.147.134";
+    private $host = "129.106.31.171";
     private $user = "faersusr";
     private $password = "FAERSTEST@CR2015";
-    private $database = "faersv04.15";
+    private $database = "pharmacovigilance";
 
     private $conn = null;
 

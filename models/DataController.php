@@ -67,22 +67,22 @@ class DataController
     {   $table="";
         if($group_drug=='ingredient'){
             if($group_adr=='medDRA'){
-                $table='drug_ingredient_outcome_meddra_statistics_all';
+                $table='faers_drug_ingredient_outcome_meddra_statistics_all';
                 if($source=='EHR'){
                     $table='cerner_drug_ingredient_outcome_meddra_statistics_all';
                 }
             }
             else{
-                $table='drug_ingredient_outcome_hoi_statistics_all';
+                $table='faers_drug_ingredient_outcome_hoi_statistics_all';
             }
 
         }
         elseif($group_drug=='name'){
             if($group_adr=='medDRA'){
-                $table='drug_name_outcome_meddra_statistics_all';
+                $table='faers_drug_name_outcome_meddra_statistics_all';
             }
             else{
-                $table='drug_ingredient_outcome_hoi_statistics_all';//no drug_name for hoi
+                $table='faers_drug_ingredient_outcome_hoi_statistics_all';//no drug_name for hoi
             }
         }
 
@@ -102,31 +102,26 @@ class DataController
     // Get case count by drug and outcome ID
     function getDrugOutcomeValue($drugID, $outcomeID, $group_drug, $group_adr, $analysis,$source)
     {
-
-       // $table = $this->constructTableName($source,$group_drug,$group_adr);
-
-       // var_dump($table);
-
         $table="";
         if($group_drug=='ingredient'){
             if($group_adr=='medDRA'){
                 if($source == 'EHR'){
                     $table='cerner_drug_ingredient_outcome_meddra_statistics_all';
                 }else{
-                    $table='drug_ingredient_outcome_meddra_statistics_all';
+                    $table='faers_drug_ingredient_outcome_meddra_statistics_all';
                 }
 
             }
             else{
-                $table='drug_ingredient_outcome_hoi_statistics_all';
+                $table='faers_drug_ingredient_outcome_hoi_statistics_all';
             }
         }
         elseif($group_drug=='name'){
             if($group_adr=='medDRA'){
-                $table='drug_name_outcome_meddra_statistics_all';
+                $table='faers_drug_name_outcome_meddra_statistics_all';
             }
             else{
-                $table='drug_ingredient_outcome_hoi_statistics_all';//no drug_name dta for hoi
+                $table='faers_drug_ingredient_outcome_hoi_statistics_all';//no drug_name dta for hoi
             }
         }
 
@@ -153,6 +148,8 @@ class DataController
         switch($source){
             case "EHR":
                 $tablename = "cerner_";
+	    case "FAERS":
+		$tablename = "faers_";
         }
 
         switch($group_drug){
@@ -228,19 +225,19 @@ class DataController
         $table="";
         if($group_drug=='ingredient'){
             if($group_adr=='medDRA'){
-                $table='drug_ingredient_outcome_meddra_recieved_date_count';
+                $table='faers_drug_ingredient_outcome_meddra_recieved_date_count';
             }
             else{
-                $table='drug_ingredient_outcome_hoi_recieved_date_count';
+                $table='faers_drug_ingredient_outcome_hoi_recieved_date_count';
             }
 
         }
         elseif($group_drug=='name'){
             if($group_adr=='medDRA'){
-                $table='drug_name_outcome_meddra_recieved_date_count';
+                $table='faers_drug_name_outcome_meddra_recieved_date_count';
             }
             else{
-                $table='drug_ingredient_outcome_hoi_recieved_date_count';//no drug_name data for hoi
+                $table='faers_drug_ingredient_outcome_hoi_recieved_date_count';//no drug_name data for hoi
             }
         }
         try {
@@ -258,6 +255,7 @@ class DataController
                 $item['case_count'] = $row['case_count'];
                 array_push($data, $item);
             }
+
             return $data;
         } catch (PDOException $e) {
             die("Case count data not Found");
@@ -276,23 +274,23 @@ class DataController
                     if(source=='EHR'){
                         $table='cerner_drug_ingredient_outcome_meddra_statistics_year';
                     }else{
-                        $table='drug_ingredient_outcome_meddra_statistics_year';
+                        $table='faers_drug_ingredient_outcome_meddra_statistics_year';
                     }
                 }
                 else{
                     if($source=='EHR'){
                         $table='cerner_drug_ingredient_outcome_hoi_statistics_year';
                     }else{
-                        $table='drug_ingredient_outcome_hoi_statistics_year';
+                        $table='faers_drug_ingredient_outcome_hoi_statistics_year';
                     }
                 }
             }
             elseif($group_drug=='name'){
                 if($group_adr=='medDRA'){
-                    $table='drug_name_outcome_meddra_statistics_year';
+                    $table='faers_drug_name_outcome_meddra_statistics_year';
                 }
                 else{
-                    $table='drug_ingredient_outcome_hoi_statistics_year';//no drug name for hoi
+                    $table='faers_drug_ingredient_outcome_hoi_statistics_year';//no drug name for hoi
                 }
             }
         }
@@ -304,23 +302,23 @@ class DataController
                     if($source=='EHR'){
                         $table='cerner_drug_ingredient_outcome_meddra_statistics_quarter';
                     }else{
-                        $table='drug_ingredient_outcome_meddra_statistics_quarter';
+                        $table='faers_drug_ingredient_outcome_meddra_statistics_quarter';
                     }
                 }
                 else{
                     if($source=='EHR'){
                         $table='cerner_drug_ingredient_outcome_hoi_statistics_quarter';
                     }else{
-                        $table='drug_ingredient_outcome_hoi_statistics_quarter';
+                        $table='faers_drug_ingredient_outcome_hoi_statistics_quarter';
                     }
                 }
             }
             elseif($group_drug=='name'){
                 if($group_adr=='medDRA'){
-                    $table='drug_name_outcome_meddra_statistics_quarter';
+                    $table='faers_drug_name_outcome_meddra_statistics_quarter';
                 }
                 else{
-                    $table='drug_ingredient_outcome_hoi_statistics_quarter';//no drug name for hoi
+                    $table='faers_drug_ingredient_outcome_hoi_statistics_quarter';//no drug name for hoi
                 }
             }
         }
@@ -370,7 +368,10 @@ class DataController
 
             if($source == "EHR"){
                 $table_name = "cerner_".$table_name;
-            }
+            }else
+            {
+                $table_name = "faers_".$table_name;
+                }
 
             $sql = "SELECT outcome_concept_id FROM ".$table_name
                 ." where drug_concept_id=:drug_concept_id order by "
@@ -405,7 +406,10 @@ class DataController
             $table_name = strtolower("drug_".$drug_group."_outcome_".$adr_group."_statistics_all");
             if($source == "EHR"){
                 $table_name = "cerner_".$table_name;
-            }
+            }else
+	    {
+		$table_name = "faers_".$table_name;
+		}
             $sql = "SELECT drug_concept_id FROM ".$table_name
                 ." where outcome_concept_id=:drug_concept_id order by :analysis desc limit ".$n;
 
