@@ -1,8 +1,11 @@
 <?php
 
-function pc_validate($user,$pass) {
+// username and password
+/*function pc_validate($user,$pass) {
     /* replace with appropriate username and password checking,
        such as checking a database */
+
+/*
     $users = array('adversometer' => 'adversometer');
     if (isset($users[$user]) && ($users[$user] == $pass)) {
         return true;
@@ -18,7 +21,8 @@ if (! pc_validate($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])) {
     echo 'Please Enter user name and password';
     exit;
 } else {
-}
+}*/
+
 ?>
 
 <!DOCTYPE html>
