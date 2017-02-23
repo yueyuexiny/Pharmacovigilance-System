@@ -57,7 +57,9 @@ function get_dates($result){
 function get_names_for_pair($result,$drugnames,$adrnames,$source){
     $names = array();
     foreach($result as $row){
-        $name = $source.' - '. $drugnames[$row[0]['drug_concept_id']].'/'.$adrnames[$row[0]['outcome_concept_id']];
+        //$name = $source.' - '. $drugnames[$row[0]['drug_concept_id']].'/'.$adrnames[$row[0]['outcome_concept_id']];
+        $name = $drugnames[$row[0]['drug_concept_id']].'/'.$adrnames[$row[0]['outcome_concept_id']];
+
         if(!in_array($name,$names)){
             array_push($names,$name);
         }
@@ -85,7 +87,8 @@ function get_timeline_data_pairs($pairs,$group_drug,$group_adr,$drugnames,$adrna
     $timeline_data = array();
     foreach($results as $row) {
         foreach($row as $item){
-            $name = $source.' - '. $drugnames[$item['drug_concept_id']].'/'.$adrnames[$item['outcome_concept_id']];
+            //$name = $source.' - '. $drugnames[$item['drug_concept_id']].'/'.$adrnames[$item['outcome_concept_id']];
+            $name = $drugnames[$item['drug_concept_id']].'/'.$adrnames[$item['outcome_concept_id']];
             $date=$item['recieved_date'];
             $timeline_data[$date][$name]=$item[$analysis];
            }
