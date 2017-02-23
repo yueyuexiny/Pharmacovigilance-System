@@ -85,7 +85,7 @@ function get_timeline_data_pairs($pairs,$group_drug,$group_adr,$drugnames,$adrna
     $timeline_data = array();
     foreach($results as $row) {
         foreach($row as $item){
-            $name = $drugnames[$item['drug_concept_id']].'/'.$adrnames[$item['outcome_concept_id']];
+            $name = $source.' - '. $drugnames[$item['drug_concept_id']].'/'.$adrnames[$item['outcome_concept_id']];
             $date=$item['recieved_date'];
             $timeline_data[$date][$name]=$item[$analysis];
            }
