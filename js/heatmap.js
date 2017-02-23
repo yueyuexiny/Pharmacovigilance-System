@@ -123,7 +123,7 @@ var heatmapChart = function(hmdata) {
         .on('mouseout', tip.hide)
         .on('click',function(d){
             if(d.value>0){
-                update_id_pair(d.drugId,d.adrId, d.drugName, d.adrName,"a","b");
+                update_id_pair(d.drugId,d.adrId, d.drugName, d.adrName,source,"b");
             }
 
         })
