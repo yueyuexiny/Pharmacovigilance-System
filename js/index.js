@@ -248,8 +248,9 @@ function show_heatmap(source) {
             $('#img').hide();
         },
         error: function (xhr, desc, err) {
-            console.log(xhr);
-            console.log("Details: " + desc + "\nError:" + err);
+            console.log("Error in heatmap.");
+            //console.log(xhr);
+            //console.log("Details: " + desc + "\nError:" + err);
         }
     });
 }
@@ -307,8 +308,8 @@ function get_timeline_data_pair(pairs,selected_drugname,selected_adrname,source)
 
         },
         error: function (xhr, desc, err) {
-            console.log(xhr);
-            console.log("Details: " + desc + "\nError:" + err);
+            console.log("Error in timeline chart.");
+            //console.log("Details: " + desc + "\nError:" + err);
         }
     });
 

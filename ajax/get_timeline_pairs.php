@@ -27,12 +27,6 @@ if(is_ajax()){
             $adrnames[htmlentities($adrname)] = htmlentities($_POST["adrnames"][$adrname]);
         }
 
-        /*
-        $pairs = $_POST["pairs"];
-        $drugnames = htmlentities($_POST["drugnames"]);
-        $adrnames = htmlentities($_POST["adrnames"]);
-        */
-
         $drugGroup = htmlentities($_POST["group_drug"]);
         $adr_group = htmlentities($_POST["group_adr"]);
         $analysis = htmlentities($_POST['analysis']);
@@ -63,7 +57,6 @@ function get_dates($result){
 function get_names_for_pair($result,$drugnames,$adrnames){
     $names = array();
     foreach($result as $row){
-        // $name = $row['drug_concept_id'].'_'.$row['outcome_concept_id'];
         $name = $drugnames[$row[0]['drug_concept_id']].'/'.$adrnames[$row[0]['outcome_concept_id']];
         if(!in_array($name,$names)){
             array_push($names,$name);
