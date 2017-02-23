@@ -54,10 +54,10 @@ function get_dates($result){
 }
 
 
-function get_names_for_pair($result,$drugnames,$adrnames){
+function get_names_for_pair($result,$drugnames,$adrnames,$source){
     $names = array();
     foreach($result as $row){
-        $name = $drugnames[$row[0]['drug_concept_id']].'/'.$adrnames[$row[0]['outcome_concept_id']];
+        $name = $source.' - '. $drugnames[$row[0]['drug_concept_id']].'/'.$adrnames[$row[0]['outcome_concept_id']];
         if(!in_array($name,$names)){
             array_push($names,$name);
         }
@@ -81,7 +81,7 @@ function get_timeline_data_pairs($pairs,$group_drug,$group_adr,$drugnames,$adrna
         array_push($results,$result);
     }
 
-    $names = get_names_for_pair($results,$drugnames,$adrnames);
+    $names = get_names_for_pair($results,$drugnames,$adrnames,$source);
     $timeline_data = array();
     foreach($results as $row) {
         foreach($row as $item){
