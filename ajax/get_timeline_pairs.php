@@ -9,11 +9,32 @@
 
 if(is_ajax()){
     if(isset($_POST["pairs"])){
+
+        $pairs = [];
+        $drugnames = [];
+        $adrnames = [];
+
+        foreach($_POST["pairs"] as $pair){
+            $drug=htmlentities($pair[0]);
+            $adr=htmlentities($pair[1]);
+            array_push($pairs,[$drug,$adr]);
+        }
+        foreach(array_keys($_POST["drugnames"]) as $drugname){
+            $drugnames[htmlentities($drugname)] = htmlentities($_POST["drugnames"][$drugname]);
+
+        }
+        foreach(array_keys($_POST["adrnames"]) as $adrname){
+            $adrnames[htmlentities($adrname)] = htmlentities($_POST["adrnames"][$adrname]);
+        }
+
+        /*
         $pairs = $_POST["pairs"];
-        $drugGroup = htmlentities($_POST["group_drug"]);
-        $adr_group = htmlentities($_POST["group_adr"]);
         $drugnames = htmlentities($_POST["drugnames"]);
         $adrnames = htmlentities($_POST["adrnames"]);
+        */
+
+        $drugGroup = htmlentities($_POST["group_drug"]);
+        $adr_group = htmlentities($_POST["group_adr"]);
         $analysis = htmlentities($_POST['analysis']);
         $monthoryear=htmlentities($_POST['monthoryear']);
         $source = htmlentities($_POST['source']);
