@@ -239,6 +239,8 @@ function show_heatmap(source) {
         'analysis':global_analysis,
     };
 
+    console.log(global_analysis);
+
     $.ajax({
         type:"POST",
         url:"ajax/HeatmapData.php",
@@ -247,10 +249,11 @@ function show_heatmap(source) {
 	    heatmapChart(result);
             $('#img').hide();
         },
-        error: function (xhr, desc, err) {
+        error: function (xhr, desc, err, table) {
+	    console.log(table);
             console.log("Error in heatmap.");
-            //console.log(xhr);
-            //console.log("Details: " + desc + "\nError:" + err);
+            console.log(xhr);
+            console.log("Details: " + desc + "\nError:" + err);
         }
     });
 }
