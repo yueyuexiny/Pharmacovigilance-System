@@ -246,14 +246,14 @@ function show_heatmap(source) {
         url:"ajax/HeatmapData.php",
         data:data,
         success:function(result){
+	    console.log(result);
 	    heatmapChart(result);
             $('#img').hide();
         },
-        error: function (xhr, desc, err, table) {
-	    console.log(table);
+        error: function (xhr, desc, err) {
             console.log("Error in heatmap.");
-            console.log(xhr);
-            console.log("Details: " + desc + "\nError:" + err);
+            //console.log(xhr);
+            //console.log("Details: " + desc + "\nError:" + err);
         }
     });
 }
