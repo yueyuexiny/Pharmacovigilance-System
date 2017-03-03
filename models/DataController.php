@@ -61,19 +61,77 @@ class DataController
 
     }
 
+    function constructTableName($source,$group_drug,$group_adr){
+        $tablename = "";
+        switch($source){
+            case "EHR":
+                $tablename = "cerner_";
+                break;
+            case "FAERS":
+                $tablename = "faers_";
+                break;
+            case "Literature":
+                $tablename = "pubmed_";
+                break;
+
+        }
+
+        switch($group_drug){
+            case "name":
+                $tablename +="drug_name_";
+                break;
+            case "ingredient":
+                $tablename +="drug_ingredient_";
+                break;
+        }
+
+        switch($group_adr){
+            case "medDRA":
+                $tablename+="outcome_meddra_";
+                break;
+            case "HOI":
+                $tablename+="outcome_hoi_";
+                break;
+        }
+
+        // $tablename+= "statistics_all";
+
+        return $tablename;
+
+    }
 
 
     function get_data($drugID,$adrID,$group_drug,$group_adr,$source)
-    {   $table="";
-        if($group_drug=='ingredient'){
+    {
+       /* if($group_drug=='ingredient'){
             if($group_adr=='medDRA'){
-                $table='faers_drug_ingredient_outcome_meddra_statistics_all';
-                if($source=='EHR'){
-                    $table='cerner_drug_ingredient_outcome_meddra_statistics_all';
+
+                $table_name = "drug_ingredient_outcome_meddra_statistics_all";
+                switch($source){
+                    case "EHR":
+                        $table = "cerner_".$table_name;
+                        break;
+                    case "FAERS":
+                        $table = "faers_".$table_name;
+                        break;
+                    case "Literature":
+                        $table = "pubmed_".$table_name;
+                        break;
                 }
             }
             else{
-                $table='faers_drug_ingredient_outcome_hoi_statistics_all';
+                $table_name = "drug_ingredient_outcome_hoi_statistics_all";
+                switch($source){
+                    case "EHR":
+                        $table = "cerner_".$table_name;
+                        break;
+                    case "FAERS":
+                        $table = "faers_".$table_name;
+                        break;
+                    case "Literature":
+                        $table = "pubmed_".$table_name;
+                        break;
+                }
             }
 
         }
@@ -85,6 +143,9 @@ class DataController
                 $table='faers_drug_ingredient_outcome_hoi_statistics_all';//no drug_name for hoi
             }
         }
+       */
+
+        $table=constructTableName($source,$group_drug,$group_adr)."statistics_all";
 
         try {
             $sql = 'SELECT drug_concept_id,outcome_concept_id, case_count, prr,ror,rrr,chi,Q,IC,L FROM ' . $table . '  Where drug_concept_id in (' . $drugID . ') and outcome_concept_id in (' . $adrID . ')';
@@ -102,7 +163,7 @@ class DataController
     // Get case count by drug and outcome ID
     function getDrugOutcomeValue($drugID, $outcomeID, $group_drug, $group_adr, $analysis,$source)
     {
-        $table="";
+        /*$table="";
         if($group_drug=='ingredient'){
             if($group_adr=='medDRA'){
                 if($source == 'EHR'){
@@ -124,6 +185,9 @@ class DataController
                 $table='faers_drug_ingredient_outcome_hoi_statistics_all';//no drug_name dta for hoi
             }
         }
+        */
+
+        $table=constructTableName($source,$group_drug,$group_adr)."statistics_all";
 
         try {
             $sql = " SELECT " . $analysis . " FROM " . $table . " where drug_concept_id=" . $drugID . " and outcome_concept_id=" . $outcomeID;
@@ -143,34 +207,7 @@ class DataController
         }
     }
 
-    function constructTableName($source,$group_drug,$group_adr){
-        $tablename = "";
-        switch($source){
-            case "EHR":
-                $tablename = "cerner_";
-	    case "FAERS":
-		$tablename = "faers_";
-        }
 
-        switch($group_drug){
-            case "name":
-                $tablename +="drug_name_";
-            case "ingredient":
-                $tablename +="drug_ingredient_";
-        }
-
-        switch($group_adr){
-            case "medDRA":
-                $tablename+="outcome_meddra_";
-            case "HOI":
-                $tablename+="outcome_hoi_";
-        }
-
-        $tablename+= "statistics_all";
-
-        return $tablename;
-
-    }
 
     function getDrugNameByID($drugID, $group)
     {
@@ -222,7 +259,7 @@ class DataController
 
     function getCaseCountTimeline($drugID, $adrID, $group_drug, $group_adr)
     {
-        $table="";
+        /*$table="";
         if($group_drug=='ingredient'){
             if($group_adr=='medDRA'){
                 $table='faers_drug_ingredient_outcome_meddra_recieved_date_count';
@@ -240,6 +277,10 @@ class DataController
                 $table='faers_drug_ingredient_outcome_hoi_recieved_date_count';//no drug_name data for hoi
             }
         }
+        */
+
+        $table=constructTableName("FAERS",$group_drug,$group_adr)."recieved_date_count";
+
         try {
             $sql = 'SELECT recieved_date,drug_concept_id,outcome_concept_id, case_count FROM ' . $table . '  Where drug_concept_id in (' . $drugID . ') and outcome_concept_id in (' . $adrID . ')';
             $stmt = $this->dbconn->prepare($sql);
@@ -267,8 +308,12 @@ class DataController
 
         $table = "";
         $quarter_table = ["1" => "0101", "2" => '0401', '3' => '0701', '4' => '1001'];
+
         if ($quarteroryear == 'year') {
             $column = "recieved_year";
+
+
+            /*
             if($group_drug=='ingredient'){
                 if($group_adr=='medDRA'){
                     if(source=='EHR'){
@@ -293,9 +338,15 @@ class DataController
                     $table='faers_drug_ingredient_outcome_hoi_statistics_year';//no drug name for hoi
                 }
             }
+            */
+
+            $table=constructTableName($source,$group_drug,$group_adr)."statistics_year";
+
         }
         elseif($quarteroryear=='quarter'){
             $column = "recieved_year,recieved_quarter";
+
+            /*
             if($group_drug=='ingredient'){
                 if($group_adr=='medDRA'){
 
@@ -321,6 +372,10 @@ class DataController
                     $table='faers_drug_ingredient_outcome_hoi_statistics_quarter';//no drug name for hoi
                 }
             }
+            */
+
+            $table=constructTableName($source,$group_drug,$group_adr)."statistics_quarter";
+
         }
 
 
@@ -364,14 +419,22 @@ class DataController
     function getTopNAdr($drug_ID, $drug_group,$adr_group, $n, $analysis,$source)
     {
         try{
+
+            /*
             $table_name = strtolower("drug_".$drug_group."_outcome_".$adr_group."_statistics_all");
 
-            if($source == "EHR"){
-                $table_name = "cerner_".$table_name;
-            }else
-            {
-                $table_name = "faers_".$table_name;
-                }
+            switch($source){
+                case "EHR":
+                    $table_name = "cerner_".$table_name;
+                case "FAERS":
+                    $table_name = "faers_".$table_name;
+                case "Literature":
+                    $table_name = "pubmed_".$table_name;
+            }
+            */
+
+            $table_name=constructTableName($source,$adr_group,$drug_group)."statistics_all";
+
 
             $sql = "SELECT outcome_concept_id FROM ".$table_name
                 ." where drug_concept_id=:drug_concept_id order by "
@@ -403,13 +466,19 @@ class DataController
      * */
     function getTopNDrug($adr_ID, $drug_group,$adr_group, $n, $analysis,$source){
         try{
+
+            /*
             $table_name = strtolower("drug_".$drug_group."_outcome_".$adr_group."_statistics_all");
             if($source == "EHR"){
                 $table_name = "cerner_".$table_name;
             }else
-	    {
-		$table_name = "faers_".$table_name;
-		}
+            {
+            $table_name = "faers_".$table_name;
+            }
+            */
+
+            $table_name=constructTableName($source,$adr_group,$drug_group)."statistics_all";
+
             $sql = "SELECT drug_concept_id FROM ".$table_name
                 ." where outcome_concept_id=:drug_concept_id order by :analysis desc limit ".$n;
 
@@ -426,10 +495,6 @@ class DataController
             die("Top N Drug names not Found");
         }
     }
-
-
-
-
-
+    
 }
 ?>
