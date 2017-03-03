@@ -101,49 +101,6 @@ class DataController
 
     function get_data($drugID,$adrID,$group_drug,$group_adr,$source)
     {
-	/*
-        if($group_drug=='ingredient'){
-            if($group_adr=='medDRA'){
-
-                $table_name = "drug_ingredient_outcome_meddra_statistics_all";
-                switch($source){
-                    case "EHR":
-                        $table = "cerner_".$table_name;
-                        break;
-                    case "FAERS":
-                        $table = "faers_".$table_name;
-                        break;
-                    case "Literature":
-                        $table = "pubmed_".$table_name;
-                        break;
-                }
-            }
-            else{
-                $table_name = "drug_ingredient_outcome_hoi_statistics_all";
-                switch($source){
-                    case "EHR":
-                        $table = "cerner_".$table_name;
-                        break;
-                    case "FAERS":
-                        $table = "faers_".$table_name;
-                        break;
-                    case "Literature":
-                        $table = "pubmed_".$table_name;
-                        break;
-                }
-            }
-
-        }
-        elseif($group_drug=='name'){
-            if($group_adr=='medDRA'){
-                $table='faers_drug_name_outcome_meddra_statistics_all';
-            }
-            else{
-                $table='faers_drug_ingredient_outcome_hoi_statistics_all';//no drug_name for hoi
-            }
-        }
-	*/
-
         $table=$this->constructTableName($source,$group_drug,$group_adr)."statistics_all";
 
         try {
@@ -163,31 +120,6 @@ class DataController
     // Get case count by drug and outcome ID
     function getDrugOutcomeValue($drugID, $outcomeID, $group_drug, $group_adr, $analysis,$source)
     {
-/*
-        $table="";
-        if($group_drug=='ingredient'){
-            if($group_adr=='medDRA'){
-                if($source == 'EHR'){
-                    $table='cerner_drug_ingredient_outcome_meddra_statistics_all';
-                }else{
-                    $table='faers_drug_ingredient_outcome_meddra_statistics_all';
-                }
-
-            }
-            else{
-                $table='faers_drug_ingredient_outcome_hoi_statistics_all';
-            }
-        }
-        elseif($group_drug=='name'){
-            if($group_adr=='medDRA'){
-                $table='faers_drug_name_outcome_meddra_statistics_all';
-            }
-            else{
-                $table='faers_drug_ingredient_outcome_hoi_statistics_all';//no drug_name dta for hoi
-            }
-        }
-
-*/
          $table=$this->constructTableName($source,$group_drug,$group_adr)."statistics_all";
 
         try {
@@ -260,27 +192,6 @@ class DataController
 
     function getCaseCountTimeline($drugID, $adrID, $group_drug, $group_adr)
     {
-	/*
-        $table="";
-        if($group_drug=='ingredient'){
-            if($group_adr=='medDRA'){
-                $table='faers_drug_ingredient_outcome_meddra_recieved_date_count';
-            }
-            else{
-                $table='faers_drug_ingredient_outcome_hoi_recieved_date_count';
-            }
-
-        }
-        elseif($group_drug=='name'){
-            if($group_adr=='medDRA'){
-                $table='faers_drug_name_outcome_meddra_recieved_date_count';
-            }
-            else{
-                $table='faers_drug_ingredient_outcome_hoi_recieved_date_count';//no drug_name data for hoi
-            }
-        }
-	*/
-        
         $table=$this->constructTableName("FAERS",$group_drug,$group_adr)."recieved_date_count";
 
         try {
@@ -308,13 +219,16 @@ class DataController
     function getAnalysisTimeline($drugID, $adrID, $group_drug, $group_adr, $analysis, $quarteroryear,$source)
     {
 
-	/*
+
         $table = "";
         $quarter_table = ["1" => "0101", "2" => '0401', '3' => '0701', '4' => '1001'];
 
         if ($quarteroryear == 'year') {
             $column = "recieved_year";
 
+            $table=$this->constructTableName($source,$group_drug,$group_adr)."statistics_year";
+
+            /*
             if($group_drug=='ingredient'){
                 if($group_adr=='medDRA'){
                     if(source=='EHR'){
@@ -338,15 +252,15 @@ class DataController
                 else{
                     $table='faers_drug_ingredient_outcome_hoi_statistics_year';//no drug name for hoi
                 }
-            }
-
-
-            //$table=constructTableName($source,$group_drug,$group_adr)."statistics_year";
+            }*/
 
         }
         elseif($quarteroryear=='quarter'){
             $column = "recieved_year,recieved_quarter";
 
+            $table=$this->constructTableName($source,$group_drug,$group_adr)."statistics_quarter";
+
+            /*
             if($group_drug=='ingredient'){
                 if($group_adr=='medDRA'){
 
@@ -371,11 +285,11 @@ class DataController
                 else{
                     $table='faers_drug_ingredient_outcome_hoi_statistics_quarter';//no drug name for hoi
                 }
-            }
-	}
-	*/
+            }*/
+	    }
 
-         $table=$this->constructTableName($source,$group_drug,$group_adr)."statistics_quarter";
+
+
 
         try {
             $sql = 'SELECT ' . $column . ',drug_concept_id,outcome_concept_id, ' . $analysis . ' FROM ' . $table . '  Where drug_concept_id in (' . $drugID . ') and outcome_concept_id in (' . $adrID . ')';
@@ -416,21 +330,6 @@ class DataController
     function getTopNAdr($drug_ID, $drug_group,$adr_group, $n, $analysis,$source)
     {
         try{
-           /* $table_name = strtolower("drug_".$drug_group."_outcome_".$adr_group."_statistics_all");
-
-            switch($source){
-                case "EHR":
-                    $table_name = "cerner_".$table_name;
-		    break;
-                case "FAERS":
-                    $table_name = "faers_".$table_name;
-		    break;
-                case "Literature":
-                    $table_name = "pubmed_".$table_name;
-            	    break;
-		}
-
-	   */
            $table_name=$this->constructTableName($source,$drug_group,$adr_group)."statistics_all";
 
 
@@ -465,18 +364,6 @@ class DataController
      * */
     function getTopNDrug($adr_ID, $drug_group,$adr_group, $n, $analysis,$source){
         try{
-
-	/*
-            $table_name = strtolower("drug_".$drug_group."_outcome_".$adr_group."_statistics_all");
-            if($source == "EHR"){
-                $table_name = "cerner_".$table_name;
-            }else
-            {
-            $table_name = "faers_".$table_name;
-            }
-
-	*/
-
             $table_name=$this->constructTableName($source,$adr_group,$drug_group)."statistics_all";
 
             $sql = "SELECT drug_concept_id FROM ".$table_name
