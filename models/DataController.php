@@ -433,8 +433,6 @@ class DataController
 
             $table_name=constructTableName($source,$adr_group,$drug_group)."statistics_all";
 
-            echo $table_name;
-
 
             $sql = "SELECT outcome_concept_id FROM ".$table_name
                 ." where drug_concept_id=:drug_concept_id order by "
