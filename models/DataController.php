@@ -78,23 +78,21 @@ class DataController
 
         switch($group_drug){
             case "name":
-                $tablename +="drug_name_";
+                $tablename .="drug_name_";
                 break;
             case "ingredient":
-                $tablename +="drug_ingredient_";
+                $tablename .="drug_ingredient_";
                 break;
         }
 
         switch($group_adr){
             case "medDRA":
-                $tablename+="outcome_meddra_";
+                $tablename .="outcome_meddra_";
                 break;
             case "HOI":
-                $tablename+="outcome_hoi_";
+                $tablename .="outcome_hoi_";
                 break;
         }
-
-        // $tablename+= "statistics_all";
 
         return $tablename;
 
@@ -435,6 +433,8 @@ class DataController
 
             $table_name=constructTableName($source,$adr_group,$drug_group)."statistics_all";
 
+            echo $table_name;
+
 
             $sql = "SELECT outcome_concept_id FROM ".$table_name
                 ." where drug_concept_id=:drug_concept_id order by "
@@ -495,6 +495,6 @@ class DataController
             die("Top N Drug names not Found");
         }
     }
-    
+
 }
 ?>
