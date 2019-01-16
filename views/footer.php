@@ -6,7 +6,6 @@
     </div>
     <div class="col-md-6">
         <div class=" text-center" style="color:white">
-            Contact Us | Emergency Information | Site Policies | Need help opening PDF files?
             <br/>
             &copy; 2008-Present - The University of Texas Health Science Center at Houston (UTHealth)
         </div>
